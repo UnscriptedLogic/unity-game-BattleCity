@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb83ff1311b961948b2c67011abb5abb, type: 3}
+  m_Name: DefaultWallSettings
+  m_EditorClassIdentifier: 
+  movementSpeed: 0
+  rotationSpeed: 0
+  health: 1
+  miscEffects:
+  - createOn: 2
+    particles:
+    - {fileID: 7276985563156588288, guid: 5174f5f4ccdd117469473d94620307e7, type: 3}
+    sounds:
+    - {fileID: 8300000, guid: 7b70c96146565724f802cf42fe3a76d3, type: 3}
+    - {fileID: 8300000, guid: f7e7015157f4b6a4e8a2e4b5e47d669f, type: 3}
+    - {fileID: 8300000, guid: 7a75782cad9317942ac8bb728e88b187, type: 3}
+    priority: 225
+    volume: 0.1
+    maxDistance: 25
+    spatialBlend: 1
