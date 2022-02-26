@@ -16,11 +16,16 @@ public class EntityManager : MonoBehaviour
     public EntitySemaphore[] entityScripts;
     public event Action onInitialized;
 
-    protected async virtual void OnEnable()
+    protected virtual void OnEnable()
     {
         InitSettings();
         Initialize();
 
+        InitializeScripts();
+    }
+
+    protected async void InitializeScripts()
+    {
         for (int i = 0; i < entityScripts.Length; i++)
         {
             await gate.WaitAsync();

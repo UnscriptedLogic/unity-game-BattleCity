@@ -81,7 +81,7 @@ public class PowerUpManager : EntityManager
     {
         TankTeamIndexer collectorIndexer = collision.transform.GetComponent<TankTeamIndexer>();
         List<TankManager> collectorEnemies = new List<TankManager>();
-        collectorEnemies = TeamManager.instance.GetEntitesNotInTeam(collectorIndexer.teamIndex);
+        collectorEnemies = TeamManager.instance.GetTanksNotInTeam(collectorIndexer.teamIndex);
 
         for (int i = 0; i < collectorEnemies.Count; i++)
         {

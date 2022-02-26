@@ -15,6 +15,7 @@ public class TimeAffector : MonoBehaviour
     private TankManager manager;
     private EntityMovement movement;
     private EntityShoot shoot;
+    private EntityEffects entityEffects;
 
     private float originalSpeed;
     private float originalBulletSpeed;
@@ -26,16 +27,21 @@ public class TimeAffector : MonoBehaviour
         manager = GetComponent<TankManager>();
         movement = GetComponent<EntityMovement>();
         shoot = GetComponent<EntityShoot>();
+        entityEffects = GetComponent<EntityEffects>();
 
         Toggle(value: true);
+
+
+        PlayerRespawn playerRespawn = GetComponent<PlayerRespawn>();
+        if (playerRespawn)
+        {
+            playerRespawn.onPlayerRespawned += PlayerRespawn_onPlayerRespawned;
+        }
     }
 
-    private void Update()
+    private void PlayerRespawn_onPlayerRespawned()
     {
-        if (duration <= 0)
-        {
-            Destroy(this);
-        }
+        Toggle(value: true);
     }
 
     private void OnDestroy()
@@ -51,6 +57,7 @@ public class TimeAffector : MonoBehaviour
             case TimeModifyTypes.Stop:
                 movement.enabled = !value;
                 shoot.enabled = !value;
+                entityEffects.enabled = !value;
                 break;
             case TimeModifyTypes.Slow:
                 if (value)

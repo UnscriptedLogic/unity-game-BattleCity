@@ -164,9 +164,9 @@ MonoBehaviour:
     - {fileID: 4190734791101683395}
     sounds:
     - {fileID: 8300000, guid: 34f756cc89845c046a10c1ea8efeafe6, type: 3}
-    priority: 225
-    volume: 0.05
-    maxDistance: 17
+    priority: 250
+    volume: 0.025
+    maxDistance: 12
     spatialBlend: 1
   checkDistance: 0
   activated: 0

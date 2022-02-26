@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,17 +38,27 @@ public class PowerUpUI : EntitySemaphore
                     break;
                 case PowerUpType.Time:
                     TimePowerUp time = powerUpManager as TimePowerUp;
-                    StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Time, time.duration));
+                    time.onTimeAffected += Time_onTimeAffected;
                     break;
                 case PowerUpType.Nuke:
                     StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Nuke, 3));
                     break;
                 case PowerUpType.HomeFortify:
-                    StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Nuke, 10));
+                    StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.HomeFortify, 10));
                     break;
                 default:
                     break;
             }
         }
+    }
+
+    private void Time_onTimeAffected(TimeManager obj)
+    {
+        obj.onTimeResumed += Time_onTimeResumed;
+    }
+
+    private void Time_onTimeResumed()
+    {
+        uiManager.RemoveCard(PowerUpType.Time);
     }
 }

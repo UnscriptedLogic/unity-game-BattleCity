@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class PlayerRespawn : EntitySemaphore
     public Behaviour[] toggleBehaviours;
 
     protected bool isDead;
+
+    public event Action onPlayerRespawned;
 
     public override void Initialize(EntityManager manager)
     {
@@ -84,6 +87,11 @@ public class PlayerRespawn : EntitySemaphore
         for (int i = 0; i < toggleBehaviours.Length; i++)
         {
             toggleBehaviours[i].enabled = value;
+        }
+
+        if (value)
+        {
+            onPlayerRespawned?.Invoke();
         }
     }
 

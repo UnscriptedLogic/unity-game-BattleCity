@@ -18,6 +18,9 @@ public class TeamManager : Manager
     public static TeamManager instance;
     public Team[] teams;
 
+    public event Action<TankManager, int> onAddedToTeam;
+    public event Action<TankManager, int> onRemovedFromTeam;
+
     public override void Initialize()
     {
         instance = this;
@@ -33,14 +36,16 @@ public class TeamManager : Manager
         TankManager tankManager = obj.GetComponent<TankManager>();
         TankTeamIndexer indexer = obj.GetComponent<TankTeamIndexer>();
         RemoveFromTeam(indexer.teamIndex, tankManager);
+        onRemovedFromTeam?.Invoke(tankManager, indexer.teamIndex);
     }
 
     private void IndexManager_onEntityAdded(Transform obj)
     {
-        TankManager manager = obj.GetComponent<TankManager>();
+        TankManager tankManager = obj.GetComponent<TankManager>();
         TankTeamIndexer indexer = obj.GetComponent<TankTeamIndexer>();
 
-        AddToTeam(indexer.teamIndex, manager);
+        AddToTeam(indexer.teamIndex, tankManager);
+        onAddedToTeam?.Invoke(tankManager, indexer.teamIndex);
     }
 
     public void AddToTeam(int index, TankManager entity)
@@ -84,7 +89,7 @@ public class TeamManager : Manager
         return teams[index].entities;
     }
 
-    public List<TankManager> GetEntitesNotInTeam(int index)
+    public List<TankManager> GetTanksNotInTeam(int index)
     {
 
         if (NotValidTeamIndex(index))
