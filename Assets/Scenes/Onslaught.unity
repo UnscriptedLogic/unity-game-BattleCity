@@ -6388,6 +6388,7 @@ GameObject:
   - component: {fileID: 419572483}
   - component: {fileID: 419572484}
   - component: {fileID: 419572485}
+  - component: {fileID: 419572486}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -6599,6 +6600,33 @@ MonoBehaviour:
   uiParent: {fileID: 145094797}
   uiPrefab: {fileID: 3785148427989631944, guid: 1481a29cb7401cb479fe7c09fc98a4df,
     type: 3}
+--- !u!114 &419572486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419572476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3bd51106b4ce3409544e3a7e1152c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connRoute: https://www.google.com/
+  dateRoute: http://localhost/UnityBackendTutorial/GetDate.php
+  getUserByID: http://localhost/UnityBackendTutorial/GetUserByID.php
+  scoresRoute: http://localhost/UnityBackendTutorial/GetScores.php
+  addScoreRoute: http://localhost/UnityBackendTutorial/AddScore.php
+  loginRoute: http://localhost/UnityBackendTutorial/LogIn.php
+  signupRoute: http://localhost/UnityBackendTutorial/SignUp.php
+  deleteUserRoute: http://localhost/UnityBackendTutorial/DeleteUser.php
+  player:
+    initialized: 0
+    id: 0
+    username: 
+    password: 
+    hiscore: 0
+  gameVariables: {fileID: 11400000, guid: 549512ce8fb11da4c9efe9e0a3a8671a, type: 2}
 --- !u!1001 &436815958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33608,3 +33636,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6f7eac00f16ee74d96e362283ce0f3c, type: 3}
+--- !u!114 &8135042283719154112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1591539979, guid: b6f7eac00f16ee74d96e362283ce0f3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8135042283719154111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970467778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395a2ffd2db027d46a3b96deda882527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8135042283719154113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970467778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d13dc9ef64e07e4db32267741f0ea16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankScore: {fileID: 8135042283719154112}
