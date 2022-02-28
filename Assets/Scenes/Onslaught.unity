@@ -17465,7 +17465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181489151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -6.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17484,33 +17484,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f907fb091db96c64291057cfb471b99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnArea: {x: 29.2, y: 22.4}
+  spawnArea: {x: 29.2, y: 17.27}
   spawnParent: {fileID: 1181489152}
   maxAlive: 1
   addOnSpawn: []
   canSpawn: 0
   entityChances:
-  - prefab: {fileID: 2069431871578061643, guid: 7065912e6f392554981ab2212d1f50c7,
-      type: 3}
-    chance: 20
-  - prefab: {fileID: 7926169113917282297, guid: cba6340d1ad2b724da7489f6a3e6f603,
-      type: 3}
-    chance: 20
-  - prefab: {fileID: 7772481263441006460, guid: 2cc9c78e82ed08f4594435e781ee8139,
-      type: 3}
-    chance: 20
   - prefab: {fileID: 5115430143269033301, guid: e0df5fcb75177ce4fa3ea7033ca2ebe6,
+      type: 3}
+    chance: 25
+  - prefab: {fileID: 7772481263441006460, guid: 2cc9c78e82ed08f4594435e781ee8139,
       type: 3}
     chance: 20
   - prefab: {fileID: 6443186135648665842, guid: ff67cdeba9941eb43b136905c0724c2f,
       type: 3}
     chance: 20
+  - prefab: {fileID: 7926169113917282297, guid: cba6340d1ad2b724da7489f6a3e6f603,
+      type: 3}
+    chance: 20
+  - prefab: {fileID: 2069431871578061643, guid: 7065912e6f392554981ab2212d1f50c7,
+      type: 3}
+    chance: 15
   yOffset: 35
   startDelay: 5
   spawnModifiers:
   - spawnSetting: 1
-    toComplete: 2
-    amount: -0.1
+    toComplete: 1
+    amount: -0.25
     modifyAfterSpawn: 1
     clampValues: {x: 10, y: 60}
     counter: 0
