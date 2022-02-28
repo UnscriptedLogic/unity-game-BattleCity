@@ -13,6 +13,10 @@ public class GameOverStoreScore : MonoBehaviour
         {
             if (tankScore.score > ConnectionManager.instance.player.hiscore)
             {
+                Debug.Log(tankScore.score);
+                Debug.Log(ConnectionManager.instance.gameVariables.playerInfo.hiscore);
+
+                ConnectionManager.instance.gameVariables.playerInfo.hiscore = tankScore.score;
                 StartCoroutine(ConnectionManager.instance.UpdateScore(tankScore.score, (res) => { }));
             }
         };

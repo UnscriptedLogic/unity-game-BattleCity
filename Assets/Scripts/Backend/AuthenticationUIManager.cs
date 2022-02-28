@@ -35,8 +35,6 @@ public class AuthenticationUIManager : MonoBehaviour
     {
         if (connManager.initialized)
         {
-            Debug.Log("Hello World");
-
             LogIn_OnClick();
             SignUp_OnClick();
 
