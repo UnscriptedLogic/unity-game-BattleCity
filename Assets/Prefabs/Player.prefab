@@ -487,6 +487,7 @@ MonoBehaviour:
   manager: {fileID: 8135042285216460263}
   root: {fileID: 0}
   onDeathDestroys: 0
+  onDeathDisables: 0
 --- !u!114 &8135042285216460260
 MonoBehaviour:
   m_ObjectHideFlags: 0

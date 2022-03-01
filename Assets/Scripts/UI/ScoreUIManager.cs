@@ -60,6 +60,6 @@ public class ScoreUIManager : Manager
 
         entityUIScores.Add(entityIndex, scoreCardscript);
         scoreCardscript.SetScore(scoreManager.entityScores[entityIndex]);
-        scoreCardscript.SetName(indexManager.entityIndexes[entityIndex].name);
+        scoreCardscript.SetName(GlobalVars.player.username);
     }
 }
