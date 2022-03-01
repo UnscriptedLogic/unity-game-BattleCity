@@ -11,13 +11,10 @@ public class GameOverStoreScore : MonoBehaviour
     {
         GameManager.instance.onGameOver += delegate ()
         {
-            if (tankScore.score > ConnectionManager.instance.player.hiscore)
+            if (tankScore.score > GlobalVars.player.hiscore)
             {
-                Debug.Log(tankScore.score);
-                Debug.Log(ConnectionManager.instance.gameVariables.playerInfo.hiscore);
-
-                ConnectionManager.instance.gameVariables.playerInfo.hiscore = tankScore.score;
-                StartCoroutine(ConnectionManager.instance.UpdateScore(tankScore.score, (res) => { }));
+                GlobalVars.SetPlayerScore(tankScore.score);
+                StartCoroutine(ConnectionManager.instance.UpdateScore((res) => { }));
             }
         };
     }

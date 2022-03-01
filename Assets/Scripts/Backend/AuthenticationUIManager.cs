@@ -41,8 +41,7 @@ public class AuthenticationUIManager : MonoBehaviour
             logout_button.onClick.AddListener(() =>
             {
                 ToggleButtons(false, logout_button);
-                connManager.player = new Player();
-                connManager.PlayerInitialized();
+                GlobalVars.SetPlayer(new Player());
 
                 SwapLSOD(value: true);
                 ToggleButtons(true, logout_button);
@@ -53,10 +52,9 @@ public class AuthenticationUIManager : MonoBehaviour
             deleteuser_button.onClick.AddListener(() =>
             {
                 ToggleButtons(false, deleteuser_button);
-                StartCoroutine(connManager.DeleteAccount(connManager.player.id, (res) =>
+                StartCoroutine(connManager.DeleteAccount(GlobalVars.player.id, (res) =>
                 {
-                    connManager.player = new Player();
-                    connManager.PlayerInitialized();
+                    GlobalVars.SetPlayer(new Player());
 
                     SwapLSOD(value: true);
                     ToggleButtons(true, login_button);
@@ -71,6 +69,14 @@ public class AuthenticationUIManager : MonoBehaviour
                 ToggleButtons(value: true, signup_button);
                 connStatusTMP.text = value ? "Connected to the internet!" : "Can't connect to the internet!";
             }));
+
+            if (GlobalVars.player.initialized)
+            {
+                ToggleButtons(value: false, login_button);
+                ToggleButtons(value: false, signup_button);
+
+                SwapLSOD(false);
+            }
         }
     }
 
@@ -92,7 +98,7 @@ public class AuthenticationUIManager : MonoBehaviour
 
                         if (res[0] == "Sign Up Successful")
                         {
-                            connManager.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
+                            GlobalVars.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
                             SwapLSOD(value: false);
                         }
                     }
@@ -121,7 +127,7 @@ public class AuthenticationUIManager : MonoBehaviour
 
                     if (res[0] == "Login Successful")
                     {
-                        connManager.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
+                        GlobalVars.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
                         SwapLSOD(value: false);
                     }
                 }

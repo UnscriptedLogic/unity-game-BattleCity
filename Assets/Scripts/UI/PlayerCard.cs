@@ -17,18 +17,22 @@ public class PlayerCard : MonoBehaviour
 
     public ConnectionManager connectionManager;
 
-    private void Awake()
+    private void Start()
     {
-        connectionManager.onInitialized += delegate (Manager manager)
+        if (connectionManager.initialized)
         {
-            connectionManager.onPlayerInitialized += delegate (Player player)
+            GlobalVars.onPlayerUpdated += delegate ()
             {
-                usernameTMP.text = player.username;
-                nameTMP.text = usernameTMP.text;
+                usernameTMP.text = GlobalVars.player.username;
+                nameTMP.text = GlobalVars.player.username;
 
-                SetScore(player.hiscore);
+                SetScore(GlobalVars.player.hiscore);
             };
-        };
+        }
+
+        usernameTMP.text = GlobalVars.player.username;
+        nameTMP.text = GlobalVars.player.username;
+        SetScore(GlobalVars.player.hiscore);
     }
 
     public void SetScore(int amount)

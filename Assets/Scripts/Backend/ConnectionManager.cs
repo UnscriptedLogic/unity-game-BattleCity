@@ -42,7 +42,6 @@ public class ConnectionManager : Manager
     [HideInInspector] public string signupRoute = "http://localhost/UnityBackendTutorial/SignUp.php";
     [HideInInspector] public string deleteUserRoute = "http://localhost/UnityBackendTutorial/DeleteUser.php";
 
-    public Player player;
     public event Action<Manager> onInitialized;
     public bool initialized;
 
@@ -51,10 +50,21 @@ public class ConnectionManager : Manager
 
     public override void Initialize()
     {
-        player = gameVariables.playerInfo;
+        if (GlobalVars.player == null)
+        {
+            GlobalVars.SetEmptyPlayer();
+        }
+
+        GlobalVars.PlayerUpdated();
         onInitialized?.Invoke(this);
         initialized = true;
         base.Initialize();
+
+        StartCoroutine(UpdateScore((res) =>
+        {
+            Debug.Log(res);
+
+        }));
     }
 
     //Pinging to google
@@ -138,11 +148,11 @@ public class ConnectionManager : Manager
         }
     }
 
-    public IEnumerator UpdateScore(int amount, Action<string[]> callback)
+    public IEnumerator UpdateScore(Action<string[]> callback)
     {
         WWWForm form = new WWWForm();
-        form.AddField("submitted_id", player.id);
-        form.AddField("submitted_score", amount);
+        form.AddField("submitted_id", GlobalVars.player.id);
+        form.AddField("submitted_score", GlobalVars.player.hiscore);
 
         using (UnityWebRequest request = UnityWebRequest.Post(addScoreRoute, form))
         {
@@ -158,22 +168,5 @@ public class ConnectionManager : Manager
                 callback(vs);
             }
         }
-    }
-
-    public void UpdatePlayer(int id, string username, string password, int hiscore)
-    {
-        player.initialized = true;
-        player.id = id;
-        player.username = username;
-        player.password = password;
-        player.hiscore = hiscore;
-
-        gameVariables.playerInfo = player;
-        PlayerInitialized();
-    }
-
-    public void PlayerInitialized()
-    {
-        onPlayerInitialized?.Invoke(player);
     }
 }

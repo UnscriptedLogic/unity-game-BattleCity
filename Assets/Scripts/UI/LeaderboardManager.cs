@@ -37,18 +37,18 @@ public class LeaderboardManager : MonoBehaviour
 
             connManager.onPlayerInitialized += delegate (Player player)
             {
-                ColorMyName(player);
+                ColorMyName();
             };
         }
     }
 
-    private void ColorMyName(Player player)
+    private void ColorMyName()
     {
-        if (player.initialized)
+        if (GlobalVars.player.initialized)
         {
-            if (scoreCards.ContainsKey(player.username))
+            if (scoreCards.ContainsKey(GlobalVars.player.username))
             {
-                scoreCards[player.username].transform.GetChild(0).GetComponent<Image>().color = myColor;
+                scoreCards[GlobalVars.player.username].transform.GetChild(0).GetComponent<Image>().color = myColor;
             }
         }
     }
@@ -59,7 +59,7 @@ public class LeaderboardManager : MonoBehaviour
         {
             DisplayScores(res);
 
-            ColorMyName(connManager.player);
+            ColorMyName();
         }));
     }
 
