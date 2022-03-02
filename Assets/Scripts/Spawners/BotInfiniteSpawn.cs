@@ -33,6 +33,26 @@ public class BotInfiniteSpawn : EntitySpawnManager
     public event Action onWaveCompleted;
     public event Action onSpawnEntity;
 
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        _interval = startDelay;
+        onWaveCompleted += ModifyAfterWave;
+        onSpawnEntity += ModifyAfterSpawn;
+
+        for (int i = 0; i < spawnModifiers.Length; i++)
+        {
+            if (spawnModifiers[i].modifyAfterSpawn)
+            {
+                onSpawnModify.Add(spawnModifiers[i]);
+            }
+            else
+            {
+                onWaveModify.Add(spawnModifiers[i]);
+            }
+        }
+    }
+
     //public override void Initialize()
     //{
     //    _interval = startDelay;

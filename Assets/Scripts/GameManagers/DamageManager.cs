@@ -13,7 +13,7 @@ public static class DamageManager
     {
         if (victim as TankManager)
         {
-            DealDamageBetweenTanks(amount, victim as TankManager, bulletManager);
+            DealDamageBetweenTanks(amount: amount, victim: victim as TankManager, culprit: bulletManager.origin, bulletManager: bulletManager);
         } else
         {
             DealDamageToEntities(amount, victim, bulletManager);
@@ -35,7 +35,7 @@ public static class DamageManager
     }
 
     //Damage done between tanks
-    public static void DealDamageBetweenTanks(int amount, TankManager victim, BulletManager bulletManager = null)
+    public static void DealDamageBetweenTanks(int amount, TankManager victim, TankManager culprit = null, BulletManager bulletManager = null)
     {
         //Friendly fire checking
         if (bulletManager.teamIndex != TeamManager.instance.GetTeamOfTank(victim))
@@ -46,8 +46,11 @@ public static class DamageManager
 
             if (victim.health <= 0)
             {
-                //Announce who killed who
-                onKillEvent?.Invoke(bulletManager.origin, victim);
+                if (culprit)
+                {
+                    //Announce who killed who
+                    onKillEvent?.Invoke(bulletManager.origin, victim); 
+                }
             }
 
             //Sometimes damage is done indirectly. E.g. Nuke powerup
