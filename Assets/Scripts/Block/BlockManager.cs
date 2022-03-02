@@ -18,8 +18,9 @@ public class BlockManager : EntityManager
     public BoxCollider boxCollider;
     public BlockHealth blockHealth;
 
-    private void Start()
+    public override void InitializeEntity()
     {
+        base.InitializeEntity();
         InitializeBlockSettings();
     }
 
@@ -27,7 +28,6 @@ public class BlockManager : EntityManager
     {
         UpdateWallSettings();
         UpdateHitRequirements();
-
     }
 
     public void ReInitializeGraphics()

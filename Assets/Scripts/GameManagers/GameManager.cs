@@ -7,13 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : Manager
 {
     public static GameManager instance;
-    SemaphoreSlim gate = new SemaphoreSlim(1);
-
     public event Action onGameStarted;
     public event Action onGameOver;
 
-    [Header("Initialization")]
-    public Manager[] initalizeOrder;
     public GameObject[] enableAfterInitialize;
 
     [Header("Effect Options")]
@@ -25,19 +21,14 @@ public class GameManager : Manager
     public List<Transform> baseWalls = new List<Transform>();
     [HideInInspector] public List<Vector3> baseWallPositions = new List<Vector3>();
 
-    private async void InitializeScripts()
+    private void Awake()
     {
         instance = this;
-        for (int i = 0; i < initalizeOrder.Length; i++)
-        {
-            await gate.WaitAsync();
-            initalizeOrder[i].Initialize();
-        }
+        InitializeSephamores();
+    }
 
-        onGameStarted?.Invoke();
-        Debug.Log("All managers loaded!");
-
-
+    public void EnableObjects()
+    {
         for (int i = 0; i < enableAfterInitialize.Length; i++)
         {
             enableAfterInitialize[i].SetActive(true);   
@@ -49,16 +40,6 @@ public class GameManager : Manager
             baseWalls[i].GetComponent<BlockManager>().blockHealth.onDeathDisables = true;
             baseWalls[i].GetComponent<BlockManager>().blockHealth.onDeathDestroys = false;
         }
-    }
-
-    public void ReleaseGate(Manager manager)
-    {
-        gate.Release();
-    }
-
-    private void Awake()
-    {
-        InitializeScripts();
     }
 
     public void GameOver()

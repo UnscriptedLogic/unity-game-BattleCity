@@ -107,6 +107,6 @@ public class PowerUpManager : EntityManager
 
     protected void SelfDestruct()
     {
-        transform.GetComponent<EntityHealth>().TakeDamage(999);
+        //transform.GetComponent<EntityHealth>().TakeDamage(999);
     }
 }

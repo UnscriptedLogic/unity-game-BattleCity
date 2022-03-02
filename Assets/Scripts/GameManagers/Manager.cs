@@ -9,10 +9,10 @@ public class Manager : MonoBehaviour
     public SemaphoreSlim gate = new SemaphoreSlim(1);
 
     public UnityEvent<Manager> BeforeInitialization;
-    public UnityEvent<Manager, Sephamore> SephamoreInitialized;
+    public UnityEvent<Manager, Semaphore> SephamoreInitialized;
     public UnityEvent<Manager> AfterInitialization;
 
-    public Sephamore[] sephamores;
+    public Semaphore[] sephamores;
 
     protected async void InitializeSephamores()
     {
@@ -27,10 +27,5 @@ public class Manager : MonoBehaviour
             });
         }
         AfterInitialization?.Invoke(this);
-    }
-
-    public virtual void Initialize()
-    {
-        GameManager.instance.ReleaseGate(this);
     }
 }

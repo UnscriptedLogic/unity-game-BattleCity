@@ -18,6 +18,7 @@ public class TankManager : EntityManager
     {
         base.InitializeEntity();
         tankSettings = (TankSettings)entitySettings;
+        TankIndexManager.instance.IndexMe(this);
 
         bulletSpeed = tankSettings.bulletSettings.speed;
         bulletLifetime = tankSettings.bulletSettings.lifetime;

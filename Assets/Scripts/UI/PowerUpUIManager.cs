@@ -26,16 +26,16 @@ public class PowerUpUIManager : Manager
 
     public static PowerUpUIManager instance;
 
-    public override void Initialize()
-    {
-        instance = this;
-        for (int i = 0; i < powerUpUIDetails.Length; i++)
-        {
-            powerUpDetails.Add(powerUpUIDetails[i].powerUpType, powerUpUIDetails[i]);
-        }
+    //public override void Initialize()
+    //{
+    //    instance = this;
+    //    for (int i = 0; i < powerUpUIDetails.Length; i++)
+    //    {
+    //        powerUpDetails.Add(powerUpUIDetails[i].powerUpType, powerUpUIDetails[i]);
+    //    }
 
-        base.Initialize();
-    }
+    //    base.Initialize();
+    //}
 
     public void AddCard(PowerUpType powerUpType)
     {

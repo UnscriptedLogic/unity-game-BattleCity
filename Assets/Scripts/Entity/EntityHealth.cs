@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class EntityHealth : EntitySemaphore
+public class EntityHealth : Semaphore
 {
-    public EntityManager manager;
+    private EntityManager entityManager;
     [Tooltip("Leave empty only if this script is on the root of the object.")]
     public GameObject root;
 
@@ -17,77 +17,33 @@ public class EntityHealth : EntitySemaphore
     public bool onDeathDestroys;
     public bool onDeathDisables = false;
 
-    public virtual void TakeDamage(int damage)
+    protected override void SephamoreStart(Manager manager)
     {
-        if (!manager)
+        base.SephamoreStart(manager);
+        entityManager = manager as EntityManager;
+        if (!root)
         {
-            Debug.Log("EntityHealth is missing a reference to the manager on " + name, gameObject);
-
-            return;
+            root = entityManager.gameObject;
         }
+    }
 
-        manager.health -= damage;
-        if (manager.health <= 0)
+    public void TakeDamage(int damage)
+    {
+        entityManager.health -= damage;
+        if (entityManager.health <= 0)
         {
             KillEntity();
         }
-
-        onHealthDeducted?.Invoke(damage);
     }
 
-    public virtual void TakeDamage(int damage, EntityManager source)
+    public void KillEntity()
     {
-        manager.health -= damage;
-        if (manager.health <= 0)
-        {
-            KillEntity();
-            onKilled?.Invoke(source);
-        }
-    }
-
-    //Anonymous Damage
-    public void TakeDamage(int amount, int index)
-    {
-        //Only tanks should check if the damage taken was from another team
-        TankTeamIndexer indexer = GetComponent<TankTeamIndexer>();
-        if (indexer)
-        {
-            if (index != indexer.teamIndex)
-            {
-                TakeDamage(amount, null);
-            }
-        }
-    }
-
-    public virtual void KillEntity()
-    {
-        onHealthDepleted?.Invoke();
         if (onDeathDestroys)
         {
-            if (root)
-            {
-                Destroy(root);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        if (onDeathDisables)
+            Destroy(root);
+        } else
         {
-            if (root)
-            {
-                root.SetActive(false);
-            } else
-            {
-                gameObject.SetActive(false);
-            }
+            root.SetActive(false);
         }
-    }
-
-    protected virtual void OnCollisionEnter(Collision collision)
-    {
-        
     }
 }

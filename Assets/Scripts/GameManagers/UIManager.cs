@@ -7,15 +7,15 @@ public class UIManager : Manager
     private GameManager manager;
     public GameObject gameoverScreen;
 
-    public override void Initialize()
-    {
-        manager = GameManager.instance;
+    //public override void Initialize()
+    //{
+    //    manager = GameManager.instance;
 
-        manager.onGameOver += DisplayGOScreen;
-        gameoverScreen.SetActive(false);
+    //    manager.onGameOver += DisplayGOScreen;
+    //    gameoverScreen.SetActive(false);
 
-        base.Initialize();
-    }
+    //    base.Initialize();
+    //}
 
     public void ToggleEffects()
     {

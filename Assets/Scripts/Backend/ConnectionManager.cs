@@ -48,24 +48,24 @@ public class ConnectionManager : Manager
     public event Action<Player> onPlayerInitialized;
     public GameVariables gameVariables;
 
-    public override void Initialize()
-    {
-        if (GlobalVars.player == null)
-        {
-            GlobalVars.SetEmptyPlayer();
-        }
+    //public override void Initialize()
+    //{
+    //    if (GlobalVars.player == null)
+    //    {
+    //        GlobalVars.SetEmptyPlayer();
+    //    }
 
-        GlobalVars.PlayerUpdated();
-        onInitialized?.Invoke(this);
-        initialized = true;
-        base.Initialize();
+    //    GlobalVars.PlayerUpdated();
+    //    onInitialized?.Invoke(this);
+    //    initialized = true;
+    //    base.Initialize();
 
-        StartCoroutine(UpdateScore((res) =>
-        {
-            Debug.Log(res);
+    //    StartCoroutine(UpdateScore((res) =>
+    //    {
+    //        Debug.Log(res);
 
-        }));
-    }
+    //    }));
+    //}
 
     //Pinging to google
     public IEnumerator CheckConnection(Action<bool> callback)

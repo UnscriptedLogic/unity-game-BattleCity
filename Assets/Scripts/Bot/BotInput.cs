@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BotInput : Sephamore
+public class BotInput : Semaphore
 {
     private Vector2 timeBetDecisions = new Vector2(1f, 2f);
     private float _decisionInterval;

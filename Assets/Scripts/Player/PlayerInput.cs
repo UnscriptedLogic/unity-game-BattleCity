@@ -17,7 +17,7 @@ public enum ActionType
     Shoot
 }
 
-public class PlayerInput : Sephamore
+public class PlayerInput : Semaphore
 {
     public InputActionAsset actionAsset;
     private InputAction move, shoot;

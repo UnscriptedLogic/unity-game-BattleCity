@@ -21,15 +21,15 @@ public class TeamManager : Manager
     public event Action<TankManager, int> onAddedToTeam;
     public event Action<TankManager, int> onRemovedFromTeam;
 
-    public override void Initialize()
-    {
-        instance = this;
+    //public override void Initialize()
+    //{
+    //    instance = this;
 
-        IndexManager.instance.onEntityAdded += IndexManager_onEntityAdded;
-        IndexManager.instance.onEntiyRemoved += Instance_onEntiyRemoved;
+    //    TankIndexManager.instance.onEntityAdded += IndexManager_onEntityAdded;
+    //    TankIndexManager.instance.onEntiyRemoved += Instance_onEntiyRemoved;
 
-        base.Initialize();
-    }
+    //    base.Initialize();
+    //}
 
     private void Instance_onEntiyRemoved(Transform obj)
     {

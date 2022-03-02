@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Sephamore : MonoBehaviour
+public class Semaphore : MonoBehaviour
 {
     public void InitializeSephamore(Manager initManager, Action callback)
     {

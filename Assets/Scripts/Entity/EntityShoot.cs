@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EntityShoot : Sephamore
+public class EntityShoot : Semaphore
 {
     protected ShootBehaviour shootBehaviour;
 

@@ -9,20 +9,20 @@ using System.Linq;
 public class ScoreUIManager : Manager
 {
     private ScoreManager scoreManager;
-    private IndexManager indexManager;
+    private TankIndexManager indexManager;
 
     public Dictionary<int, ScoreCard> entityUIScores = new Dictionary<int, ScoreCard>();
     public GameObject scoreCardPrefab;
     public Transform scoreParent;
 
-    public override void Initialize()
-    {
-        indexManager = IndexManager.instance;
-        scoreManager = ScoreManager.instance;
-        scoreManager.onEntityScoreUpdated += UpdateScores;
+    //public override void Initialize()
+    //{
+    //    indexManager = TankIndexManager.instance;
+    //    scoreManager = ScoreManager.instance;
+    //    scoreManager.onEntityScoreUpdated += UpdateScores;
 
-        base.Initialize();
-    }
+    //    base.Initialize();
+    //}
 
     public void CheckScores()
     {
@@ -45,7 +45,7 @@ public class ScoreUIManager : Manager
         if (entityUIScores.TryGetValue(entityIndex, out ScoreCard scoreCard))
         {
             scoreCard.SetScore(scoreManager.entityScores[entityIndex]);
-            scoreCard.SetName(indexManager.entityIndexes[entityIndex].name);
+            scoreCard.SetName(indexManager.tankIndexes[entityIndex].name);
             return;
         }
 

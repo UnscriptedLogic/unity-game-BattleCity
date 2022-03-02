@@ -13,12 +13,12 @@ public class ScoreManager : Manager
 
     public Vector2 scoreClamp = new Vector2(0, 99999);
 
-    public override void Initialize()
-    {
-        instance = this;
+    //public override void Initialize()
+    //{
+    //    instance = this;
 
-        base.Initialize();
-    }
+    //    base.Initialize();
+    //}
 
     public void UpdateScore(int entityIndex, int score)
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityMovement : Sephamore
+public class EntityMovement : Semaphore
 {
     protected MovementBehaviour movementBehaviour;
 

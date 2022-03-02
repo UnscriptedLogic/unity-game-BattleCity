@@ -8,12 +8,12 @@ public class DeathManager : Manager
 
     public static DeathManager instance;
 
-    public override void Initialize()
-    {
-        instance = this;
+    //public override void Initialize()
+    //{
+    //    instance = this;
 
-        base.Initialize();
-    }
+    //    base.Initialize();
+    //}
 
     public void FireKilledEvent(int culprit, int victim)
     {

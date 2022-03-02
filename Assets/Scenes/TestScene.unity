@@ -5918,49 +5918,14 @@ GameObject:
   m_Component:
   - component: {fileID: 419572478}
   - component: {fileID: 419572479}
-  - component: {fileID: 419572477}
-  - component: {fileID: 419572480}
   - component: {fileID: 419572481}
-  - component: {fileID: 419572482}
-  - component: {fileID: 419572483}
-  - component: {fileID: 419572484}
-  - component: {fileID: 419572485}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &419572477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d3c10c33c95df4db0bc5ea292331af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  teams:
-  - teamName: Radiant
-    associatedColor: {r: 0.4292453, g: 1, b: 0.93749696, a: 1}
-    entities: []
-  - teamName: Dire
-    associatedColor: {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
-    entities: []
+  m_IsActive: 1
 --- !u!4 &419572478
 Transform:
   m_ObjectHideFlags: 0
@@ -5996,54 +5961,27 @@ MonoBehaviour:
       m_Calls: []
   AfterInitialization:
     m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  initalizeOrder:
+      m_Calls:
+      - m_Target: {fileID: 419572479}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnableObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sephamores:
   - {fileID: 419572481}
-  - {fileID: 419572477}
-  - {fileID: 419572480}
-  - {fileID: 419572482}
-  - {fileID: 419572483}
-  - {fileID: 419572484}
-  - {fileID: 419572485}
-  - {fileID: 0}
-  enableAfterInitialize:
-  - {fileID: 0}
-  - {fileID: 2059875410}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enableAfterInitialize: []
   playEffects: 1
   playSounds: 1
   playParticles: 1
   baseWalls: []
   baseWallPositions: []
---- !u!114 &419572480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e8e81ecb42ef234d87095cfdd8288c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  gameoverScreen: {fileID: 253875014}
 --- !u!114 &419572481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6056,149 +5994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6162f27a0d1c5f141a85f427b9cace8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
   startingIndex: 0
---- !u!114 &419572482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9fec3329ac974459f2436cf61b828d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
---- !u!114 &419572483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19563ebefb5dafd4986ba31d5fcd5fda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  scoreClamp: {x: 0, y: 99999}
---- !u!114 &419572484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c4290eee7478547a0ede50c3aa4130, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  scoreCardPrefab: {fileID: 5444023367885444849, guid: 2394edbbef359e740b74949d4dbaf63a,
-    type: 3}
-  scoreParent: {fileID: 110202437}
---- !u!114 &419572485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a7de550cc714c42ad72740ee2a8273, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  powerUpUIDetails:
-  - powerUpType: 0
-    icon: {fileID: 21300000, guid: 19471322041c2444380606ec63a00156, type: 3}
-    color: {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
-    description: Hardens your bullets with tungsten, increasing your bullet damage,
-      allowing them to break tougher blocks and pierce through objects and tanks.
-      This ability resets when dying.
-    lostOnDeath: 1
-    stackCount: 0
-  - powerUpType: 1
-    icon: {fileID: 21300000, guid: f9433aaba3a45ec49b1e7a126d49aaa8, type: 3}
-    color: {r: 0.5235849, g: 0.97373205, b: 1, a: 1}
-    description: Creates a forcefield around you. All incoming damage is reduced
-      to 0, leaving you unscathed.
-    lostOnDeath: 0
-    stackCount: 0
-  - powerUpType: 2
-    icon: {fileID: 21300000, guid: bdc95da6958a10e4c8f352d99cb382ee, type: 3}
-    color: {r: 0.3808332, g: 0.7830189, b: 0.380429, a: 1}
-    description: Stops time for all opponents except your team for 10 seconds. Entites
-      stopped in time cannot move or shoot.
-    lostOnDeath: 0
-    stackCount: 0
-  - powerUpType: 3
-    icon: {fileID: 21300000, guid: c09486f8ad914b9408abf23abd9f8cb3, type: 3}
-    color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
-    description: Instantly destroys all opponents on the field simultaneously regardless
-      of health. Does not apply to all types of bosses.
-    lostOnDeath: 0
-    stackCount: 0
-  - powerUpType: 4
-    icon: {fileID: 21300000, guid: 527bb7da0b258f3448534bc6dcc7087f, type: 3}
-    color: {r: 0.9948177, g: 1, b: 0.5801887, a: 1}
-    description: 'Reconstructs and fortifies the walls around your base for a period
-      of time. '
-    lostOnDeath: 0
-    stackCount: 0
-  uiParent: {fileID: 1191714096}
-  uiPrefab: {fileID: 3785148427989631944, guid: 1481a29cb7401cb479fe7c09fc98a4df,
-    type: 3}
 --- !u!1 &470165442
 GameObject:
   m_ObjectHideFlags: 0
@@ -18182,10 +17978,10 @@ GameObject:
   - component: {fileID: 2059875416}
   - component: {fileID: 6602577951396776747}
   - component: {fileID: 6602577951396776748}
+  - component: {fileID: 6602577951396776749}
   - component: {fileID: 2059875413}
   - component: {fileID: 2059875414}
   - component: {fileID: 6602577951396776746}
-  - component: {fileID: 6602577951396776749}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
