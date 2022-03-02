@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRespawn : EntitySemaphore
+public class PlayerRespawn : Semaphore
 {
+    private TankManager tankManager;
     public EntityHealth entityHealth;
 
     [Tooltip("Enable this to automatically set the spawn point as the scene initialization position")]
@@ -14,14 +15,33 @@ public class PlayerRespawn : EntitySemaphore
     public float spawnDelay = 2f;
     protected float _spawnDelay = 2f;
     
-    public GameObject gfxGameobject;
-    public BoxCollider boxCollider;
     public Rigidbody rb;
+    public BoxCollider boxCollider;
+    public GameObject gfxGameobject;
+    
     public Behaviour[] toggleBehaviours;
 
     protected bool isDead;
 
-    public event Action onPlayerRespawned;
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        tankManager = manager as TankManager;
+
+        if (spawnAtStart)
+        {
+            spawnPosition = transform.position;
+        }
+
+        entityHealth.onKilled += EntityHealth_onKilled;
+    }
+
+    private void EntityHealth_onKilled()
+    {
+        isDead = true;
+        _spawnDelay = spawnDelay;
+        TogglePlayer(false);
+    }
 
     //public override void Initialize(EntityManager manager)
     //{
@@ -45,22 +65,26 @@ public class PlayerRespawn : EntitySemaphore
     //    base.Initialize(manager);
     //}
 
-    //private void Update()
-    //{
-    //    if (isDead)
-    //    {
-    //        if (_spawnDelay <= 0)
-    //        {
-    //            transform.position = spawnPosition;
-    //            transform.rotation = Quaternion.Euler(Vector3.zero);
+    private void Update()
+    {
+        if (isDead)
+        {
+            if (_spawnDelay <= 0)
+            {
+                tankManager.InitializeEntity();
 
-    //            isDead = false;
-    //            TogglePlayer(true);
-    //        } else {
-    //            _spawnDelay -= Time.deltaTime;
-    //        }
-    //    }
-    //}
+                transform.position = spawnPosition;
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+
+                isDead = false;
+                TogglePlayer(true);
+            }
+            else
+            {
+                _spawnDelay -= Time.deltaTime;
+            }
+        }
+    }
 
     //private void DisablePlayer(EntityManager source)
     //{
@@ -70,35 +94,29 @@ public class PlayerRespawn : EntitySemaphore
     //    //StartCoroutine(RespawnAfterDelay());
     //}
 
-    //private void TogglePlayer(bool value)
-    //{
-    //    if (!gfxGameobject)
-    //    {
-    //        Debug.Log("GFX not referenced in " + name, gameObject);
+    private void TogglePlayer(bool value)
+    {
+        if (!gfxGameobject)
+        {
+            Debug.Log("GFX not referenced in " + name, gameObject);
 
-    //    } else
-    //    {
-    //        gfxGameobject.SetActive(value);
-    //    }
+        }
+        else
+        {
+            gfxGameobject.SetActive(value);
+        }
 
-    //    boxCollider.enabled = value;
-    //    rb.isKinematic = !value;
+        boxCollider.enabled = value;
+        rb.isKinematic = !value;
 
-    //    for (int i = 0; i < toggleBehaviours.Length; i++)
-    //    {
-    //        toggleBehaviours[i].enabled = value;
-    //    }
-
-    //    if (value)
-    //    {
-    //        onPlayerRespawned?.Invoke();
-    //    }
-    //}
+        for (int i = 0; i < toggleBehaviours.Length; i++)
+        {
+            toggleBehaviours[i].enabled = value;
+        }
+    }
 
     //private IEnumerator RespawnAfterDelay()
     //{
-    //    TogglePlayer(false);
-
     //    yield return new WaitForSeconds(spawnDelay);
 
     //    transform.position = spawnPosition;

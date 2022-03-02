@@ -43,7 +43,7 @@ public class ScoreManager : Semaphore
             entityScores.Add(entityIndex, score);
         }
 
-        onTankScoreUpdated?.Invoke(entityIndex, score);
+        onTankScoreUpdated?.Invoke(entityIndex, entityScores[entityIndex]);
     }
 
     public void AddScore(int entityIndex, int score)

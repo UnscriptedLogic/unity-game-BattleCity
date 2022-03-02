@@ -31,10 +31,14 @@ public class TankIndexManager : Semaphore
 
     public void IndexMe(TankManager tankManager)
     {
-        tankManager.tankIndex = currentIndex;
-        tankIndexes.Add(currentIndex, tankManager);
+        //Only index the tank if it does not exist already
+        if (!tankIndexes.ContainsValue(tankManager))
+        {
+            tankManager.tankIndex = currentIndex;
+            tankIndexes.Add(currentIndex, tankManager);
 
-        currentIndex++;
-        onTankAdded?.Invoke(tankManager);
+            currentIndex++;
+            onTankAdded?.Invoke(tankManager);
+        }
     }
 }

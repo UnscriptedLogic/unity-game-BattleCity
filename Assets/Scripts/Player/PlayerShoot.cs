@@ -28,40 +28,4 @@ public class PlayerShoot : EntityShoot
     {
         shootBehaviour.Shoot();
     }
-
-    //public override void Initialize(EntityManager manager)
-    //{
-    //    playerInput.RegisterBind(PerformShoot, ActionType.Shoot, EventType.Performed);
-
-    //    base.Initialize(manager);
-    //}
-
-    //public void PerformShoot(InputAction.CallbackContext context)
-    //{
-    //    if (listenToInput)
-    //    {
-    //        if (airborneBullet == null)
-    //        {
-    //            BulletDetails details = new BulletDetails(
-    //                manager.tankSettings.bulletSettings, 
-    //                manager.bulletSpeed, 
-    //                manager.bulletLifetime, 
-    //                transform.GetComponent<TankTeamIndexer>().teamIndex, 
-    //                manager.bulletHealth,
-    //                manager
-    //                );
-    //            airborneBullet = CreateBullet(bulletPrefab, shootAnchor, details, out BulletManager bulletScript);
-    //        } 
-    //    }
-    //}
-
-    //private void OnDisable()
-    //{
-    //    listenToInput = false;
-    //}
-
-    //private void OnEnable()
-    //{
-    //    listenToInput = true;
-    //}
 }

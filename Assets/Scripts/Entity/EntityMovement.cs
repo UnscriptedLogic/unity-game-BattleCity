@@ -6,6 +6,7 @@ using UnityEngine;
 public class EntityMovement : Semaphore
 {
     protected MovementBehaviour movementBehaviour;
+    protected MovementBehaviour prevMovementBehaviour;
 
     public virtual void SetDefaultBehaviour()
     {
@@ -15,5 +16,16 @@ public class EntityMovement : Semaphore
     public void SetMovementBehaviour(MovementBehaviour newBehaviour)
     {
         movementBehaviour = newBehaviour;
+    }
+
+    protected void OnEnable()
+    {
+        SetMovementBehaviour(prevMovementBehaviour);
+    }
+
+    protected void OnDisable()
+    {
+        prevMovementBehaviour = movementBehaviour;
+        SetMovementBehaviour(new NoMovementBehaviour());
     }
 }

@@ -12,7 +12,7 @@ public class EntityHealth : Semaphore
     public event Action onHealthDepleted;
     
     public event Action<int> onHealthDeducted;
-    public event Action<EntityManager> onKilled;
+    public event Action onKilled;
     
     public bool onDeathDestroys;
     public bool onDeathDisables = false;
@@ -33,6 +33,7 @@ public class EntityHealth : Semaphore
         if (entityManager.health <= 0)
         {
             KillEntity();
+            onKilled?.Invoke();
         }
     }
 
@@ -41,7 +42,7 @@ public class EntityHealth : Semaphore
         if (onDeathDestroys)
         {
             Destroy(root);
-        } else
+        } else if (onDeathDisables)
         {
             root.SetActive(false);
         }

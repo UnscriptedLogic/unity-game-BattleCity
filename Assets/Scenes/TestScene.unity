@@ -18053,8 +18053,9 @@ GameObject:
   - component: {fileID: 2059875416}
   - component: {fileID: 6602577951396776747}
   - component: {fileID: 6602577951396776748}
-  - component: {fileID: 6602577951396776749}
   - component: {fileID: 6602577951396776750}
+  - component: {fileID: 6602577951396776752}
+  - component: {fileID: 6602577951396776749}
   - component: {fileID: 6602577951396776751}
   - component: {fileID: 2059875413}
   - component: {fileID: 2059875414}
@@ -18203,6 +18204,7 @@ MonoBehaviour:
   - {fileID: 6602577951396776750}
   - {fileID: 6602577951396776749}
   - {fileID: 6602577951396776751}
+  - {fileID: 6602577951396776752}
   entitySettings: {fileID: 11400000, guid: e8139284a29def543a6d479ca2e94bae, type: 2}
   health: 0
   speed: 0
@@ -24052,6 +24054,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+--- !u!114 &6602577951396776752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059875410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fff874138e1c84e8d819c212c612be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityHealth: {fileID: 6602577951396776750}
+  spawnAtStart: 1
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnDelay: 2
+  rb: {fileID: 2059875413}
+  boxCollider: {fileID: 2059875414}
+  gfxGameobject: {fileID: 1665373357}
+  toggleBehaviours:
+  - {fileID: 6602577951396776748}
+  - {fileID: 6602577951396776747}
 --- !u!33 &6639068062133306122
 MeshFilter:
   m_ObjectHideFlags: 0
