@@ -4,36 +4,25 @@ using System.Threading;
 
 public class BulletManager : EntityManager
 {
-    [Header("Components")]
-    public BulletHealth healthScript;
-    public BulletMovement movementScript;
+    public int teamIndex;
+    
     public Renderer matRenderer;
+    public TankManager origin;
     public Rigidbody rb;
 
-    public TankManager origin;
-
-    public int teamIndex;
     [HideInInspector] public float lifetime;
     [HideInInspector] public BulletType bulletEffectors;
 
-    //protected override void OnEnable()
-    //{
-        
-    //}
+    public override void InitializeEntity()
+    {
+        //Bullet stats are initialized when spawned by the shooter
+    }
 
-    //private void Start()
-    //{
-    //    //Sets the bullet colour to the associated team colour
-    //    matRenderer.material.color = TeamManager.instance.teams[teamIndex].associatedColor;
-    //}
+    protected override void Start()
+    {
+        base.Start();
 
-    //public void SettingsInitialized()
-    //{
-    //    base.OnEnable();
-    //}
-
-    //protected override void Initialize()
-    //{
-
-    //}
+        //Sets the bullet colour to the associated team colour
+        //matRenderer.material.color = TeamManager.instance.teams[teamIndex].associatedColor;
+    }
 }

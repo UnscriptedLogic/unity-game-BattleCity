@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: GEnemySettings
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  rotationSpeed: 45
   health: 1
+  speed: 10
+  rotationSpeed: 45
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []

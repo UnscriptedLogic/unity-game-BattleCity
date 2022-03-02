@@ -9,15 +9,22 @@ public enum BulletType
 
 public class BulletMovement : EntityMovement
 {
-    //public BulletManager manager;
+    private BulletManager bulletManager;
+    public Rigidbody rb;
 
-    //public override void Initialize(EntityManager entityManager)
-    //{
-    //    base.Initialize(entityManager);
-    //}
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        bulletManager = manager as BulletManager;
+    }
 
-    //private void FixedUpdate()
-    //{
-    //    MoveEntity(manager.speed, transform.forward, manager.rb);
-    //}
+    public override void SetDefaultBehaviour()
+    {
+        movementBehaviour = new HeadlessLinearMovement(bulletManager, rb, transform);
+    }
+
+    private void FixedUpdate()
+    {
+        movementBehaviour.Move();
+    }
 }
