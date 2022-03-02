@@ -92,7 +92,7 @@ public class EntitySpawnManager : Manager
         for (int i = 0; i < spawnParent.childCount; i++)
         {
             TankManager manager = spawnParent.GetChild(i).GetComponent<TankManager>();
-            manager.healthScript.TakeDamage(999, origin);
+            //manager.healthScript.TakeDamage(999, origin);
         }
     }
 
@@ -100,7 +100,7 @@ public class EntitySpawnManager : Manager
     {
         for (int i = 0; i < spawnParent.childCount; i++)
         {
-            spawnParent.GetChild(i).GetComponent<TankManager>().healthScript.TakeDamage(999, origin);
+            //spawnParent.GetChild(i).GetComponent<TankManager>().healthScript.TakeDamage(999, origin);
         }
     }
 }

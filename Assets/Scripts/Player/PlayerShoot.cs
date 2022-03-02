@@ -16,39 +16,39 @@ public class PlayerShoot : EntityShoot
 
     private bool listenToInput = true;
 
-    public override void Initialize(EntityManager manager)
-    {
-        playerInput.RegisterBind(PerformShoot, ActionType.Shoot, EventType.Performed);
+    //public override void Initialize(EntityManager manager)
+    //{
+    //    playerInput.RegisterBind(PerformShoot, ActionType.Shoot, EventType.Performed);
 
-        base.Initialize(manager);
-    }
+    //    base.Initialize(manager);
+    //}
 
-    public void PerformShoot(InputAction.CallbackContext context)
-    {
-        if (listenToInput)
-        {
-            if (airborneBullet == null)
-            {
-                BulletDetails details = new BulletDetails(
-                    manager.tankSettings.bulletSettings, 
-                    manager.bulletSpeed, 
-                    manager.bulletLifetime, 
-                    transform.GetComponent<TankTeamIndexer>().teamIndex, 
-                    manager.bulletHealth,
-                    manager
-                    );
-                airborneBullet = CreateBullet(bulletPrefab, shootAnchor, details, out BulletManager bulletScript);
-            } 
-        }
-    }
+    //public void PerformShoot(InputAction.CallbackContext context)
+    //{
+    //    if (listenToInput)
+    //    {
+    //        if (airborneBullet == null)
+    //        {
+    //            BulletDetails details = new BulletDetails(
+    //                manager.tankSettings.bulletSettings, 
+    //                manager.bulletSpeed, 
+    //                manager.bulletLifetime, 
+    //                transform.GetComponent<TankTeamIndexer>().teamIndex, 
+    //                manager.bulletHealth,
+    //                manager
+    //                );
+    //            airborneBullet = CreateBullet(bulletPrefab, shootAnchor, details, out BulletManager bulletScript);
+    //        } 
+    //    }
+    //}
 
-    private void OnDisable()
-    {
-        listenToInput = false;
-    }
+    //private void OnDisable()
+    //{
+    //    listenToInput = false;
+    //}
 
-    private void OnEnable()
-    {
-        listenToInput = true;
-    }
+    //private void OnEnable()
+    //{
+    //    listenToInput = true;
+    //}
 }

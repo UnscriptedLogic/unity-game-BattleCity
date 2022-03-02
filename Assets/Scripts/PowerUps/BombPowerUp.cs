@@ -23,7 +23,7 @@ public class BombPowerUp : PowerUpManager
 
         for (int i = 0; i < collectorEnemies.Count; i++)
         {
-            collectorEnemies[i].healthScript.TakeDamage(999, collectorManager);
+            //collectorEnemies[i].healthScript.TakeDamage(999, collectorManager);
         }
 
         base.Activate(collision);

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class EntitySemaphore : MonoBehaviour
 {
-    public virtual void Initialize(EntityManager entityManager)
-    {
-        entityManager.ReleaseGate(this);
-    }
+    //public virtual void Initialize(EntityManager entityManager)
+    //{
+    //    entityManager.ReleaseGate(this);
+    //}
 }

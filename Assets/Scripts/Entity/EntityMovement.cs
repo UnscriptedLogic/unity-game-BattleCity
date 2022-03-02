@@ -3,27 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityMovement : EntitySemaphore
+public class EntityMovement : Sephamore
 {
-    public event Action<bool> onEntityMove;
+    protected MovementBehaviour movementBehaviour;
 
-    protected void MoveEntity(float speed, Vector3 direction, Rigidbody rb)
+    public virtual void SetDefaultBehaviour()
     {
-        rb.MovePosition(transform.position + (direction * speed * Time.deltaTime));
+        //Overridden in their specific classes for what default movement it is meant to do
     }
 
-    protected void FaceMovement(Transform objectToRotate, Vector3 dir, float rotationSpeed)
+    public void SetMovementBehaviour(MovementBehaviour newBehaviour)
     {
-        if (dir == Vector3.zero)
-        {
-            return;
-        }
-
-        objectToRotate.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
-    }
-
-    public void FireEntityMoved(bool value)
-    {
-        onEntityMove?.Invoke(value);
+        movementBehaviour = newBehaviour;
     }
 }

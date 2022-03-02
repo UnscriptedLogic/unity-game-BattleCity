@@ -23,87 +23,87 @@ public class PlayerRespawn : EntitySemaphore
 
     public event Action onPlayerRespawned;
 
-    public override void Initialize(EntityManager manager)
-    {
-        if (spawnAtStart)
-        {
-            spawnPosition = transform.position;
-        }
+    //public override void Initialize(EntityManager manager)
+    //{
+    //    if (spawnAtStart)
+    //    {
+    //        spawnPosition = transform.position;
+    //    }
 
-        if (!entityHealth)
-        {
-            entityHealth = GetComponent<EntityHealth>();
-            if (!entityHealth)
-            {
-                Debug.LogWarning("The GameObject " + name + " could not find EntityHealth");
-                return;
-            }
-        }
+    //    if (!entityHealth)
+    //    {
+    //        entityHealth = GetComponent<EntityHealth>();
+    //        if (!entityHealth)
+    //        {
+    //            Debug.LogWarning("The GameObject " + name + " could not find EntityHealth");
+    //            return;
+    //        }
+    //    }
 
-        entityHealth.onKilled += DisablePlayer;
+    //    entityHealth.onKilled += DisablePlayer;
 
-        base.Initialize(manager);
-    }
+    //    base.Initialize(manager);
+    //}
 
-    private void Update()
-    {
-        if (isDead)
-        {
-            if (_spawnDelay <= 0)
-            {
-                transform.position = spawnPosition;
-                transform.rotation = Quaternion.Euler(Vector3.zero);
+    //private void Update()
+    //{
+    //    if (isDead)
+    //    {
+    //        if (_spawnDelay <= 0)
+    //        {
+    //            transform.position = spawnPosition;
+    //            transform.rotation = Quaternion.Euler(Vector3.zero);
 
-                isDead = false;
-                TogglePlayer(true);
-            } else {
-                _spawnDelay -= Time.deltaTime;
-            }
-        }
-    }
+    //            isDead = false;
+    //            TogglePlayer(true);
+    //        } else {
+    //            _spawnDelay -= Time.deltaTime;
+    //        }
+    //    }
+    //}
 
-    private void DisablePlayer(EntityManager source)
-    {
-        TogglePlayer(false);
-        isDead = true;
-        _spawnDelay = spawnDelay;
-        //StartCoroutine(RespawnAfterDelay());
-    }
+    //private void DisablePlayer(EntityManager source)
+    //{
+    //    TogglePlayer(false);
+    //    isDead = true;
+    //    _spawnDelay = spawnDelay;
+    //    //StartCoroutine(RespawnAfterDelay());
+    //}
 
-    private void TogglePlayer(bool value)
-    {
-        if (!gfxGameobject)
-        {
-            Debug.Log("GFX not referenced in " + name, gameObject);
+    //private void TogglePlayer(bool value)
+    //{
+    //    if (!gfxGameobject)
+    //    {
+    //        Debug.Log("GFX not referenced in " + name, gameObject);
 
-        } else
-        {
-            gfxGameobject.SetActive(value);
-        }
+    //    } else
+    //    {
+    //        gfxGameobject.SetActive(value);
+    //    }
 
-        boxCollider.enabled = value;
-        rb.isKinematic = !value;
+    //    boxCollider.enabled = value;
+    //    rb.isKinematic = !value;
 
-        for (int i = 0; i < toggleBehaviours.Length; i++)
-        {
-            toggleBehaviours[i].enabled = value;
-        }
+    //    for (int i = 0; i < toggleBehaviours.Length; i++)
+    //    {
+    //        toggleBehaviours[i].enabled = value;
+    //    }
 
-        if (value)
-        {
-            onPlayerRespawned?.Invoke();
-        }
-    }
+    //    if (value)
+    //    {
+    //        onPlayerRespawned?.Invoke();
+    //    }
+    //}
 
-    private IEnumerator RespawnAfterDelay()
-    {
-        TogglePlayer(false);
+    //private IEnumerator RespawnAfterDelay()
+    //{
+    //    TogglePlayer(false);
 
-        yield return new WaitForSeconds(spawnDelay);
+    //    yield return new WaitForSeconds(spawnDelay);
 
-        transform.position = spawnPosition;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+    //    transform.position = spawnPosition;
+    //    transform.rotation = Quaternion.Euler(Vector3.zero);
 
-        TogglePlayer(true);
-    }
+    //    TogglePlayer(true);
+    //}
 }

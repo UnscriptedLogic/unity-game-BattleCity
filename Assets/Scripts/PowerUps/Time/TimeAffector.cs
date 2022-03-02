@@ -62,30 +62,30 @@ public class TimeAffector : MonoBehaviour
             case TimeModifyTypes.Slow:
                 if (value)
                 {
-                    originalSpeed = manager.movementSpeed;
+                    originalSpeed = manager.speed;
                     originalBulletSpeed = manager.bulletSpeed;
 
-                    manager.movementSpeed /= 2f;
+                    manager.speed /= 2f;
                     manager.bulletSpeed /= 2f;
                 }
                 else
                 {
-                    manager.movementSpeed = originalSpeed;
+                    manager.speed = originalSpeed;
                     manager.bulletSpeed = originalBulletSpeed;
                 }
                 break;
             case TimeModifyTypes.SpeedUp:
                 if (value)
                 {
-                    originalSpeed = manager.movementSpeed;
+                    originalSpeed = manager.speed;
                     originalBulletSpeed = manager.bulletSpeed;
 
-                    manager.movementSpeed *= 2f;
+                    manager.speed *= 2f;
                     manager.bulletSpeed *= 2f;
                 }
                 else
                 {
-                    manager.movementSpeed = originalSpeed;
+                    manager.speed = originalSpeed;
                     manager.bulletSpeed = originalBulletSpeed;
                 }
                 break;
@@ -98,12 +98,12 @@ public class TimeAffector : MonoBehaviour
     {
         if (value)
         {
-            originalSpeed = manager.movementSpeed;
+            originalSpeed = manager.speed;
             originalBulletSpeed = manager.bulletSpeed;
         }
         else
         {
-            manager.movementSpeed = originalSpeed;
+            manager.speed = originalSpeed;
             manager.bulletSpeed = originalBulletSpeed;
         }
     }

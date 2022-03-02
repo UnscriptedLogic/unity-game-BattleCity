@@ -6,42 +6,27 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : EntityMovement
 {
-    public PlayerInput playerInput;
-    public PlayerManager manager;
-    private Rigidbody rb;
-    private Vector3 moveVector;
+    public Rigidbody rb;
+    private PlayerManager playerManager;
 
-    public override void Initialize(EntityManager manager)
+    protected override void SephamoreStart(Manager manager)
     {
-        rb = GetComponent<Rigidbody>();
+        playerManager = manager as PlayerManager;
+        base.SephamoreStart(manager);
+    }
 
-        playerInput.RegisterBind(GetMoveDir, ActionType.Move, EventType.Performed);
-        playerInput.RegisterBind(GetMoveDir, ActionType.Move, EventType.Cancelled);
+    public override void SetDefaultBehaviour()
+    {
+        movementBehaviour = new UserInputMovement(playerManager.playerInput, playerManager, rb, transform);
+    }
 
-        base.Initialize(manager);
+    public void SetBehaviour(MovementBehaviour movementBehaviour)
+    {
+        this.movementBehaviour = movementBehaviour;
     }
 
     private void FixedUpdate()
     {
-        Vector3 dir = Vector3.zero;
-        if (Mathf.Abs(moveVector.x) >= 0.1f)
-        {
-            dir = Vector3.right * moveVector.x;
-            MoveEntity(manager.movementSpeed, dir, rb);
-            FaceMovement(transform, dir, manager.rotationSpeed);
-        } else if (Mathf.Abs(moveVector.z) >= 0.1f)
-        {
-            dir = Vector3.forward * moveVector.z;
-            MoveEntity(manager.movementSpeed, dir, rb);
-            FaceMovement(transform, dir, manager.rotationSpeed);
-        }
-    }
-
-    private void GetMoveDir(InputAction.CallbackContext context)
-    {
-        Vector2 value = context.ReadValue<Vector2>();
-        moveVector = new Vector3(value.x, 0f, value.y);
-
-        FireEntityMoved(moveVector.magnitude > 0f);
+        movementBehaviour.Move();
     }
 }

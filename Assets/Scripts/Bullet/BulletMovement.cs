@@ -9,15 +9,15 @@ public enum BulletType
 
 public class BulletMovement : EntityMovement
 {
-    public BulletManager manager;
+    //public BulletManager manager;
 
-    public override void Initialize(EntityManager entityManager)
-    {
-        base.Initialize(entityManager);
-    }
+    //public override void Initialize(EntityManager entityManager)
+    //{
+    //    base.Initialize(entityManager);
+    //}
 
-    private void FixedUpdate()
-    {
-        MoveEntity(manager.movementSpeed, transform.forward, manager.rb);
-    }
+    //private void FixedUpdate()
+    //{
+    //    MoveEntity(manager.speed, transform.forward, manager.rb);
+    //}
 }

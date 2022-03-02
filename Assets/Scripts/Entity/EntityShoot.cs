@@ -32,12 +32,12 @@ public class EntityShoot : EntitySemaphore
 
         bulletScript = bullet.GetComponent<BulletManager>();
         bulletScript.entitySettings = details.bulletSettings;
-        bulletScript.movementSpeed = details.speed;
+        bulletScript.speed = details.speed;
         bulletScript.lifetime = details.lifetime;
         bulletScript.teamIndex = details.team;
         bulletScript.health = details.health;
         bulletScript.origin = details.origin;
-        bulletScript.SettingsInitialized();
+        //bulletScript.SettingsInitialized();
 
         onBulletCreated?.Invoke(bullet);
         return bullet;

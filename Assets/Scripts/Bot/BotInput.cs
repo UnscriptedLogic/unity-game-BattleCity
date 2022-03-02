@@ -1,22 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BotInput : EntitySemaphore
+public class BotInput : Sephamore
 {
     private Vector2 timeBetDecisions = new Vector2(1f, 2f);
     private float _decisionInterval;
 
     private MoveDecision[] moveDecisions;
-    public BotMovement enemyMovement;
-    public BotManager enemyManager;
+    private BotManager botManager;
 
-    public override void Initialize(EntityManager manager)
+    public event Action<MovementState> moveStateUpdated;
+
+    protected override void SephamoreStart(Manager manager)
     {
-        moveDecisions = enemyManager.moveDecisions;
-        timeBetDecisions = enemyManager.decisionIntervals;
+        base.SephamoreStart(manager);
 
-        base.Initialize(manager);
+        botManager = manager as BotManager;
+        moveDecisions = botManager.moveDecisions;
+        timeBetDecisions = botManager.decisionIntervals;
     }
 
     private void Update()
@@ -25,7 +28,8 @@ public class BotInput : EntitySemaphore
         {
             RandomDirection();
             _decisionInterval = RandomValue.BetweenFloats(timeBetDecisions.x, timeBetDecisions.y);
-        } else
+        }
+        else
         {
             _decisionInterval -= Time.deltaTime;
         }
@@ -41,14 +45,14 @@ public class BotInput : EntitySemaphore
             prevChance = tierChances[i];
         }
 
-        int randomTier = Random.Range(0, 100);
+        int randomTier = UnityEngine.Random.Range(0, 100);
         for (int i = 0; i < tierChances.Length; i++)
         {
             float highNum = i == tierChances.Length - 1 ? 100 : tierChances[i];
             float lowNum = i == 0 ? 0 : tierChances[i - 1];
             if (randomTier > lowNum && randomTier < highNum)
             {
-                enemyMovement.SetMovementState(moveDecisions[i].movementState);
+                moveStateUpdated?.Invoke(moveDecisions[i].movementState);
                 return;
             }
         }

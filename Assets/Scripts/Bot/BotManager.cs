@@ -3,26 +3,19 @@ using UnityEngine;
 
 public class BotManager : TankManager
 {
-    [HideInInspector] public Vector2 shootIntervals;
-    [HideInInspector] public Vector2 decisionIntervals;
+    public Vector2 shootIntervals;
+    public Vector2 decisionIntervals;
+    public MoveDecision[] moveDecisions;
 
-    [HideInInspector] public MoveDecision[] moveDecisions;
+    private BotSettings botSettings;
 
-    [Header("Enemy Settings")]
-    public BotSettings enemySettings;
-
-    protected override void InitSettings()
+    public override void InitializeEntity()
     {
-        base.InitSettings();
-        enemySettings = (BotSettings)entitySettings;
-    }
+        base.InitializeEntity();
+        botSettings = entitySettings as BotSettings;
 
-    protected override void Initialize()
-    {
-        shootIntervals = enemySettings.shootInterval;
-        decisionIntervals = enemySettings.decisionInterval;
-        moveDecisions = enemySettings.moveDecisions;
-
-        base.Initialize();
+        shootIntervals = botSettings.shootInterval;
+        decisionIntervals = botSettings.decisionInterval;
+        moveDecisions = botSettings.moveDecisions;
     }
 }

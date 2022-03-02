@@ -16,24 +16,24 @@ public class BulletManager : EntityManager
     [HideInInspector] public float lifetime;
     [HideInInspector] public BulletType bulletEffectors;
 
-    protected override void OnEnable()
-    {
+    //protected override void OnEnable()
+    //{
         
-    }
+    //}
 
-    private void Start()
-    {
-        //Sets the bullet colour to the associated team colour
-        matRenderer.material.color = TeamManager.instance.teams[teamIndex].associatedColor;
-    }
+    //private void Start()
+    //{
+    //    //Sets the bullet colour to the associated team colour
+    //    matRenderer.material.color = TeamManager.instance.teams[teamIndex].associatedColor;
+    //}
 
-    public void SettingsInitialized()
-    {
-        base.OnEnable();
-    }
+    //public void SettingsInitialized()
+    //{
+    //    base.OnEnable();
+    //}
 
-    protected override void Initialize()
-    {
+    //protected override void Initialize()
+    //{
 
-    }
+    //}
 }

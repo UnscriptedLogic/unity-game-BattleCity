@@ -17,12 +17,12 @@ public enum ActionType
     Shoot
 }
 
-public class PlayerInput : EntitySemaphore
+public class PlayerInput : Sephamore
 {
     public InputActionAsset actionAsset;
     private InputAction move, shoot;
 
-    public override void Initialize(EntityManager manager)
+    protected override void SephamoreStart(Manager manager)
     {
         InputActionMap actionMap = actionAsset.FindActionMap("Default");
         move = actionMap.FindAction("Move");
@@ -30,8 +30,6 @@ public class PlayerInput : EntitySemaphore
 
         move.Enable();
         shoot.Enable();
-
-        base.Initialize(manager);
     }
 
     public void RegisterBind(Action<InputAction.CallbackContext> method, ActionType actionType, EventType eventType)

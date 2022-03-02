@@ -4,51 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public class EntityManager : MonoBehaviour
+public class EntityManager : Manager
 {
     public EntitySettings entitySettings;
 
-    [HideInInspector] public int health;
-    [HideInInspector] public float movementSpeed = 10f;
-    [HideInInspector] public float rotationSpeed = 30f;
+    [Header("Initialized from ScriptableObject")]
+    public int health;
+    public float speed;
+    public float rotationSpeed;
+    public int damage;
 
-    private SemaphoreSlim gate = new SemaphoreSlim(1);
-    public EntitySemaphore[] entityScripts;
-    public event Action onInitialized;
-
-    protected virtual void OnEnable()
+    protected virtual void Start()
     {
-        InitSettings();
-        Initialize();
-
-        InitializeScripts();
+        InitializeSephamores();
     }
 
-    protected async void InitializeScripts()
-    {
-        for (int i = 0; i < entityScripts.Length; i++)
-        {
-            await gate.WaitAsync();
-            entityScripts[i].Initialize(this);
-        }
-
-        onInitialized?.Invoke();
-    }
-
-    public void ReleaseGate(EntitySemaphore script)
-    {
-        gate.Release();
-    }
-
-    protected virtual void InitSettings()
-    {
-
-    }
-
-    protected virtual void Initialize()
+    public virtual void InitializeEntity()
     {
         health = entitySettings.health;
-        movementSpeed = entitySettings.movementSpeed;
+        speed = entitySettings.speed;
         rotationSpeed = entitySettings.rotationSpeed;
+        damage = entitySettings.damage;
     }
 }
