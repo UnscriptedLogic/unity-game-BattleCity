@@ -17984,11 +17984,12 @@ GameObject:
   - component: {fileID: 2029279095}
   - component: {fileID: 2029279094}
   - component: {fileID: 2029279093}
-  - component: {fileID: 2029279092}
+  - component: {fileID: 2029279097}
+  - component: {fileID: 2029279098}
   - component: {fileID: 2029279091}
   - component: {fileID: 2029279090}
   m_Layer: 0
-  m_Name: TestPlayer (1)
+  m_Name: BotPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18023,14 +18024,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!81 &2029279092
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029279089}
-  m_Enabled: 1
 --- !u!114 &2029279093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18043,8 +18036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428eb7f08fd79e54baa92a8ea8b272db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementState: 0
   rb: {fileID: 2029279091}
+  botInput: {fileID: 2029279095}
 --- !u!114 &2029279094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18090,10 +18083,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2029279097}
+        m_TargetAssemblyTypeName: BotShoot, Assembly-CSharp
+        m_MethodName: SetDefaultBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sephamores:
   - {fileID: 2029279095}
   - {fileID: 2029279093}
-  entitySettings: {fileID: 0}
+  - {fileID: 2029279097}
+  entitySettings: {fileID: 11400000, guid: e260d9902bb4e4b47a8d894790a41a01, type: 2}
   health: 0
   speed: 0
   rotationSpeed: 0
@@ -18119,8 +18125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d7697432a56e24cafded5a974dba45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMovement: {fileID: 2029279093}
-  enemyManager: {fileID: 2029279094}
 --- !u!4 &2029279096
 Transform:
   m_ObjectHideFlags: 0
@@ -18139,6 +18143,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029279097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029279089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3034e934db973394fb3737a1e41a94e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootAnchor: {fileID: 399598448}
+--- !u!114 &2029279098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029279089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e9bf43dae54c748b8e06835e527a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 1
 --- !u!1 &2059875410
 GameObject:
   m_ObjectHideFlags: 0
@@ -18151,9 +18181,11 @@ GameObject:
   - component: {fileID: 2059875415}
   - component: {fileID: 2059875416}
   - component: {fileID: 6602577951396776747}
+  - component: {fileID: 6602577951396776748}
   - component: {fileID: 2059875413}
   - component: {fileID: 2059875414}
   - component: {fileID: 6602577951396776746}
+  - component: {fileID: 6602577951396776749}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -18267,9 +18299,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6602577951396776748}
+        m_TargetAssemblyTypeName: PlayerShoot, Assembly-CSharp
+        m_MethodName: SetDefaultBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sephamores:
   - {fileID: 2059875415}
   - {fileID: 6602577951396776747}
+  - {fileID: 6602577951396776748}
   entitySettings: {fileID: 11400000, guid: e8139284a29def543a6d479ca2e94bae, type: 2}
   health: 0
   speed: 0
@@ -24064,6 +24109,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2059875413}
+--- !u!114 &6602577951396776748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059875410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02bb6f043acc2e4c80122a0ebf2086b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 2059875415}
+  shootAnchor: {fileID: 1503357470}
+--- !u!114 &6602577951396776749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059875410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e9bf43dae54c748b8e06835e527a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 0
 --- !u!33 &6639068062133306122
 MeshFilter:
   m_ObjectHideFlags: 0
