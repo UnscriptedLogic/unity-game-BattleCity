@@ -13,7 +13,7 @@ public class Team
 }
 
 
-public class TeamManager : Manager
+public class TeamManager : Semaphore
 {
     public static TeamManager instance;
     public Team[] teams;
@@ -21,29 +21,25 @@ public class TeamManager : Manager
     public event Action<TankManager, int> onAddedToTeam;
     public event Action<TankManager, int> onRemovedFromTeam;
 
-    //public override void Initialize()
-    //{
-    //    instance = this;
 
-    //    TankIndexManager.instance.onEntityAdded += IndexManager_onEntityAdded;
-    //    TankIndexManager.instance.onEntiyRemoved += Instance_onEntiyRemoved;
-
-    //    base.Initialize();
-    //}
-
-    private void Instance_onEntiyRemoved(Transform obj)
+    protected override void SephamoreStart(Manager manager)
     {
-        TankManager tankManager = obj.GetComponent<TankManager>();
-        TankTeamIndexer indexer = obj.GetComponent<TankTeamIndexer>();
+        base.SephamoreStart(manager);
+        instance = this;
+        TankIndexManager.instance.onTankAdded += IndexManager_onEntityAdded;
+        TankIndexManager.instance.onTankRemoved += Instance_onEntiyRemoved;
+    }
+
+    private void Instance_onEntiyRemoved(TankManager tankManager)
+    {
+        TankTeamIndexer indexer = tankManager.GetComponent<TankTeamIndexer>();
         RemoveFromTeam(indexer.teamIndex, tankManager);
         onRemovedFromTeam?.Invoke(tankManager, indexer.teamIndex);
     }
 
-    private void IndexManager_onEntityAdded(Transform obj)
+    private void IndexManager_onEntityAdded(TankManager tankManager)
     {
-        TankManager tankManager = obj.GetComponent<TankManager>();
-        TankTeamIndexer indexer = obj.GetComponent<TankTeamIndexer>();
-
+        TankTeamIndexer indexer = tankManager.GetComponent<TankTeamIndexer>();
         AddToTeam(indexer.teamIndex, tankManager);
         onAddedToTeam?.Invoke(tankManager, indexer.teamIndex);
     }
@@ -110,6 +106,24 @@ public class TeamManager : Manager
         }
 
         return tankManagers;
+    }
+
+    public int GetTeamOfTank(TankManager tankManager)
+    {
+        for (int i = 0; i < teams.Length; i++)
+        {
+            if (teams[i].entities.Contains(tankManager))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public bool isSameTeam(TankManager tankA, TankManager tankB)
+    {
+        return GetTeamOfTank(tankA) - GetTeamOfTank(tankB) > 0;
     }
 
     protected bool NotValidTeamIndex(int index)

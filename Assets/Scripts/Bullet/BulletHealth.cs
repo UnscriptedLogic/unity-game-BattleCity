@@ -4,32 +4,44 @@ using UnityEngine;
 public class BulletHealth : EntityHealth
 {
     private BulletManager bulletManager;
-    public int originalHealth;
+    private int originalHealth;
 
-    //public override void Initialize(EntityManager entityManager)
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        bulletManager = manager as BulletManager;
+        originalHealth = bulletManager.health;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        EntityManager entityManager = other.GetComponent<EntityManager>();
+        if (entityManager)
+        {
+            DamageManager.DealDamage(bulletManager.health, entityManager, bulletManager);
+            return;
+        }
+
+        KillEntity();
+        //As of right now there are 3 things in the world that can take damage
+        //- Blocks (amount)
+        //- Tanks (amount, Team Index)
+        //- Bullets (amount, Team Index) => problem here when 2 entities are trying to damage each other
+
+        //The problem is trying to call one function and let the rest handle it.
+        //And returning the damage back to know how much health the bullet has left
+    }
+
+    //private void OnCollisionEnter(Collision collision)
     //{
-    //    bulletManager = (BulletManager)entityManager;
-    //    originalHealth = bulletManager.health;
-
-    //    entityManager.onInitialized += EntityManager_onInitialized;
-    //    base.Initialize(entityManager);
-    //}
-
-    //private void EntityManager_onInitialized()
-    //{
-    //    Destroy(gameObject, bulletManager.lifetime);
-    //}
-
-    //protected override void OnCollisionEnter(Collision collision)
-    //{
-    //    EntityHealth victimHealthScript = collision.transform.GetComponent<EntityHealth>();
-    //    if (victimHealthScript)
+    //    EntityManager entityManager = collision.transform.GetComponent<EntityManager>();
+    //    if (entityManager)
     //    {
-    //        //amount of damage, who was the culprit, who as the victim, how it was done
-    //        DamageManager.EntityDamage(bulletManager.health, source: bulletManager.origin.healthScript, victim: victimHealthScript, medium: bulletManager.healthScript, bulletManager.teamIndex);
+    //        DamageManager.DealDamage(bulletManager.health, entityManager, bulletManager);
     //        return;
     //    }
 
-    //    Destroy(gameObject);
+    //    KillEntity();
+
     //}
 }

@@ -17,13 +17,19 @@ public class ModifyScore
     public int amount;
 }
 
-public class TankScore : EntitySemaphore
+public class TankScore : Semaphore
 {
     public int score;
     public ModifyScore[] scoreModifiers;
-    public TankManager tankManager;
-    private TankHealth healthScript;
+    private TankManager tankManager;
+    public TankHealth healthScript;
     private ScoreManager scoreManager;
+
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        tankManager = manager as TankManager;
+    }
 
     //public override void Initialize(EntityManager manager)
     //{

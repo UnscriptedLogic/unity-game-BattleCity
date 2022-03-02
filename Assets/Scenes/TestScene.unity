@@ -5919,6 +5919,7 @@ GameObject:
   - component: {fileID: 419572478}
   - component: {fileID: 419572479}
   - component: {fileID: 419572481}
+  - component: {fileID: 419572482}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -5976,7 +5977,10 @@ MonoBehaviour:
         m_CallState: 2
   sephamores:
   - {fileID: 419572481}
-  enableAfterInitialize: []
+  - {fileID: 419572482}
+  enableAfterInitialize:
+  - {fileID: 2059875410}
+  - {fileID: 2029279089}
   playEffects: 1
   playSounds: 1
   playParticles: 1
@@ -5995,6 +5999,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingIndex: 0
+--- !u!114 &419572482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419572476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d3c10c33c95df4db0bc5ea292331af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teams:
+  - teamName: Radiant
+    associatedColor: {r: 0.514151, g: 1, b: 0.66103655, a: 1}
+    entities: []
+  - teamName: Dire
+    associatedColor: {r: 1, g: 0.34961465, b: 0.1273585, a: 1}
+    entities: []
 --- !u!1 &470165442
 GameObject:
   m_ObjectHideFlags: 0
@@ -17782,6 +17805,7 @@ GameObject:
   - component: {fileID: 2029279093}
   - component: {fileID: 2029279097}
   - component: {fileID: 2029279098}
+  - component: {fileID: 2029279099}
   - component: {fileID: 2029279091}
   - component: {fileID: 2029279090}
   m_Layer: 0
@@ -17790,7 +17814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2029279090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17895,6 +17919,8 @@ MonoBehaviour:
   - {fileID: 2029279095}
   - {fileID: 2029279093}
   - {fileID: 2029279097}
+  - {fileID: 2029279099}
+  - {fileID: 2029279098}
   entitySettings: {fileID: 11400000, guid: e260d9902bb4e4b47a8d894790a41a01, type: 2}
   health: 0
   speed: 0
@@ -17965,6 +17991,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 1
+--- !u!114 &2029279099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029279089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b3771b610f32e47a3b45c12fd99241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 0}
+  onDeathDestroys: 0
+  onDeathDisables: 1
 --- !u!1 &2059875410
 GameObject:
   m_ObjectHideFlags: 0
@@ -17979,6 +18020,7 @@ GameObject:
   - component: {fileID: 6602577951396776747}
   - component: {fileID: 6602577951396776748}
   - component: {fileID: 6602577951396776749}
+  - component: {fileID: 6602577951396776750}
   - component: {fileID: 2059875413}
   - component: {fileID: 2059875414}
   - component: {fileID: 6602577951396776746}
@@ -17988,7 +18030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2059875411
 Transform:
   m_ObjectHideFlags: 0
@@ -18111,6 +18153,8 @@ MonoBehaviour:
   - {fileID: 2059875415}
   - {fileID: 6602577951396776747}
   - {fileID: 6602577951396776748}
+  - {fileID: 6602577951396776750}
+  - {fileID: 6602577951396776749}
   entitySettings: {fileID: 11400000, guid: e8139284a29def543a6d479ca2e94bae, type: 2}
   health: 0
   speed: 0
@@ -23932,6 +23976,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 0
+--- !u!114 &6602577951396776750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059875410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b3771b610f32e47a3b45c12fd99241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 0}
+  onDeathDestroys: 0
+  onDeathDisables: 0
 --- !u!33 &6639068062133306122
 MeshFilter:
   m_ObjectHideFlags: 0

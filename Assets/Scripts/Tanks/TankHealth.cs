@@ -5,15 +5,6 @@ using UnityEngine;
 public class TankHealth : EntityHealth
 {
     private TankManager tankManager;
-    public event Action<EntityManager> onKill;
-
-    public void TankTakeDamage(int amount, int team)
-    {
-        if (true)
-        {
-
-        }
-    }
 
     //public override void Initialize(EntityManager manager)
     //{

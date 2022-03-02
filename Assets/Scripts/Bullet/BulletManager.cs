@@ -23,6 +23,6 @@ public class BulletManager : EntityManager
         base.Start();
 
         //Sets the bullet colour to the associated team colour
-        //matRenderer.material.color = TeamManager.instance.teams[teamIndex].associatedColor;
+        matRenderer.material.color = TeamManager.instance.teams[teamIndex].associatedColor;
     }
 }
