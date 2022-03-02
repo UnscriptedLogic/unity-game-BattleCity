@@ -35,7 +35,7 @@ public class IntAirborne : ShootBehaviour
                 tankManager.bulletSpeed,
                 tankManager.bulletLifetime,
                 transform.GetComponent<TankTeamIndexer>().teamIndex,
-                tankManager.bulletHealth,
+                tankManager.damage,
                 tankManager
                 );
             airborneBullets.Add(CreateBullet(tankManager.bulletPrefab, shootAnchor, details, out BulletManager bulletScript));

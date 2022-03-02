@@ -24,7 +24,7 @@ public class IntervalShoot : ShootBehaviour
                 tankManager.bulletSpeed,
                 tankManager.bulletLifetime,
                 transform.GetComponent<TankTeamIndexer>().teamIndex,
-                tankManager.bulletHealth,
+                tankManager.damage,
                 tankManager
                 );
 

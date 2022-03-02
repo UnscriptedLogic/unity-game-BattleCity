@@ -32,8 +32,9 @@ public class TankIndexManager : Semaphore
     public void IndexMe(TankManager tankManager)
     {
         tankManager.tankIndex = currentIndex;
-        currentIndex++;
+        tankIndexes.Add(currentIndex, tankManager);
 
+        currentIndex++;
         onTankAdded?.Invoke(tankManager);
     }
 }

@@ -20,15 +20,28 @@ public class ModifyScore
 public class TankScore : Semaphore
 {
     public int score;
-    public ModifyScore[] scoreModifiers;
     private TankManager tankManager;
-    public TankHealth healthScript;
     private ScoreManager scoreManager;
 
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
         tankManager = manager as TankManager;
+        scoreManager = ScoreManager.instance;
+        scoreManager.onTankScoreUpdated += ScoreManager_onTankScoreUpdated;
+    }
+
+    public void InitializeScore()
+    {
+        scoreManager.UpdateScore(tankManager.tankIndex, score);
+    }
+
+    private void ScoreManager_onTankScoreUpdated(int entityIndex, int score)
+    {
+        if (entityIndex == tankManager.tankIndex)
+        {
+            this.score = score;
+        }
     }
 
     //public override void Initialize(EntityManager manager)

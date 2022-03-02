@@ -6,6 +6,7 @@ using UnityEngine;
 public static class DamageManager
 {
     public static event Action<TankManager, TankManager> onKillEvent;
+    public static event Action<int, TankManager, TankManager> onTankHitEvent;
 
     //The entrance. This filters out who function is called based on the victim
     public static void DealDamage(int amount, EntityManager victim, BulletManager bulletManager = null)
@@ -55,6 +56,8 @@ public static class DamageManager
                 BulletHealth bulletHealth = bulletManager.GetComponent<BulletHealth>();
                 bulletHealth.TakeDamage(victimHealth);
             }
+
+            onTankHitEvent?.Invoke(victimHealth - victim.health, bulletManager.origin, victim);
         }
     }
 }

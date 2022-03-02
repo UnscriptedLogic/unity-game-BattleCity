@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638d8a0cf4fc404428ea165125556ceb, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  rotationSpeed: 50
   health: 1
+  speed: 10
+  rotationSpeed: 50
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []
