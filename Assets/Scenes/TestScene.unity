@@ -18004,8 +18004,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
-  onDeathDestroys: 0
-  onDeathDisables: 1
+  onDeathDestroys: 1
+  onDeathDisables: 0
 --- !u!1 &2059875410
 GameObject:
   m_ObjectHideFlags: 0

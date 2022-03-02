@@ -22,7 +22,7 @@ public class DependantFX
     public float spatialBlend = 1f;
 }
 
-public class EntityEffects : EntitySemaphore
+public class EntityEffects : Semaphore
 {
     public EntityManager manager;
     public EntityMovement movementScript; 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyBulletSettings
   m_EditorClassIdentifier: 
   health: 1
-  speed: 20
+  speed: 5
   rotationSpeed: 30
   damage: 1
   miscEffects:
