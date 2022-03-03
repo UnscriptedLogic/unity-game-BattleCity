@@ -37,8 +37,8 @@ public class GameManager : Manager
         for (int i = 0; i < baseWalls.Count; i++)
         {
             baseWallPositions.Add(baseWalls[i].position);
-            baseWalls[i].GetComponent<BlockManager>().blockHealth.onDeathDisables = true;
-            baseWalls[i].GetComponent<BlockManager>().blockHealth.onDeathDestroys = false;
+            baseWalls[i].GetChild(0).GetChild(0).GetComponent<EntityHealth>().onDeathDisables = true;
+            baseWalls[i].GetChild(0).GetChild(0).GetComponent<EntityHealth>().onDeathDestroys = false;
         }
     }
 

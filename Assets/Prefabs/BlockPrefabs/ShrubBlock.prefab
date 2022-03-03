@@ -101,7 +101,7 @@ MonoBehaviour:
       m_Calls: []
   sephamores:
   - {fileID: 7383827651216571388}
-  entitySettings: {fileID: 11400000, guid: 26c68366f487daa4088bbc297740bd41, type: 2}
+  settings: {fileID: 11400000, guid: 26c68366f487daa4088bbc297740bd41, type: 2}
   health: 0
   speed: 0
   rotationSpeed: 30
