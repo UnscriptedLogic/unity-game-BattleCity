@@ -199,7 +199,7 @@ MonoBehaviour:
   sephamores:
   - {fileID: 8193607819779039024}
   - {fileID: 2914395667515941605}
-  settings: {fileID: 0}
+  settings: {fileID: 11400000, guid: 26c68366f487daa4088bbc297740bd41, type: 2}
   health: 0
   speed: 0
   rotationSpeed: 30

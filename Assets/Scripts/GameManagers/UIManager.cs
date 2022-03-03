@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Manager
+public class UIManager : Semaphore
 {
     private GameManager manager;
     public GameObject gameoverScreen;

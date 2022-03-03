@@ -15,15 +15,6 @@ public class ScoreUIManager : Semaphore
     public GameObject scoreCardPrefab;
     public Transform scoreParent;
 
-    //public override void Initialize()
-    //{
-    //    indexManager = TankIndexManager.instance;
-    //    scoreManager = ScoreManager.instance;
-    //    scoreManager.onEntityScoreUpdated += UpdateScores;
-
-    //    base.Initialize();
-    //}
-
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);

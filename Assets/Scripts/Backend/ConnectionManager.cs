@@ -23,7 +23,7 @@ public class Player
     }
 }
 
-public class ConnectionManager : Manager
+public class ConnectionManager : Semaphore
 {
     public static ConnectionManager instance;
     private void Awake()
@@ -48,24 +48,24 @@ public class ConnectionManager : Manager
     public event Action<Player> onPlayerInitialized;
     public GameVariables gameVariables;
 
-    //public override void Initialize()
-    //{
-    //    if (GlobalVars.player == null)
-    //    {
-    //        GlobalVars.SetEmptyPlayer();
-    //    }
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        if (GlobalVars.player == null)
+        {
+            GlobalVars.SetEmptyPlayer();
+        }
 
-    //    GlobalVars.PlayerUpdated();
-    //    onInitialized?.Invoke(this);
-    //    initialized = true;
-    //    base.Initialize();
+        GlobalVars.PlayerUpdated();
+        //onInitialized?.Invoke(this);
+        initialized = true;
 
-    //    StartCoroutine(UpdateScore((res) =>
-    //    {
-    //        Debug.Log(res);
+        StartCoroutine(UpdateScore((res) =>
+        {
+            Debug.Log(res);
 
-    //    }));
-    //}
+        }));
+    }
 
     //Pinging to google
     public IEnumerator CheckConnection(Action<bool> callback)
