@@ -6272,10 +6272,16 @@ MonoBehaviour:
   addOnSpawn: []
   canSpawn: 1
   entitySpawns:
-  - prefab: {fileID: 5556506537134336202, guid: 0954a291a75f0af44bab11d5c859605b,
-      type: 3}
+  - prefab: {fileID: 400500418037949602, guid: b54214d1cb308e147b4b499f34b12bf7, type: 3}
     settings: {fileID: 11400000, guid: e260d9902bb4e4b47a8d894790a41a01, type: 2}
-    chance: 100
+    chance: 35
+  - prefab: {fileID: 1309624557003366617, guid: 4cb66190dc1924f429432b442e73bf34,
+      type: 3}
+    settings: {fileID: 11400000, guid: aad676aff64c65d458bccd2c4b2ed62c, type: 2}
+    chance: 35
+  - prefab: {fileID: 886481422484413848, guid: da7229816bb7805478228084d9835356, type: 3}
+    settings: {fileID: 11400000, guid: 7d17d2f98a147f949914032a0c6b5e56, type: 2}
+    chance: 30
   startDelay: 1
   waveInterval: 10
   spawnInterval: 1

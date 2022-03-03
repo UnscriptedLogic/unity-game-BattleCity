@@ -8,11 +8,10 @@ public class EntityManager : Manager
 {
     public EntitySettings settings;
 
-    [Header("Initialized from ScriptableObject")]
-    public int health;
-    public float speed;
-    public float rotationSpeed;
-    public int damage;
+    [HideInInspector] public int health;
+    [HideInInspector] public float speed;
+    [HideInInspector] public float rotationSpeed;
+    [HideInInspector] public int damage;
 
     protected virtual void Start()
     {

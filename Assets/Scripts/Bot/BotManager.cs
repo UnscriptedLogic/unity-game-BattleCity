@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class BotManager : TankManager
 {
-    public Vector2 shootIntervals;
-    public Vector2 decisionIntervals;
-    public MoveDecision[] moveDecisions;
+    [HideInInspector] public Vector2 shootIntervals;
+    [HideInInspector] public Vector2 decisionIntervals;
+    [HideInInspector] public MoveDecision[] moveDecisions;
 
     private BotSettings botSettings;
 

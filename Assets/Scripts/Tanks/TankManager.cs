@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class TankManager : EntityManager
 {
-    [Header("Tank Manager Settings")]
-    public float bulletSpeed = 30f;
-    public float bulletLifetime = 10f;
-    public int bulletHealth = 1;
-    public BulletType bulletType = BulletType.Normal;
-    public GameObject bulletPrefab;
-    public int tankIndex;
+    [HideInInspector] public float bulletSpeed = 30f;
+    [HideInInspector] public float bulletLifetime = 10f;
+    [HideInInspector] public int bulletHealth = 1;
+    [HideInInspector] public BulletType bulletType = BulletType.Normal;
+    [HideInInspector] public GameObject bulletPrefab;
+    [HideInInspector] public int tankIndex;
 
     public TankSettings tankSettings { get; private set; }
 

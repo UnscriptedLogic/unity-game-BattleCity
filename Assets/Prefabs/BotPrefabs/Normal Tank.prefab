@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 400500418037949598}
   - component: {fileID: 400500418037949601}
   - component: {fileID: 400500418037949597}
-  - component: {fileID: 7862547437765553884}
   - component: {fileID: 6213888530589482169}
+  - component: {fileID: 7862547437765553884}
   - component: {fileID: 8740216024152349524}
   - component: {fileID: 400500418037949600}
   - component: {fileID: 400500418037949603}
@@ -68,14 +68,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeforeInitialization:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400500418037949598}
+        m_TargetAssemblyTypeName: BotManager, Assembly-CSharp
+        m_MethodName: InitializeEntity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   SephamoreInitialized:
     m_PersistentCalls:
       m_Calls: []
   AfterInitialization:
     m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
+      m_Calls:
+      - m_Target: {fileID: 400500418037949601}
+        m_TargetAssemblyTypeName: BotMovement, Assembly-CSharp
+        m_MethodName: SetDefaultBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 400500418037949597}
+        m_TargetAssemblyTypeName: BotShoot, Assembly-CSharp
+        m_MethodName: SetDefaultBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7862547437765553884}
+        m_TargetAssemblyTypeName: EntityEffects, Assembly-CSharp
+        m_MethodName: InitializeEvents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sephamores:
+  - {fileID: 400500418037949599}
+  - {fileID: 400500418037949601}
+  - {fileID: 400500418037949597}
+  - {fileID: 6213888530589482169}
+  - {fileID: 7862547437765553884}
+  - {fileID: 8740216024152349524}
   settings: {fileID: 0}
   health: 0
   speed: 0
@@ -103,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 400500418037949600}
-  botInput: {fileID: 0}
+  botInput: {fileID: 400500418037949599}
 --- !u!114 &400500418037949597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,23 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootAnchor: {fileID: 400500418349970420}
---- !u!114 &7862547437765553884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400500418037949602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementScript: {fileID: 400500418037949601}
-  entityHealth: {fileID: 0}
-  checkDistance: 0
-  randomRotation: 0
-  activated: 0
 --- !u!114 &6213888530589482169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +186,23 @@ MonoBehaviour:
   root: {fileID: 0}
   onDeathDestroys: 1
   onDeathDisables: 0
+--- !u!114 &7862547437765553884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementScript: {fileID: 400500418037949601}
+  entityHealth: {fileID: 6213888530589482169}
+  checkDistance: 0
+  randomRotation: 0
+  activated: 0
 --- !u!114 &8740216024152349524
 MonoBehaviour:
   m_ObjectHideFlags: 0
