@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   health: 1
-  speed: 6
+  speed: 7
   rotationSpeed: 50
-  damage: 2
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []

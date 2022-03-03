@@ -11,6 +11,7 @@ public class PlayerShoot : EntityShoot
     public PlayerInput playerInput;
     private PlayerManager playerManager;
     public Transform shootAnchor;
+    public int airborneBullets = 1;
 
     protected override void SephamoreStart(Manager manager)
     {
@@ -20,7 +21,7 @@ public class PlayerShoot : EntityShoot
 
     public override void SetDefaultBehaviour()
     {
-        shootBehaviour = new IntAirborne(playerManager, shootAnchor, transform, 2);
+        shootBehaviour = new IntAirborne(playerManager, shootAnchor, transform, airborneBullets);
         playerInput.RegisterBind(PerformShoot, ActionType.Shoot, EventType.Performed);
     }
 

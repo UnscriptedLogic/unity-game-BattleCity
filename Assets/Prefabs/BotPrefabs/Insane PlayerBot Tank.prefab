@@ -9,16 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400500418037949596}
-  - component: {fileID: 400500418037949599}
   - component: {fileID: 400500418037949598}
+  - component: {fileID: 400500418037949599}
   - component: {fileID: 400500418037949601}
   - component: {fileID: 400500418037949597}
-  - component: {fileID: 400500418037949594}
+  - component: {fileID: 1896893130607139609}
+  - component: {fileID: 8027541029494611036}
+  - component: {fileID: 7707915312038188773}
+  - component: {fileID: -1608680342397484036}
   - component: {fileID: 400500418037949600}
   - component: {fileID: 400500418037949603}
-  - component: {fileID: 8027541029494611036}
   - component: {fileID: 4973614529453768099}
-  - component: {fileID: -1608680342397484036}
   m_Layer: 0
   m_Name: Insane PlayerBot Tank
   m_TagString: Untagged
@@ -43,18 +44,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &400500418037949599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400500418037949602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d7697432a56e24cafded5a974dba45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &400500418037949598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,15 +58,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeforeInitialization:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 400500418037949598}
+        m_TargetAssemblyTypeName: BotManager, Assembly-CSharp
+        m_MethodName: InitializeEntity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   SephamoreInitialized:
     m_PersistentCalls:
       m_Calls: []
   AfterInitialization:
     m_PersistentCalls:
-      m_Calls: []
-  sephamores: []
-  settings: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 400500418037949601}
+        m_TargetAssemblyTypeName: BotMovement, Assembly-CSharp
+        m_MethodName: SetDefaultBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 400500418037949597}
+        m_TargetAssemblyTypeName: BotShoot, Assembly-CSharp
+        m_MethodName: SetDefaultBehaviour
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8027541029494611036}
+        m_TargetAssemblyTypeName: EntityEffects, Assembly-CSharp
+        m_MethodName: InitializeEvents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sephamores:
+  - {fileID: 400500418037949599}
+  - {fileID: 400500418037949601}
+  - {fileID: 400500418037949597}
+  - {fileID: 1896893130607139609}
+  - {fileID: 8027541029494611036}
+  - {fileID: 7707915312038188773}
+  - {fileID: -1608680342397484036}
+  settings: {fileID: 11400000, guid: 631c7604803ab5940b14f3977ec7c99d, type: 2}
   health: 0
   speed: 0
   rotationSpeed: 30
@@ -91,6 +135,18 @@ MonoBehaviour:
   shootIntervals: {x: 0, y: 0}
   decisionIntervals: {x: 0, y: 0}
   moveDecisions: []
+--- !u!114 &400500418037949599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d7697432a56e24cafded5a974dba45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &400500418037949601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 400500418037949600}
-  botInput: {fileID: 0}
+  botInput: {fileID: 400500418037949599}
 --- !u!114 &400500418037949597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootAnchor: {fileID: 400500418349970420}
---- !u!114 &400500418037949594
+--- !u!114 &1896893130607139609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,13 +183,64 @@ MonoBehaviour:
   m_GameObject: {fileID: 400500418037949602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0efd8cf4694c849b0fca64fe3fde2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 25b3771b610f32e47a3b45c12fd99241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
-  onDeathDestroys: 1
+  onDeathDestroys: 0
   onDeathDisables: 0
-  overrideHealth: 0
+--- !u!114 &8027541029494611036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementScript: {fileID: 400500418037949601}
+  entityHealth: {fileID: 1896893130607139609}
+  checkDistance: 0
+  randomRotation: 0
+  activated: 0
+--- !u!114 &7707915312038188773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fff874138e1c84e8d819c212c612be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityHealth: {fileID: 1896893130607139609}
+  spawnAtStart: 1
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnDelay: 2
+  rb: {fileID: 400500418037949600}
+  boxCollider: {fileID: 400500418037949603}
+  gfxGameobject: {fileID: 400500418455856428}
+  toggleBehaviours:
+  - {fileID: 400500418037949601}
+  - {fileID: 400500418037949597}
+--- !u!114 &-1608680342397484036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e9bf43dae54c748b8e06835e527a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 0
 --- !u!54 &400500418037949600
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,23 +270,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8027541029494611036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400500418037949602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementScript: {fileID: 400500418037949601}
-  entityHealth: {fileID: 0}
-  checkDistance: 0
-  randomRotation: 0
-  activated: 0
 --- !u!81 &4973614529453768099
 AudioListener:
   m_ObjectHideFlags: 0
@@ -188,19 +278,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400500418037949602}
   m_Enabled: 1
---- !u!114 &-1608680342397484036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400500418037949602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e9bf43dae54c748b8e06835e527a29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teamIndex: 0
 --- !u!1 &400500418349970423
 GameObject:
   m_ObjectHideFlags: 0

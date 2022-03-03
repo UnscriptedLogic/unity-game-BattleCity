@@ -13,8 +13,6 @@ public class BlockHealth : EntityHealth
 
     public void BlockTakeDamage(int amount, int originalBulletHealth)
     {
-        Debug.Log(originalBulletHealth >= blockManager.requiredHealth);
-
         if (originalBulletHealth >= blockManager.requiredHealth)
         {
             TakeDamage(amount);
