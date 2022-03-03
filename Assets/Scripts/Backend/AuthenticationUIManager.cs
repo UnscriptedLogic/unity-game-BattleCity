@@ -40,7 +40,7 @@ public class AuthenticationUIManager : Semaphore
         logout_button.onClick.AddListener(() =>
         {
             ToggleButtons(false, logout_button);
-            GlobalVars.SetPlayer(new Player());
+            //GlobalVars.SetPlayer(new User());
 
             SwapLSOD(value: true);
             ToggleButtons(true, logout_button);
@@ -51,14 +51,14 @@ public class AuthenticationUIManager : Semaphore
         deleteuser_button.onClick.AddListener(() =>
         {
             ToggleButtons(false, deleteuser_button);
-            StartCoroutine(connManager.DeleteAccount(GlobalVars.player.id, (res) =>
-            {
-                GlobalVars.SetPlayer(new Player());
+            //StartCoroutine(connManager.DeleteAccount(GlobalVars.player.id, (res) =>
+            //{
+            //    //GlobalVars.SetPlayer(new User());
 
-                SwapLSOD(value: true);
-                ToggleButtons(true, login_button);
-                ToggleButtons(true, signup_button);
-            }));
+            //    SwapLSOD(value: true);
+            //    ToggleButtons(true, login_button);
+            //    ToggleButtons(true, signup_button);
+            //}));
         });
 
         //Pings to google for internet connection
@@ -69,13 +69,13 @@ public class AuthenticationUIManager : Semaphore
             connStatusTMP.text = value ? "Connected to the internet!" : "Can't connect to the internet!";
         }));
 
-        if (GlobalVars.player.initialized)
-        {
-            ToggleButtons(value: false, login_button);
-            ToggleButtons(value: false, signup_button);
+        //if (GlobalVars.player.initialized)
+        //{
+        //    ToggleButtons(value: false, login_button);
+        //    ToggleButtons(value: false, signup_button);
 
-            SwapLSOD(false);
-        }
+        //    SwapLSOD(false);
+        //}
     }
 
     private void SignUp_OnClick()
@@ -94,11 +94,11 @@ public class AuthenticationUIManager : Semaphore
                         stateTMP.text = res[0];
                         ToggleButtons(value: res[0] != "Sign Up Successful", button: login_button);
 
-                        if (res[0] == "Sign Up Successful")
-                        {
-                            GlobalVars.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
-                            SwapLSOD(value: false);
-                        }
+                        //if (res[0] == "Sign Up Successful")
+                        //{
+                        //    GlobalVars.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
+                        //    SwapLSOD(value: false);
+                        //}
                     }
                 }));
             }
@@ -123,11 +123,11 @@ public class AuthenticationUIManager : Semaphore
                     stateTMP.text = res[0];
                     ToggleButtons(value: res[0] != "Login Successful", button: login_button);
 
-                    if (res[0] == "Login Successful")
-                    {
-                        GlobalVars.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
-                        SwapLSOD(value: false);
-                    }
+                    //if (res[0] == "Login Successful")
+                    //{
+                    //    GlobalVars.UpdatePlayer(int.Parse(res[1]), res[2], res[3], int.Parse(res[4]));
+                    //    SwapLSOD(value: false);
+                    //}
                 }
             }));
 

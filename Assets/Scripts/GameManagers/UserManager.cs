@@ -1,18 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UserManager : MonoBehaviour
+public static class UserManager
 {
-    // Start is called before the first frame update
-    void Start()
+    public class User
     {
-        
+        public bool initialized;
+        public int id;
+        public string username;
+        public string password;
+
+        public User(bool initialized = false, int id = 0, string username = "Unscripted_User1", string password = "")
+        {
+            this.initialized = initialized;
+            this.id = id;
+            this.username = username;
+            this.password = password;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public static User user;
+    
+    public static int high_score = 0;
+
+    public static void CreatePlayer(string username)
     {
-        
+        user = new User(initialized: true, username: username);
     }
 }

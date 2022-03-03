@@ -4,25 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-[Serializable]
-public class Player
-{
-    public bool initialized;
-    public int id;
-    public string username;
-    public string password;
-    public int hiscore;
-
-    public Player(bool initialized = false, int id = 0, string username = "Unscripted_User1", string password = "", int hiscore = 0)
-    {
-        this.initialized = initialized;
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.hiscore = hiscore;
-    }
-}
-
 public class ConnectionManager : Semaphore
 {
     public static ConnectionManager instance;
@@ -45,17 +26,15 @@ public class ConnectionManager : Semaphore
     public event Action<Manager> onInitialized;
     public bool initialized;
 
-    public event Action<Player> onPlayerInitialized;
-
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
-        if (GlobalVars.player == null)
+        //if (GlobalVars.player == null)
         {
-            GlobalVars.SetEmptyPlayer();
+            //GlobalVars.SetEmptyPlayer();
         }
 
-        GlobalVars.PlayerUpdated();
+        //GlobalVars.PlayerUpdated();
         //onInitialized?.Invoke(this);
         initialized = true;
 
@@ -150,8 +129,8 @@ public class ConnectionManager : Semaphore
     public IEnumerator UpdateScore(Action<string[]> callback)
     {
         WWWForm form = new WWWForm();
-        form.AddField("submitted_id", GlobalVars.player.id);
-        form.AddField("submitted_score", GlobalVars.player.hiscore);
+        //form.AddField("submitted_id", GlobalVars.player.id);
+        //form.AddField("submitted_score", GlobalVars.player.hiscore);
 
         using (UnityWebRequest request = UnityWebRequest.Post(addScoreRoute, form))
         {

@@ -62,6 +62,6 @@ public class ScoreUIManager : Semaphore
 
         entityUIScores.Add(entityIndex, scoreCardscript);
         scoreCardscript.SetScore(scoreManager.entityScores[entityIndex]);
-        scoreCardscript.SetName(GlobalVars.player != null ? GlobalVars.player.username : "Player");
+        //scoreCardscript.SetName(GlobalVars.player != null ? GlobalVars.player.username : "Player");
     }
 }

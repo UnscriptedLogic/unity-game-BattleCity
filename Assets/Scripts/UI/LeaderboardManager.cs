@@ -34,21 +34,21 @@ public class LeaderboardManager : Semaphore
 
         PerformDisplayScore();
 
-        connManager.onPlayerInitialized += delegate (Player player)
-        {
-            ColorMyName();
-        };
+        //connManager.onPlayerInitialized += delegate (Player player)
+        //{
+        //    ColorMyName();
+        //};
     }
 
     private void ColorMyName()
     {
-        if (GlobalVars.player.initialized)
-        {
-            if (scoreCards.ContainsKey(GlobalVars.player.username))
-            {
-                scoreCards[GlobalVars.player.username].transform.GetChild(0).GetComponent<Image>().color = myColor;
-            }
-        }
+        //if (GlobalVars.player.initialized)
+        //{
+        //    if (scoreCards.ContainsKey(GlobalVars.player.username))
+        //    {
+        //        scoreCards[GlobalVars.player.username].transform.GetChild(0).GetComponent<Image>().color = myColor;
+        //    }
+        //}
     }
 
     public void PerformDisplayScore()

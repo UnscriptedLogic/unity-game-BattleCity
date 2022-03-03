@@ -27,6 +27,17 @@ public class GameManager : Manager
         InitializeSephamores();
     }
 
+    public void LoadSaves()
+    {
+        SaveManager.Load();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveManager.Save();
+    }
+
+    #region Standalone Functions
     public void EnableObjects()
     {
         for (int i = 0; i < enableAfterInitialize.Length; i++)
@@ -71,5 +82,6 @@ public class GameManager : Manager
     public void QuitGame()
     {
         Application.Quit();
-    }
+    } 
+    #endregion
 }
