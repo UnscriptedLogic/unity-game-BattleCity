@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementScript: {fileID: 0}
-  entityHealth: {fileID: 0}
+  entityHealth: {fileID: 8797982257286803940}
   checkDistance: 1
   randomRotation: 0
   activated: 0

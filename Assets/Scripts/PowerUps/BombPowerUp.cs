@@ -24,7 +24,10 @@ public class BombPowerUp : PowerUpManager
 
         for (int i = 0; i < collectorEnemies.Count; i++)
         {
-            DamageManager.DealDamageBetweenTanks(amount: explosionDamage, victim: collectorEnemies[i], culpritTankIndex: collectorManager.tankIndex);
+            if (collectorEnemies[i] != null)
+            {
+                DamageManager.DealDamageBetweenTanks(amount: explosionDamage, victim: collectorEnemies[i], culpritTankIndex: collectorManager.tankIndex);
+            }
         }
 
         base.Activate(collision);

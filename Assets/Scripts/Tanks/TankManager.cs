@@ -25,4 +25,9 @@ public class TankManager : EntityManager
         bulletHealth = tankSettings.bulletSettings.health;
         bulletType = tankSettings.bulletSettings.bulletType;
     }
+
+    private void OnDestroy()
+    {
+        TankIndexManager.instance.RemoveTankIndex(tankIndex);
+    }
 }
