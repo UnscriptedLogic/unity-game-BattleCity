@@ -6,22 +6,24 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
-public class ScoreUIManager : Manager
+public class ScoreUIManager : Semaphore
 {
-    private ScoreManager scoreManager;
-    private IndexManager indexManager;
+    public ScoreManager scoreManager;
+    private TankIndexManager indexManager;
 
     public Dictionary<int, ScoreCard> entityUIScores = new Dictionary<int, ScoreCard>();
     public GameObject scoreCardPrefab;
     public Transform scoreParent;
 
-    public override void Initialize()
+    protected override void SephamoreStart(Manager manager)
     {
-        indexManager = IndexManager.instance;
-        scoreManager = ScoreManager.instance;
-        scoreManager.onEntityScoreUpdated += UpdateScores;
+        base.SephamoreStart(manager);
+        scoreManager.onTankScoreUpdated += ScoreManager_onTankScoreUpdated;
+    }
 
-        base.Initialize();
+    private void ScoreManager_onTankScoreUpdated(int tankIndex, int score)
+    {
+        UpdateScores(tankIndex);
     }
 
     public void CheckScores()
@@ -40,16 +42,16 @@ public class ScoreUIManager : Manager
         }
     }
 
-    public void UpdateScores(int entityIndex)
+    public void UpdateScores(int tankIndex)
     {
-        if (entityUIScores.TryGetValue(entityIndex, out ScoreCard scoreCard))
+        if (entityUIScores.TryGetValue(tankIndex, out ScoreCard scoreCard))
         {
-            scoreCard.SetScore(scoreManager.entityScores[entityIndex]);
-            scoreCard.SetName(indexManager.entityIndexes[entityIndex].name);
+            scoreCard.SetScore(scoreManager.entityScores[tankIndex]);
+            //scoreCard.SetName(indexManager.tankIndexes[tankIndex].name);
             return;
         }
 
-        CreateScore(entityIndex);
+        CreateScore(tankIndex);
     }
 
     public void CreateScore(int entityIndex)
@@ -60,6 +62,6 @@ public class ScoreUIManager : Manager
 
         entityUIScores.Add(entityIndex, scoreCardscript);
         scoreCardscript.SetScore(scoreManager.entityScores[entityIndex]);
-        scoreCardscript.SetName(GlobalVars.player.username);
+        scoreCardscript.SetName(GlobalVars.player != null ? GlobalVars.player.username : "Player");
     }
 }

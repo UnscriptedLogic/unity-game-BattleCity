@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638d8a0cf4fc404428ea165125556ceb, type: 3}
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  rotationSpeed: 50
   health: 1
+  speed: 7
+  rotationSpeed: 50
+  damage: 1
   miscEffects:
+  - createOn: 3
+    particles:
+    - {fileID: 8333206598823610587, guid: 04b0e5b03ed4f9b45887da4d915dad89, type: 3}
+    sounds:
+    - {fileID: 8300000, guid: 34f756cc89845c046a10c1ea8efeafe6, type: 3}
+    priority: 225
+    volume: 0.05
+    maxDistance: 10
+    spatialBlend: 1
   - createOn: 1
     particles: []
     sounds:

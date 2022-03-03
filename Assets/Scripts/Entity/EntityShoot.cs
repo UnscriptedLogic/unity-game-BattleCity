@@ -2,44 +2,29 @@
 using System.Collections;
 using UnityEngine;
 
-public class BulletDetails
+public class EntityShoot : Semaphore
 {
-    public float speed;
-    public float lifetime;
-    public int team;
-    public int health;
-    public TankManager origin;
-    public BulletSettings bulletSettings;
+    protected ShootBehaviour shootBehaviour;
+    protected ShootBehaviour prevShootBehaviour;
 
-    public BulletDetails(BulletSettings bulletSettings, float speed, float lifetime, int team, int health, TankManager origin)
+    public virtual void SetDefaultBehaviour()
     {
-        this.bulletSettings = bulletSettings;
-        this.speed = speed;
-        this.lifetime = lifetime;
-        this.team = team;
-        this.health = health;
-        this.origin = origin;
+        //Default shooting behaviour
     }
-}
 
-public class EntityShoot : EntitySemaphore
-{
-    public event Action<GameObject> onBulletCreated;
-
-    protected GameObject CreateBullet(GameObject prefab, Transform _shootAnchor, BulletDetails details, out BulletManager bulletScript)
+    public void SetShootBehaviour(ShootBehaviour shootBehaviour)
     {
-        GameObject bullet = Instantiate(prefab, _shootAnchor.position, _shootAnchor.rotation);
+        this.shootBehaviour = shootBehaviour;
+    }
 
-        bulletScript = bullet.GetComponent<BulletManager>();
-        bulletScript.entitySettings = details.bulletSettings;
-        bulletScript.movementSpeed = details.speed;
-        bulletScript.lifetime = details.lifetime;
-        bulletScript.teamIndex = details.team;
-        bulletScript.health = details.health;
-        bulletScript.origin = details.origin;
-        bulletScript.SettingsInitialized();
+    protected virtual void OnEnable()
+    {
+        SetShootBehaviour(prevShootBehaviour);
+    }
 
-        onBulletCreated?.Invoke(bullet);
-        return bullet;
+    protected virtual void OnDisable()
+    {
+        prevShootBehaviour = shootBehaviour;
+        SetShootBehaviour(new NoShootBehaviour());
     }
 }

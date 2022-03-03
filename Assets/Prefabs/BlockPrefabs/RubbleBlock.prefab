@@ -9,8 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7722449111533488629}
-  - component: {fileID: 5028545564383612325}
+  - component: {fileID: 4209253744691331225}
   - component: {fileID: 9122821070693656014}
+  - component: {fileID: 4287907690145296379}
+  - component: {fileID: 5028545564383612325}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -33,6 +35,106 @@ Transform:
   m_Father: {fileID: 4585093461205223335}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4209253744691331225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289434892947399929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faed7129e0eb2c848aad230951cbebc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeforeInitialization:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4209253744691331225}
+        m_TargetAssemblyTypeName: BlockManager, Assembly-CSharp
+        m_MethodName: InitializeEntity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SephamoreInitialized:
+    m_PersistentCalls:
+      m_Calls: []
+  AfterInitialization:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4287907690145296379}
+        m_TargetAssemblyTypeName: EntityEffects, Assembly-CSharp
+        m_MethodName: InitializeEvents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sephamores:
+  - {fileID: 9122821070693656014}
+  - {fileID: 4287907690145296379}
+  settings: {fileID: 11400000, guid: 26c68366f487daa4088bbc297740bd41, type: 2}
+  health: 0
+  speed: 0
+  rotationSpeed: 30
+  damage: 0
+  wallSettings: {fileID: 11400000, guid: 651e344324844274eab25b69e3fdf146, type: 2}
+  myWallType: 3
+  myWall:
+    wallType: 0
+    health: 1
+    requiredHealth: 0
+    onlyBullets: 0
+    useCollider: 0
+    endsGameOnDeath: 0
+    wallGraphics: {fileID: 0}
+  requiredHealth: 0
+  colliderParent: {fileID: 4585093461205223335}
+  gfxParent: {fileID: 2107337517021529824}
+  boxCollider: {fileID: 5028545564383612325}
+  blockHealth: {fileID: 9122821070693656014}
+--- !u!114 &9122821070693656014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289434892947399929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f392306252f8c4f9760310f9eb6c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 6893615782639771088}
+  onDeathDestroys: 1
+  onDeathDisables: 0
+--- !u!114 &4287907690145296379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289434892947399929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementScript: {fileID: 0}
+  entityHealth: {fileID: 9122821070693656014}
+  checkDistance: 0
+  randomRotation: 0
+  activated: 0
 --- !u!65 &5028545564383612325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46,21 +148,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9122821070693656014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289434892947399929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f392306252f8c4f9760310f9eb6c30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 840914115064204243}
-  root: {fileID: 6893615782639771088}
-  onDeathDestroys: 1
 --- !u!1 &2107337517021529838
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,8 +221,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642404776783966255}
-  - component: {fileID: 840914115064204243}
-  - component: {fileID: 1962510691088423601}
   m_Layer: 0
   m_Name: RubbleBlock
   m_TagString: Untagged
@@ -160,59 +245,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &840914115064204243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893615782639771088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faed7129e0eb2c848aad230951cbebc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entitySettings: {fileID: 11400000, guid: 26c68366f487daa4088bbc297740bd41, type: 2}
-  health: 0
-  movementSpeed: 10
-  rotationSpeed: 30
-  entityScripts:
-  - {fileID: 9122821070693656014}
-  - {fileID: 1962510691088423601}
-  wallSettings: {fileID: 11400000, guid: 651e344324844274eab25b69e3fdf146, type: 2}
-  myWallType: 3
-  myWall:
-    wallType: 0
-    health: 1
-    requiredHealth: 0
-    onlyBullets: 0
-    useCollider: 0
-    endsGameOnDeath: 0
-    wallGraphics: {fileID: 0}
-  requiredHealth: 0
-  colliderParent: {fileID: 4585093461205223335}
-  gfxParent: {fileID: 2107337517021529824}
-  boxCollider: {fileID: 5028545564383612325}
-  blockHealth: {fileID: 9122821070693656014}
---- !u!114 &1962510691088423601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6893615782639771088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 840914115064204243}
-  movementScript: {fileID: 0}
-  healthScript: {fileID: 9122821070693656014}
-  randomRotation: 0
-  dependantFXes: []
-  checkDistance: 0
-  activated: 0
 --- !u!1001 &7700893879496781733
 PrefabInstance:
   m_ObjectHideFlags: 0

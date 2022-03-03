@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class AuthenticationUIManager : MonoBehaviour
+public class AuthenticationUIManager : Semaphore
 {
     public ConnectionManager connManager;
     
@@ -31,52 +31,50 @@ public class AuthenticationUIManager : MonoBehaviour
     public Button logout_button;
     public Button deleteuser_button;
 
-    private void Start()
+    protected override void SephamoreStart(Manager manager)
     {
-        if (connManager.initialized)
-        {
-            LogIn_OnClick();
-            SignUp_OnClick();
+        base.SephamoreStart(manager);
+        LogIn_OnClick();
+        SignUp_OnClick();
 
-            logout_button.onClick.AddListener(() =>
+        logout_button.onClick.AddListener(() =>
+        {
+            ToggleButtons(false, logout_button);
+            GlobalVars.SetPlayer(new Player());
+
+            SwapLSOD(value: true);
+            ToggleButtons(true, logout_button);
+            ToggleButtons(true, login_button);
+            ToggleButtons(true, signup_button);
+        });
+
+        deleteuser_button.onClick.AddListener(() =>
+        {
+            ToggleButtons(false, deleteuser_button);
+            StartCoroutine(connManager.DeleteAccount(GlobalVars.player.id, (res) =>
             {
-                ToggleButtons(false, logout_button);
                 GlobalVars.SetPlayer(new Player());
 
                 SwapLSOD(value: true);
-                ToggleButtons(true, logout_button);
                 ToggleButtons(true, login_button);
                 ToggleButtons(true, signup_button);
-            });
-
-            deleteuser_button.onClick.AddListener(() =>
-            {
-                ToggleButtons(false, deleteuser_button);
-                StartCoroutine(connManager.DeleteAccount(GlobalVars.player.id, (res) =>
-                {
-                    GlobalVars.SetPlayer(new Player());
-
-                    SwapLSOD(value: true);
-                    ToggleButtons(true, login_button);
-                    ToggleButtons(true, signup_button);
-                }));
-            });
-
-            //Pings to google for internet connection
-            StartCoroutine(connManager.CheckConnection((value) =>
-            {
-                ToggleButtons(value: true, login_button);
-                ToggleButtons(value: true, signup_button);
-                connStatusTMP.text = value ? "Connected to the internet!" : "Can't connect to the internet!";
             }));
+        });
 
-            if (GlobalVars.player.initialized)
-            {
-                ToggleButtons(value: false, login_button);
-                ToggleButtons(value: false, signup_button);
+        //Pings to google for internet connection
+        StartCoroutine(connManager.CheckConnection((value) =>
+        {
+            ToggleButtons(value: true, login_button);
+            ToggleButtons(value: true, signup_button);
+            connStatusTMP.text = value ? "Connected to the internet!" : "Can't connect to the internet!";
+        }));
 
-                SwapLSOD(false);
-            }
+        if (GlobalVars.player.initialized)
+        {
+            ToggleButtons(value: false, login_button);
+            ToggleButtons(value: false, signup_button);
+
+            SwapLSOD(false);
         }
     }
 

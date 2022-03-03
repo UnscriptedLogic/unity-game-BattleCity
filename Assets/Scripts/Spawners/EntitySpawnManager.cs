@@ -24,8 +24,10 @@ public class EntitySpawnModifiers
 }
 
 
-public class EntitySpawnManager : Manager
+public class EntitySpawnManager : Semaphore
 {
+    private GameManager gameManager;
+
     [Header("Manager Settings")]
     public Vector2 spawnArea = new Vector2(2f, 2f);
     public Transform spawnParent;
@@ -41,7 +43,15 @@ public class EntitySpawnManager : Manager
 
     public virtual void Start()
     {
-        GameManager.instance.onGameStarted += OnGameInitialized;
+        
+    }
+
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        gameManager = manager as GameManager;
+
+        gameManager.onGameStarted += OnGameInitialized;
     }
 
     protected void OnGameInitialized()
@@ -85,22 +95,5 @@ public class EntitySpawnManager : Manager
         }
 
         return false;
-    }
-
-    public void DestroyAllNotTeamIndex(int index, TankManager origin)
-    {
-        for (int i = 0; i < spawnParent.childCount; i++)
-        {
-            TankManager manager = spawnParent.GetChild(i).GetComponent<TankManager>();
-            manager.healthScript.TakeDamage(999, origin);
-        }
-    }
-
-    public void DestroyAllSpawned(int index, TankManager origin)
-    {
-        for (int i = 0; i < spawnParent.childCount; i++)
-        {
-            spawnParent.GetChild(i).GetComponent<TankManager>().healthScript.TakeDamage(999, origin);
-        }
     }
 }

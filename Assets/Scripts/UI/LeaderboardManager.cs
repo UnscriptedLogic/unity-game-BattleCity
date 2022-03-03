@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LeaderboardManager : MonoBehaviour
+public class LeaderboardManager : Semaphore
 {
     [Header("Score")]
     public Transform content;
@@ -19,27 +19,25 @@ public class LeaderboardManager : MonoBehaviour
 
     public Dictionary<string, GameObject> scoreCards;
 
-    private void Start()
+    protected override void SephamoreStart(Manager manager)
     {
-        if (connManager.initialized)
+        base.SephamoreStart(manager);
+        StartCoroutine(connManager.CheckConnection((value) =>
         {
-            StartCoroutine(connManager.CheckConnection((value) =>
-            {
-                leaderboardButton.interactable = value;
-            }));
+            leaderboardButton.interactable = value;
+        }));
 
-            reloadScoreButton.onClick.AddListener(() =>
-            {
-                PerformDisplayScore();
-            });
-
+        reloadScoreButton.onClick.AddListener(() =>
+        {
             PerformDisplayScore();
+        });
 
-            connManager.onPlayerInitialized += delegate (Player player)
-            {
-                ColorMyName();
-            };
-        }
+        PerformDisplayScore();
+
+        connManager.onPlayerInitialized += delegate (Player player)
+        {
+            ColorMyName();
+        };
     }
 
     private void ColorMyName()

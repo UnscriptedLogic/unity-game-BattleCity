@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,93 +23,166 @@ public class DependantFX
     public float spatialBlend = 1f;
 }
 
-public class EntityEffects : EntitySemaphore
+public class EntityEffects : Semaphore
 {
-    public EntityManager manager;
-    public EntityMovement movementScript; 
-    public EntityHealth healthScript;
     private GameManager gameManager;
+    private EntityManager entityManager;
+
+    public EntityMovement movementScript; 
+    public EntityHealth entityHealth;
 
     private MiscEffects[] miscFXes;
 
-    public bool randomRotation;
-
-    public DependantFX[] dependantFXes;
-
     public float checkDistance;
+    public bool randomRotation;
     public bool activated;
-
-    private bool initialized = false;
+    private Vector3 prevPos;
 
     private List<AudioSource> whileMovingSounds = new List<AudioSource>();
-    private List<ParticleSystem> whileMovingParticles = new List<ParticleSystem>();
+    public List<ParticleSystem> whileMovingParticles = new List<ParticleSystem>();
 
-    public override void Initialize(EntityManager manager)
+    protected override void SephamoreStart(Manager manager)
     {
-        healthScript.onKilled += PlayDestroyedFX;
-        healthScript.onHealthDeducted += PlayOnHurt;
+        base.SephamoreStart(manager);
 
+        entityManager = manager as EntityManager;
+        miscFXes = entityManager.settings.miscEffects;
+
+        //For moving sounds
+        prevPos = transform.position;
+    }
+
+    public void InitializeEvents()
+    {
         gameManager = GameManager.instance;
-        miscFXes = manager.entitySettings.miscEffects;
-
-        PlayOnCreate();
-
-        if (randomRotation)
+        entityHealth.onKilled += delegate ()
         {
-            transform.forward = RandomValue.OfVectorDirectionAny();
-        }
+            PlayOneShot(CreateOn.Destroyed);
+        };
 
-        if (movementScript != null)
+        entityHealth.onHealthDeducted += delegate (int amount)
         {
-            movementScript.onEntityMove += PlayEntityMovedFX;
-            for (int i = 0; i < dependantFXes.Length; i++)
-            {
-                if (dependantFXes[i].dependantState == DependantState.WhileMoving)
-                {
-                    AudioDetails details = new AudioDetails(
-                        clip: RandomValue.FromList(dependantFXes[i].sounds),
-                        volume: dependantFXes[i].volume,
-                        priority: dependantFXes[i].priority,
-                        maxDistance: dependantFXes[i].maxDistance,
-                        loop: true,
-                        spatialBlend: dependantFXes[i].spatialBlend
-                    );
+            PlayOneShot(CreateOn.Hurt);
+        };
 
-                    EffectsManager.CreateAudioGameObject(details, transform.position, source: out AudioSource source, false, attachedTo: transform);
-                    whileMovingSounds.Add(source);
-                    source.Stop();
+        //For sound effects that only play on spawn
+        PlayOneShot(CreateOn.Spawn);
 
-                    for (int j = 0; j < dependantFXes[i].particles.Length; j++)
-                    {
-                        ParticleSystem particleSystem = dependantFXes[i].particles[j].GetComponent<ParticleSystem>();
-                        whileMovingParticles.Add(particleSystem);
-                        particleSystem.Stop();
-                    }
-                }
-            }
+        //For creating sounds and initializing effects that stay on the player
+        //throughout the game
+        SetConstantEffects();
+
+        if (movementScript)
+        {
+            //For playing movement related soungs
+            movementScript.movementBehaviour.onEntityMove += MovementBehaviour_onEntityMove; 
         }
-
-        initialized = true;
-        base.Initialize(manager);
     }
 
-    private void Update()
+    private void MovementBehaviour_onEntityMove(bool value)
     {
-        if (gameManager.playParticles)
+        PlayEntityMovedFX(value);
+    }
+
+    public void PlayOneShot(CreateOn createOn)
+    {
+        for (int i = 0; i < miscFXes.Length; i++)
         {
-            if (Physics.Raycast(origin: transform.position, direction: -transform.up, maxDistance: checkDistance) && !activated)
+            if (miscFXes[i].createOn == createOn)
             {
-                for (int i = 0; i < dependantFXes.Length; i++)
+                CreateParticlesGO(miscFXes[i]);
+                CreateSoundGO(miscFXes[i], true);
+            }
+        }
+    }
+
+    public void SetConstantEffects()
+    {
+        for (int i = 0; i < miscFXes.Length; i++)
+        {
+            if (miscFXes[i].createOn == CreateOn.Moving)
+            {
+                AudioDetails details = new AudioDetails(
+                    clip: RandomValue.FromList(miscFXes[i].sounds),
+                    volume: miscFXes[i].volume,
+                    priority: miscFXes[i].priority,
+                    maxDistance: miscFXes[i].maxDistance,
+                    loop: true,
+                    spatialBlend: miscFXes[i].spatialBlend
+                );
+
+                EffectsManager.CreateAudioGameObject(details, transform.position, source: out AudioSource source, false, attachedTo: transform);
+                whileMovingSounds.Add(source);
+                source.Stop();
+
+                for (int j = 0; j < miscFXes[i].particles.Length; j++)
                 {
-                    if (dependantFXes[i].dependantState == DependantState.OnCollision)
-                    {
-                        EffectsManager.CreateParticlesGameObject(prefab: RandomValue.FromList(dependantFXes[i].particles), position: transform.position, rotation: Quaternion.identity);
-                        activated = true;
-                    }
+                    ParticleSystem particleSystem = miscFXes[i].particles[j].GetComponent<ParticleSystem>();
+                    whileMovingParticles.Add(particleSystem);
+                    particleSystem.Stop();
                 }
             }
         }
     }
+
+    //public override void Initialize(EntityManager manager)
+    //{
+    //    healthScript.onKilled += PlayDestroyedFX;
+    //    healthScript.onHealthDeducted += PlayOnHurt;
+
+    //    PlayOnCreate();
+
+    //    if (movementScript != null)
+    //    {
+    //        movementScript.onEntityMove += PlayEntityMovedFX;
+    //        for (int i = 0; i < dependantFXes.Length; i++)
+    //        {
+    //            if (dependantFXes[i].dependantState == DependantState.WhileMoving)
+    //            {
+    //                AudioDetails details = new AudioDetails(
+    //                    clip: RandomValue.FromList(dependantFXes[i].sounds),
+    //                    volume: dependantFXes[i].volume,
+    //                    priority: dependantFXes[i].priority,
+    //                    maxDistance: dependantFXes[i].maxDistance,
+    //                    loop: true,
+    //                    spatialBlend: dependantFXes[i].spatialBlend
+    //                );
+
+    //                EffectsManager.CreateAudioGameObject(details, transform.position, source: out AudioSource source, false, attachedTo: transform);
+    //                whileMovingSounds.Add(source);
+    //                source.Stop();
+
+    //                for (int j = 0; j < dependantFXes[i].particles.Length; j++)
+    //                {
+    //                    ParticleSystem particleSystem = dependantFXes[i].particles[j].GetComponent<ParticleSystem>();
+    //                    whileMovingParticles.Add(particleSystem);
+    //                    particleSystem.Stop();
+    //                }
+    //            }
+    //        }
+    //    }
+
+    //    initialized = true;
+    //    base.Initialize(manager);
+    //}
+
+    //private void Update()
+    //{
+    //    if (gameManager.playParticles)
+    //    {
+    //        if (Physics.Raycast(origin: transform.position, direction: -transform.up, maxDistance: checkDistance) && !activated)
+    //        {
+    //            for (int i = 0; i < dependantFXes.Length; i++)
+    //            {
+    //                if (dependantFXes[i].dependantState == DependantState.OnCollision)
+    //                {
+    //                    EffectsManager.CreateParticlesGameObject(prefab: RandomValue.FromList(dependantFXes[i].particles), position: transform.position, rotation: Quaternion.identity);
+    //                    activated = true;
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     private void PlayEntityMovedFX(bool value)
     {
@@ -127,16 +201,17 @@ public class EntityEffects : EntitySemaphore
                 for (int j = 0; j < whileMovingParticles.Count; j++)
                 {
                     whileMovingParticles[j].Play();
-                } 
+                }
             }
-        } else
+        }
+        else
         {
             if (gameManager.playSounds)
             {
                 for (int i = 0; i < whileMovingSounds.Count; i++)
                 {
                     whileMovingSounds[i].Stop();
-                } 
+                }
             }
 
             if (gameManager.playParticles)
@@ -144,42 +219,42 @@ public class EntityEffects : EntitySemaphore
                 for (int j = 0; j < whileMovingParticles.Count; j++)
                 {
                     whileMovingParticles[j].Stop();
-                } 
-            }
-        }
-    }
-
-    protected void PlayFX(CreateOn createOn)
-    {
-        if (gameManager.playEffects)
-        {
-            for (int i = 0; i < miscFXes.Length; i++)
-            {
-                if (miscFXes[i].createOn == createOn)
-                {
-                    CreateParticlesGO(miscFXes[i]);
-
-                    CreateSoundGO(miscFXes[i]);
-
                 }
             }
         }
     }
 
-    protected void PlayDestroyedFX(EntityManager source)
-    {
-        PlayFX(CreateOn.Destroyed);
-    }
+    //protected void PlayFX(CreateOn createOn)
+    //{
+    //    if (gameManager.playEffects)
+    //    {
+    //        for (int i = 0; i < miscFXes.Length; i++)
+    //        {
+    //            if (miscFXes[i].createOn == createOn)
+    //            {
+    //                CreateParticlesGO(miscFXes[i]);
 
-    protected void PlayOnCreate()
-    {
-        PlayFX(CreateOn.Spawn);
-    }
+    //                CreateSoundGO(miscFXes[i]);
 
-    protected void PlayOnHurt(int amount)
-    {
-        PlayFX(CreateOn.Hurt);
-    }
+    //            }
+    //        }
+    //    }
+    //}
+
+    //protected void PlayDestroyedFX(EntityManager source)
+    //{
+    //    PlayFX(CreateOn.Destroyed);
+    //}
+
+    //protected void PlayOnCreate()
+    //{
+    //    PlayFX(CreateOn.Spawn);
+    //}
+
+    //protected void PlayOnHurt(int amount)
+    //{
+    //    PlayFX(CreateOn.Hurt);
+    //}
 
     public void CreateSoundGO(MiscEffects miscFX, bool destroy = true, Transform parent = null)
     {
@@ -205,51 +280,51 @@ public class EntityEffects : EntitySemaphore
         }
     }
 
-    public void CreateParticlesGO(DependantFX miscFX)
-    {
-        if (gameManager.playParticles && miscFX.particles.Length > 0)
-        {
-            GameObject particle = Instantiate(RandomValue.FromList(miscFX.particles), transform.position, transform.rotation);
-            Destroy(particle, 10f);
-        }
-    }
+    //public void CreateParticlesGO(DependantFX miscFX)
+    //{
+    //    if (gameManager.playParticles && miscFX.particles.Length > 0)
+    //    {
+    //        GameObject particle = Instantiate(RandomValue.FromList(miscFX.particles), transform.position, transform.rotation);
+    //        Destroy(particle, 10f);
+    //    }
+    //}
 
-    public void CreateParticlesGO(DependantFX miscFX, Vector3 pos)
-    {
-        if (gameManager.playParticles && miscFX.particles.Length > 0)
-        {
-            GameObject particle = Instantiate(RandomValue.FromList(miscFX.particles), pos, transform.rotation);
-            Destroy(particle, 10f);
-        }
-    }
+    //public void CreateParticlesGO(DependantFX miscFX, Vector3 pos)
+    //{
+    //    if (gameManager.playParticles && miscFX.particles.Length > 0)
+    //    {
+    //        GameObject particle = Instantiate(RandomValue.FromList(miscFX.particles), pos, transform.rotation);
+    //        Destroy(particle, 10f);
+    //    }
+    //}
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (gameManager.playSounds)
-        {
-            for (int i = 0; i < dependantFXes.Length; i++)
-            {
-                if (dependantFXes[i].dependantState == DependantState.OnCollision)
-                {
-                    if (dependantFXes[i].sounds.Length > 0)
-                    {
-                        AudioDetails details = new AudioDetails(
-                            clip: RandomValue.FromList(dependantFXes[i].sounds),
-                            volume: dependantFXes[i].volume,
-                            priority: dependantFXes[i].priority,
-                            maxDistance: dependantFXes[i].maxDistance,
-                            spatialBlend: dependantFXes[i].spatialBlend
-                        );
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (gameManager.playSounds)
+    //    {
+    //        for (int i = 0; i < dependantFXes.Length; i++)
+    //        {
+    //            if (dependantFXes[i].dependantState == DependantState.OnCollision)
+    //            {
+    //                if (dependantFXes[i].sounds.Length > 0)
+    //                {
+    //                    AudioDetails details = new AudioDetails(
+    //                        clip: RandomValue.FromList(dependantFXes[i].sounds),
+    //                        volume: dependantFXes[i].volume,
+    //                        priority: dependantFXes[i].priority,
+    //                        maxDistance: dependantFXes[i].maxDistance,
+    //                        spatialBlend: dependantFXes[i].spatialBlend
+    //                    );
 
-                        EffectsManager.CreateAudioGameObject(details, transform.position);
-                    }
-                }
-            }
-        }
-    }
+    //                    EffectsManager.CreateAudioGameObject(details, transform.position);
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawLine(transform.position, transform.position + (-transform.up * checkDistance));
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.DrawLine(transform.position, transform.position + (-transform.up * checkDistance));
+    //}
 }

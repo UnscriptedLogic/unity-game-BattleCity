@@ -4,32 +4,22 @@ using UnityEngine;
 public class BulletHealth : EntityHealth
 {
     private BulletManager bulletManager;
-    public int originalHealth;
 
-    public override void Initialize(EntityManager entityManager)
+    protected override void SephamoreStart(Manager manager)
     {
-        bulletManager = (BulletManager)entityManager;
-        originalHealth = bulletManager.health;
-
-        entityManager.onInitialized += EntityManager_onInitialized;
-        base.Initialize(entityManager);
+        base.SephamoreStart(manager);
+        bulletManager = manager as BulletManager;
     }
 
-    private void EntityManager_onInitialized()
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject, bulletManager.lifetime);
-    }
-
-    protected override void OnCollisionEnter(Collision collision)
-    {
-        EntityHealth victimHealthScript = collision.transform.GetComponent<EntityHealth>();
-        if (victimHealthScript)
+        EntityManager entityManager = other.GetComponent<EntityManager>();
+        if (entityManager)
         {
-            //amount of damage, who was the culprit, who as the victim, how it was done
-            DamageManager.EntityDamage(bulletManager.health, source: bulletManager.origin.healthScript, victim: victimHealthScript, medium: bulletManager.healthScript, bulletManager.teamIndex);
+            DamageManager.DealDamage(amount: bulletManager.health, victim: entityManager, bulletManager: bulletManager);
             return;
         }
 
-        Destroy(gameObject);
+        KillEntity();
     }
 }

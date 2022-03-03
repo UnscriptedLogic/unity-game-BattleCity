@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5115430143269033305}
-  - component: {fileID: 5115430143269033304}
-  - component: {fileID: 5115430143269033307}
   - component: {fileID: 4184806177736062762}
   - component: {fileID: 8797982257286803940}
   - component: {fileID: 3222494947306105765}
+  - component: {fileID: 5115430143269033307}
+  - component: {fileID: 5115430143269033304}
   m_Layer: 0
   m_Name: PiercingPO
   m_TagString: Untagged
@@ -37,19 +37,97 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5115430143269033304
-BoxCollider:
+--- !u!114 &4184806177736062762
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5115430143269033301}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.65, y: 0.65, z: 0.65}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2367bd28f87728a4e8a6f46f194635be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeforeInitialization:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4184806177736062762}
+        m_TargetAssemblyTypeName: PowerUpManager, Assembly-CSharp
+        m_MethodName: InitializeEntity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SephamoreInitialized:
+    m_PersistentCalls:
+      m_Calls: []
+  AfterInitialization:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3222494947306105765}
+        m_TargetAssemblyTypeName: EntityEffects, Assembly-CSharp
+        m_MethodName: InitializeEvents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sephamores:
+  - {fileID: 8797982257286803940}
+  - {fileID: 3222494947306105765}
+  settings: {fileID: 11400000, guid: 154462563d3c09f459a21d36ac8568ea, type: 2}
+  health: 0
+  speed: 0
+  rotationSpeed: 30
+  damage: 0
+  entityHealth: {fileID: 8797982257286803940}
+  powerUpType: 0
+  botTanks: 1
+  playerTanks: 1
+  lifeTime: 15
+  increaseAmount: 1
+--- !u!114 &8797982257286803940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115430143269033301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b3771b610f32e47a3b45c12fd99241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  root: {fileID: 0}
+  onDeathDestroys: 1
+  onDeathDisables: 0
+--- !u!114 &3222494947306105765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115430143269033301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementScript: {fileID: 0}
+  entityHealth: {fileID: 8797982257286803940}
+  checkDistance: 1
+  randomRotation: 0
+  activated: 0
 --- !u!54 &5115430143269033307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -66,75 +144,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4184806177736062762
-MonoBehaviour:
+--- !u!65 &5115430143269033304
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5115430143269033301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2367bd28f87728a4e8a6f46f194635be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entitySettings: {fileID: 11400000, guid: 154462563d3c09f459a21d36ac8568ea, type: 2}
-  health: 0
-  movementSpeed: 10
-  rotationSpeed: 30
-  entityScripts:
-  - {fileID: 8797982257286803940}
-  - {fileID: 3222494947306105765}
-  powerUpType: 0
-  botTanks: 1
-  playerTanks: 1
-  lifeTime: 10
-  increaseAmount: 1
---- !u!114 &8797982257286803940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5115430143269033301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b3771b610f32e47a3b45c12fd99241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 4184806177736062762}
-  root: {fileID: 0}
-  onDeathDestroys: 1
---- !u!114 &3222494947306105765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5115430143269033301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 4184806177736062762}
-  movementScript: {fileID: 0}
-  healthScript: {fileID: 8797982257286803940}
-  playEffects: 1
-  playSounds: 1
-  playParticles: 1
-  randomRotation: 0
-  dependantFXes:
-  - dependantState: 3
-    particles:
-    - {fileID: 3641609103389994185, guid: e132df70fd6d7e249a98415f47b592bb, type: 3}
-    sounds: []
-    priority: 225
-    volume: 0.5
-    maxDistance: 30
-    spatialBlend: 1
-  checkDistance: 1
-  activated: 0
+  serializedVersion: 2
+  m_Size: {x: 0.65, y: 0.65, z: 0.65}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3445810684333312596
 PrefabInstance:
   m_ObjectHideFlags: 0

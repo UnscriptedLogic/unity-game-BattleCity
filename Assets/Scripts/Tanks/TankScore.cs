@@ -17,47 +17,66 @@ public class ModifyScore
     public int amount;
 }
 
-public class TankScore : EntitySemaphore
+public class TankScore : Semaphore
 {
     public int score;
-    public ModifyScore[] scoreModifiers;
-    public TankManager tankManager;
-    private TankHealth healthScript;
+    private TankManager tankManager;
     private ScoreManager scoreManager;
 
-    public override void Initialize(EntityManager manager)
+    protected override void SephamoreStart(Manager manager)
     {
+        base.SephamoreStart(manager);
+        tankManager = manager as TankManager;
         scoreManager = ScoreManager.instance;
-
-        healthScript = tankManager.healthScript;
-        healthScript.onKill += OnKill;
-        healthScript.onKilled += OnKilled;
-        ModifyScore(ModifyScoreType.None);
-
-        base.Initialize(manager);
+        scoreManager.onTankScoreUpdated += ScoreManager_onTankScoreUpdated;
     }
 
-    private void OnKilled(EntityManager source)
+    public void InitializeScore()
     {
-        ModifyScore(ModifyScoreType.Killed);
+        scoreManager.UpdateScore(tankManager.tankIndex, score);
     }
 
-    private void OnKill(EntityManager source)
+    private void ScoreManager_onTankScoreUpdated(int entityIndex, int score)
     {
-        ModifyScore(ModifyScoreType.Kill);
-    }
-
-    private void ModifyScore(ModifyScoreType modifyScoreType)
-    {
-        for (int i = 0; i < scoreModifiers.Length; i++)
+        if (entityIndex == tankManager.tankIndex)
         {
-            if (scoreModifiers[i].modifyType == modifyScoreType)
-            {
-                score += scoreModifiers[i].amount;
-                score = (int)Mathf.Clamp(score, scoreManager.scoreClamp.x, scoreManager.scoreClamp.y);
-
-                scoreManager.UpdateScore(tankManager.tankIndex, score);
-            }
+            this.score = score;
         }
     }
+
+    //public override void Initialize(EntityManager manager)
+    //{
+    //    scoreManager = ScoreManager.instance;
+
+    //    healthScript = tankManager.healthScript;
+    //    healthScript.onKill += OnKill;
+    //    healthScript.onKilled += OnKilled;
+    //    ModifyScore(ModifyScoreType.None);
+
+    //    base.Initialize(manager);
+    //}
+
+    //private void OnKilled(EntityManager source)
+    //{
+    //    ModifyScore(ModifyScoreType.Killed);
+    //}
+
+    //private void OnKill(EntityManager source)
+    //{
+    //    ModifyScore(ModifyScoreType.Kill);
+    //}
+
+    //private void ModifyScore(ModifyScoreType modifyScoreType)
+    //{
+    //    for (int i = 0; i < scoreModifiers.Length; i++)
+    //    {
+    //        if (scoreModifiers[i].modifyType == modifyScoreType)
+    //        {
+    //            score += scoreModifiers[i].amount;
+    //            score = (int)Mathf.Clamp(score, scoreManager.scoreClamp.x, scoreManager.scoreClamp.y);
+
+    //            scoreManager.UpdateScore(tankManager.tankIndex, score);
+    //        }
+    //    }
+    //}
 }

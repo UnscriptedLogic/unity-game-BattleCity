@@ -13,9 +13,9 @@ public class HomeBaseFortify : MonoBehaviour
         for (int i = 0; i < gameManager.baseWalls.Count; i++)
         {
             Transform entity = gameManager.baseWalls[i];
-            BlockManager blockManager = entity.GetComponent<BlockManager>();
+            BlockManager blockManager = entity.GetChild(0).GetComponentInChildren<BlockManager>();
             blockManager.myWallType = BlockName.Fortified;
-            blockManager.InitializeBlockSettings();
+            blockManager.InitializeEntity();
             blockManager.ReInitializeGraphics();
 
             entity.gameObject.SetActive(true);
@@ -35,9 +35,9 @@ public class HomeBaseFortify : MonoBehaviour
     {
         for (int i = 0; i < gameManager.baseWalls.Count; i++)
         {
-            BlockManager blockManager = gameManager.baseWalls[i].GetComponent<BlockManager>();
+            BlockManager blockManager = gameManager.baseWalls[i].GetChild(0).GetComponentInChildren<BlockManager>();
             blockManager.myWallType = BlockName.Normal;
-            blockManager.InitializeBlockSettings();
+            blockManager.InitializeEntity();
             blockManager.ReInitializeGraphics();
         }
     }

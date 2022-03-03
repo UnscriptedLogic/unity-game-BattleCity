@@ -3,21 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpUI : EntitySemaphore
+public class PowerUpUI : Semaphore
 {
-    public TankHealth health;
+    public EntityHealth health;
     private PowerUpUIManager uiManager;
     private PowerUpManager powerUpManager;
 
-    public override void Initialize(EntityManager manager)
+    protected override void SephamoreStart(Manager manager)
     {
+        base.SephamoreStart(manager);
         health.onKilled += Health_onKilled;
         uiManager = PowerUpUIManager.instance;
-
-        base.Initialize(manager);
     }
 
-    private void Health_onKilled(EntityManager obj)
+    private void Health_onKilled()
     {
         uiManager.RemoveOnDeath();
     }

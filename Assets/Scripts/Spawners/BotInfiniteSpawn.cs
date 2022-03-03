@@ -33,8 +33,9 @@ public class BotInfiniteSpawn : EntitySpawnManager
     public event Action onWaveCompleted;
     public event Action onSpawnEntity;
 
-    public override void Initialize()
+    protected override void SephamoreStart(Manager manager)
     {
+        base.SephamoreStart(manager);
         _interval = startDelay;
         onWaveCompleted += ModifyAfterWave;
         onSpawnEntity += ModifyAfterSpawn;
@@ -50,9 +51,28 @@ public class BotInfiniteSpawn : EntitySpawnManager
                 onWaveModify.Add(spawnModifiers[i]);
             }
         }
-
-        base.Initialize();
     }
+
+    //public override void Initialize()
+    //{
+    //    _interval = startDelay;
+    //    onWaveCompleted += ModifyAfterWave;
+    //    onSpawnEntity += ModifyAfterSpawn;
+
+    //    for (int i = 0; i < spawnModifiers.Length; i++)
+    //    {
+    //        if (spawnModifiers[i].modifyAfterSpawn)
+    //        {
+    //            onSpawnModify.Add(spawnModifiers[i]);
+    //        }
+    //        else
+    //        {
+    //            onWaveModify.Add(spawnModifiers[i]);
+    //        }
+    //    }
+
+    //    base.Initialize();
+    //}
 
     private void Update()
     {
@@ -71,7 +91,7 @@ public class BotInfiniteSpawn : EntitySpawnManager
 
             int index = RandomIndex();
             GameObject entity = Spawn(entitySpawns[index].prefab, pos);
-            entity.GetComponent<EntityManager>().entitySettings = entitySpawns[index].settings;
+            entity.GetComponent<EntityManager>().settings = entitySpawns[index].settings;
             spawnCounter++;
 
             if (spawnCounter == maxSpawn)

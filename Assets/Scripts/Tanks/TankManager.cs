@@ -9,37 +9,25 @@ public class TankManager : EntityManager
     [HideInInspector] public int bulletHealth = 1;
     [HideInInspector] public BulletType bulletType = BulletType.Normal;
     [HideInInspector] public GameObject bulletPrefab;
-    public int tankIndex;
+    [HideInInspector] public int tankIndex;
 
-    public TankHealth healthScript;
+    public TankSettings tankSettings { get; private set; }
 
-    [Header("Tank Settings")]
-    public TankSettings tankSettings;
-
-    protected override void InitSettings()
+    public override void InitializeEntity()
     {
-        tankSettings = (TankSettings)entitySettings;
-    }
+        base.InitializeEntity();
+        tankSettings = (TankSettings)settings;
+        TankIndexManager.instance.IndexMe(this);
 
-    protected override void Initialize()
-    {
-        TankEntitiesManager.AddTank(this);
-        bulletSpeed = tankSettings.bulletSettings.movementSpeed;
+        bulletSpeed = tankSettings.bulletSettings.speed;
         bulletLifetime = tankSettings.bulletSettings.lifetime;
         bulletPrefab = tankSettings.bulletPrefab;
         bulletHealth = tankSettings.bulletSettings.health;
         bulletType = tankSettings.bulletSettings.bulletType;
-
-        if (healthScript == null)
-        {
-            healthScript = GetComponent<TankHealth>();
-        }
-
-        base.Initialize();
     }
 
     private void OnDestroy()
     {
-        TankEntitiesManager.RemoveTank(this);
+        TankIndexManager.instance.RemoveTankIndex(tankIndex);
     }
 }

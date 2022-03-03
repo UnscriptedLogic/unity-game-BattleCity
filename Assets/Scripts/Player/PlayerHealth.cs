@@ -3,13 +3,21 @@ using UnityEngine;
 
 public class PlayerHealth : TankHealth
 {
-    public override void KillEntity()
+    private PlayerManager playerManager;
+
+    protected override void SephamoreStart(Manager manager)
     {
-        base.KillEntity();
+        base.SephamoreStart(manager);
+        playerManager = manager as PlayerManager;
     }
 
-    protected override void OnCollisionEnter(Collision collision)
-    {
-        base.OnCollisionEnter(collision);
-    }
+    //public override void KillEntity()
+    //{
+    //    base.KillEntity();
+    //}
+
+    //protected override void OnCollisionEnter(Collision collision)
+    //{
+    //    base.OnCollisionEnter(collision);
+    //}
 }

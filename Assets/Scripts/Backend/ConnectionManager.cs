@@ -23,7 +23,7 @@ public class Player
     }
 }
 
-public class ConnectionManager : Manager
+public class ConnectionManager : Semaphore
 {
     public static ConnectionManager instance;
     private void Awake()
@@ -48,17 +48,17 @@ public class ConnectionManager : Manager
     public event Action<Player> onPlayerInitialized;
     public GameVariables gameVariables;
 
-    public override void Initialize()
+    protected override void SephamoreStart(Manager manager)
     {
+        base.SephamoreStart(manager);
         if (GlobalVars.player == null)
         {
             GlobalVars.SetEmptyPlayer();
         }
 
         GlobalVars.PlayerUpdated();
-        onInitialized?.Invoke(this);
+        //onInitialized?.Invoke(this);
         initialized = true;
-        base.Initialize();
 
         StartCoroutine(UpdateScore((res) =>
         {

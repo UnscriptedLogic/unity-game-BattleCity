@@ -16,7 +16,7 @@ public class PowerUpUIDetails
     public int stackCount;
 }
 
-public class PowerUpUIManager : Manager
+public class PowerUpUIManager : Semaphore
 {
     public PowerUpUIDetails[] powerUpUIDetails;
     public Dictionary<PowerUpType, PowerUpUIDetails> powerUpDetails = new Dictionary<PowerUpType, PowerUpUIDetails>();
@@ -26,15 +26,14 @@ public class PowerUpUIManager : Manager
 
     public static PowerUpUIManager instance;
 
-    public override void Initialize()
+    protected override void SephamoreStart(Manager manager)
     {
+        base.SephamoreStart(manager);
         instance = this;
         for (int i = 0; i < powerUpUIDetails.Length; i++)
         {
             powerUpDetails.Add(powerUpUIDetails[i].powerUpType, powerUpUIDetails[i]);
         }
-
-        base.Initialize();
     }
 
     public void AddCard(PowerUpType powerUpType)

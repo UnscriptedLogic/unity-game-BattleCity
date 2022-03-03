@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Manager
+public class UIManager : Semaphore
 {
     private GameManager manager;
     public GameObject gameoverScreen;
 
-    public override void Initialize()
+    protected override void SephamoreStart(Manager manager)
     {
-        manager = GameManager.instance;
+        base.SephamoreStart(manager);
+        this.manager = GameManager.instance;
 
-        manager.onGameOver += DisplayGOScreen;
+        this.manager.onGameOver += DisplayGOScreen;
         gameoverScreen.SetActive(false);
-
-        base.Initialize();
     }
 
     public void ToggleEffects()

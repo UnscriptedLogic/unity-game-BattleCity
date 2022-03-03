@@ -17,10 +17,10 @@ public class DeathEndsGame : MonoBehaviour
             return;
         }
 
-        entityHealth.onKilled += EntityHealth_onKilled; ;
+        entityHealth.onKilled += EntityHealth_onKilled;
     }
 
-    private void EntityHealth_onKilled(EntityManager obj)
+    private void EntityHealth_onKilled()
     {
         EndGame();
     }

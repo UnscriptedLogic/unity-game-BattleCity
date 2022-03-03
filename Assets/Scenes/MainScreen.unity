@@ -8118,7 +8118,6 @@ GameObject:
   - component: {fileID: 419572479}
   - component: {fileID: 419572477}
   - component: {fileID: 419572480}
-  - component: {fileID: 419572481}
   - component: {fileID: 419572482}
   - component: {fileID: 419572483}
   - component: {fileID: 419572484}
@@ -8175,14 +8174,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a443c73a911b9a4dbc785179055296f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initalizeOrder:
+  BeforeInitialization:
+    m_PersistentCalls:
+      m_Calls: []
+  SephamoreInitialized:
+    m_PersistentCalls:
+      m_Calls: []
+  AfterInitialization:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 419572479}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnableObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sephamores:
   - {fileID: 419572480}
   - {fileID: 419572477}
-  - {fileID: 419572481}
-  - {fileID: 685996575}
-  - {fileID: 534808534}
-  - {fileID: 838462876}
   - {fileID: 419572482}
+  - {fileID: 419572483}
+  - {fileID: 419572484}
   enableAfterInitialize:
   - {fileID: 1939577016}
   - {fileID: 685996574}
@@ -8206,18 +8224,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingIndex: 1
---- !u!114 &419572481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9fec3329ac974459f2436cf61b828d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &419572482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8238,12 +8244,7 @@ MonoBehaviour:
   loginRoute: http://localhost/UnityBackendTutorial/LogIn.php
   signupRoute: http://localhost/UnityBackendTutorial/SignUp.php
   deleteUserRoute: http://localhost/UnityBackendTutorial/DeleteUser.php
-  player:
-    initialized: 0
-    id: 0
-    username: 
-    password: 
-    hiscore: 0
+  initialized: 0
   gameVariables: {fileID: 11400000, guid: 549512ce8fb11da4c9efe9e0a3a8671a, type: 2}
 --- !u!114 &419572483
 MonoBehaviour:
@@ -25908,7 +25909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 90.7052, y: -14.333588}
+  m_AnchoredPosition: {x: 90.7052, y: -14.333557}
   m_SizeDelta: {x: 181.41035, y: 28.6672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1300383627
