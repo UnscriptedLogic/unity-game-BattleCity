@@ -24,7 +24,6 @@ public class TimeManager : MonoBehaviour
                 activated = false;
             }
 
-            Debug.Log("Za Warudo: " + _duration);
             _duration -= Time.deltaTime;
         }
     }

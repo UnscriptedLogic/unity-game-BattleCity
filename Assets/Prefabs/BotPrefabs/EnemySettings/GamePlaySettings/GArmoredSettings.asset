@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: GArmoredSettings
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  rotationSpeed: 40
   health: 3
+  speed: 5
+  rotationSpeed: 40
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []

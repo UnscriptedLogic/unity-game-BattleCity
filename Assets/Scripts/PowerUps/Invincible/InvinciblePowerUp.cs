@@ -33,15 +33,4 @@ public class InvinciblePowerUp : PowerUpManager
         base.Activate(collision);
         SelfDestruct();
     }
-
-    //protected override void Activate(Collision collision)
-    //{
-    //    GameObject forcefield = Instantiate(forcefieldPrefab, collision.transform);
-    //    Invincible invincibleScript = forcefield.GetComponent<Invincible>();
-    //    invincibleScript.duration = duration;
-    //    invincibleScript.shieldOwner = collectorManager;
-
-    //    base.Activate(collision);
-    //    SelfDestruct();
-    //}
 }
