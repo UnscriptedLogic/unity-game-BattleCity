@@ -754,8 +754,7 @@ MonoBehaviour:
   - {fileID: 419572483}
   - {fileID: 419572484}
   - {fileID: 763207013}
-  enableAfterInitialize:
-  - {fileID: 0}
+  enableAfterInitialize: []
   playEffects: 1
   playSounds: 1
   playParticles: 1
@@ -1215,7 +1214,7 @@ PrefabInstance:
     - target: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
         type: 3}
