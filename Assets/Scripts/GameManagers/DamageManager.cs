@@ -71,4 +71,36 @@ public static class DamageManager
             onTankHitEvent?.Invoke(victimHealth - victim.health, bulletManager.origin, victim);
         }
     }
+
+    public static void DealDamageBetweenTanks(int amount, TankManager victim, int culpritTankIndex, BulletManager bulletManager = null)
+    {
+        TankManager culprit = TankIndexManager.instance.tankIndexes[culpritTankIndex];
+
+        //Friendly fire checking
+        if (TeamManager.instance.GetTeamOfTank(culprit) != TeamManager.instance.GetTeamOfTank(victim))
+        {
+            int victimHealth = victim.health;
+            EntityHealth tankHealth = victim.GetComponent<EntityHealth>();
+            tankHealth.TakeDamage(amount);
+
+            if (victim.health <= 0)
+            {
+                if (culprit)
+                {
+                    //Announce who killed who
+                    onKillEvent?.Invoke(bulletManager.origin, victim);
+                }
+            }
+
+            //Sometimes damage is done indirectly. E.g. Nuke powerup
+            if (bulletManager)
+            {
+                BulletHealth bulletHealth = bulletManager.GetComponent<BulletHealth>();
+                bulletHealth.TakeDamage(victimHealth);
+                onTankHitEvent?.Invoke(victimHealth - victim.health, bulletManager.origin, victim);
+            }
+
+            onTankHitEvent?.Invoke(victimHealth - victim.health, culprit, victim);
+        }
+    }
 }

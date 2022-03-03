@@ -22,6 +22,7 @@ public class PlayerRespawn : Semaphore
     public Behaviour[] toggleBehaviours;
 
     protected bool isDead;
+    public event Action onPlayerRespawned;
 
     protected override void SephamoreStart(Manager manager)
     {
@@ -42,28 +43,6 @@ public class PlayerRespawn : Semaphore
         _spawnDelay = spawnDelay;
         TogglePlayer(false);
     }
-
-    //public override void Initialize(EntityManager manager)
-    //{
-    //    if (spawnAtStart)
-    //    {
-    //        spawnPosition = transform.position;
-    //    }
-
-    //    if (!entityHealth)
-    //    {
-    //        entityHealth = GetComponent<EntityHealth>();
-    //        if (!entityHealth)
-    //        {
-    //            Debug.LogWarning("The GameObject " + name + " could not find EntityHealth");
-    //            return;
-    //        }
-    //    }
-
-    //    entityHealth.onKilled += DisablePlayer;
-
-    //    base.Initialize(manager);
-    //}
 
     private void Update()
     {
@@ -86,14 +65,6 @@ public class PlayerRespawn : Semaphore
         }
     }
 
-    //private void DisablePlayer(EntityManager source)
-    //{
-    //    TogglePlayer(false);
-    //    isDead = true;
-    //    _spawnDelay = spawnDelay;
-    //    //StartCoroutine(RespawnAfterDelay());
-    //}
-
     private void TogglePlayer(bool value)
     {
         if (!gfxGameobject)
@@ -113,15 +84,10 @@ public class PlayerRespawn : Semaphore
         {
             toggleBehaviours[i].enabled = value;
         }
+
+        if (value)
+        {
+            onPlayerRespawned?.Invoke();
+        }
     }
-
-    //private IEnumerator RespawnAfterDelay()
-    //{
-    //    yield return new WaitForSeconds(spawnDelay);
-
-    //    transform.position = spawnPosition;
-    //    transform.rotation = Quaternion.Euler(Vector3.zero);
-
-    //    TogglePlayer(true);
-    //}
 }

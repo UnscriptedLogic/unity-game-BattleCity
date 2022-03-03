@@ -10,17 +10,17 @@ public class PiercingPower : MonoBehaviour
     {
         manager = GetComponent<TankManager>();
         increaseAmount += amount;
-        manager.bulletHealth += amount;
+        manager.damage += amount;
         manager.bulletType = BulletType.Piercing;
-        //manager.healthScript.onKilled += DestroySelf;
+        manager.GetComponent<EntityHealth>().onKilled += DestroySelf;
     }
 
-    private void DestroySelf(EntityManager source)
+    private void DestroySelf()
     {
-        manager.bulletHealth -= increaseAmount;
-        manager.bulletHealth = manager.bulletHealth <= 0 ? 1 : manager.bulletHealth;
+        manager.damage -= increaseAmount;
+        manager.damage = manager.damage <= 0 ? 1 : manager.damage;
 
-        //manager.healthScript.onKilled -= DestroySelf;
+        manager.GetComponent<EntityHealth>().onKilled -= DestroySelf;
         Destroy(this);
     }
 }

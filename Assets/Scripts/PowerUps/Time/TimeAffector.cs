@@ -32,11 +32,11 @@ public class TimeAffector : MonoBehaviour
         Toggle(value: true);
 
 
-        //PlayerRespawn playerRespawn = GetComponent<PlayerRespawn>();
-        //if (playerRespawn)
-        //{
-        //    playerRespawn.onPlayerRespawned += PlayerRespawn_onPlayerRespawned;
-        //}
+        PlayerRespawn playerRespawn = GetComponent<PlayerRespawn>();
+        if (playerRespawn)
+        {
+            playerRespawn.onPlayerRespawned += PlayerRespawn_onPlayerRespawned;
+        }
     }
 
     private void PlayerRespawn_onPlayerRespawned()
@@ -46,6 +46,11 @@ public class TimeAffector : MonoBehaviour
 
     private void OnDestroy()
     {
+        PlayerRespawn playerRespawn = GetComponent<PlayerRespawn>();
+        if (playerRespawn)
+        {
+            playerRespawn.onPlayerRespawned -= PlayerRespawn_onPlayerRespawned;
+        }
         Toggle(value: false);
     }
 

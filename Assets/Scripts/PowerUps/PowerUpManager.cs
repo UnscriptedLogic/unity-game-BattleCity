@@ -14,6 +14,7 @@ public enum PowerUpType
 
 public class PowerUpManager : EntityManager
 {
+    public EntityHealth entityHealth;
     public PowerUpType powerUpType;
 
     [Tooltip("Check this if bot tanks can pick this up.")]
@@ -32,8 +33,9 @@ public class PowerUpManager : EntityManager
     protected float _lifetime;
     protected bool notDespawning;
 
-    protected virtual void Start()
+    public override void InitializeEntity()
     {
+        base.InitializeEntity();
         gameManager = GameManager.instance;
         _lifetime = lifeTime;
         notDespawning = lifeTime == -1f ? true : false;
@@ -108,5 +110,6 @@ public class PowerUpManager : EntityManager
     protected void SelfDestruct()
     {
         //transform.GetComponent<EntityHealth>().TakeDamage(999);
+        entityHealth.KillEntity();
     }
 }

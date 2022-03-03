@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BombPowerUp : PowerUpManager
 {
+    public int explosionDamage = 25;
+
     protected override void Start()
     {
         base.Start();
@@ -18,12 +20,11 @@ public class BombPowerUp : PowerUpManager
     protected override void Activate(Collision collision)
     {
         TankTeamIndexer collectorIndexer = collision.transform.GetComponent<TankTeamIndexer>();
-        List<TankManager> collectorEnemies = new List<TankManager>();
-        collectorEnemies = TeamManager.instance.GetTanksNotInTeam(collectorIndexer.teamIndex);
+        List<TankManager> collectorEnemies = new List<TankManager>(TeamManager.instance.GetTanksNotInTeam(collectorIndexer.teamIndex));
 
         for (int i = 0; i < collectorEnemies.Count; i++)
         {
-            //collectorEnemies[i].healthScript.TakeDamage(999, collectorManager);
+            DamageManager.DealDamageBetweenTanks(amount: explosionDamage, victim: collectorEnemies[i], culpritTankIndex: collectorManager.tankIndex);
         }
 
         base.Activate(collision);

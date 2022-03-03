@@ -8,9 +8,6 @@ public class EntityHealth : Semaphore
     [Tooltip("Leave empty only if this script is on the root of the object.")]
     public GameObject root;
 
-    [Obsolete("Event Deprecated", true)]
-    public event Action onHealthDepleted;
-    
     public event Action<int> onHealthDeducted;
     public event Action onKilled;
     
@@ -32,6 +29,7 @@ public class EntityHealth : Semaphore
         entityManager.health -= damage;
         if (entityManager.health <= 0)
         {
+            entityManager.health = 0;
             KillEntity();
             onKilled?.Invoke();
         }
