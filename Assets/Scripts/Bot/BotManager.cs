@@ -12,7 +12,7 @@ public class BotManager : TankManager
     public override void InitializeEntity()
     {
         base.InitializeEntity();
-        botSettings = entitySettings as BotSettings;
+        botSettings = settings as BotSettings;
 
         shootIntervals = botSettings.shootInterval;
         decisionIntervals = botSettings.decisionInterval;

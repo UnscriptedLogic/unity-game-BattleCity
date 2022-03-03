@@ -16,7 +16,7 @@ public static class DamageManager
             DealDamageBetweenTanks(amount: amount, victim: victim as TankManager, culprit: bulletManager.origin, bulletManager: bulletManager);
         } else
         {
-            DealDamageToEntities(amount, victim, bulletManager);
+            DealDamageToEntities(amount: amount, victim: victim, bulletManager: bulletManager);
         }
     }
 
@@ -25,7 +25,15 @@ public static class DamageManager
     {
         int victimHealth = victim.health;
         EntityHealth entityHealth = victim.GetComponent<EntityHealth>();
-        entityHealth.TakeDamage(amount);
+
+        if (entityHealth as BlockHealth)
+        {
+            BlockHealth blockHealth = entityHealth as BlockHealth;
+            blockHealth.BlockTakeDamage(amount, bulletManager.origin.damage);
+        } else
+        {
+            entityHealth.TakeDamage(amount);
+        }
 
         //In case of indirect damage
         if (bulletManager)

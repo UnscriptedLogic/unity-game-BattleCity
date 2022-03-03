@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: GEnemySettings
   m_EditorClassIdentifier: 
-  health: 10
+  health: 1
   speed: 6
   rotationSpeed: 45
   damage: 1

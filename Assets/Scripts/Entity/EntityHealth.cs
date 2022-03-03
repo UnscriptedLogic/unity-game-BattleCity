@@ -27,7 +27,7 @@ public class EntityHealth : Semaphore
         }
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         entityManager.health -= damage;
         if (entityManager.health <= 0)
@@ -35,6 +35,8 @@ public class EntityHealth : Semaphore
             KillEntity();
             onKilled?.Invoke();
         }
+
+        onHealthDeducted?.Invoke(damage);
     }
 
     public void KillEntity()

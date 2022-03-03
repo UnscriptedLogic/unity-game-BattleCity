@@ -6,7 +6,7 @@ using System.Threading;
 
 public class EntityManager : Manager
 {
-    public EntitySettings entitySettings;
+    public EntitySettings settings;
 
     [Header("Initialized from ScriptableObject")]
     public int health;
@@ -21,9 +21,9 @@ public class EntityManager : Manager
 
     public virtual void InitializeEntity()
     {
-        health = entitySettings.health;
-        speed = entitySettings.speed;
-        rotationSpeed = entitySettings.rotationSpeed;
-        damage = entitySettings.damage;
+        health = settings.health;
+        speed = settings.speed;
+        rotationSpeed = settings.rotationSpeed;
+        damage = settings.damage;
     }
 }

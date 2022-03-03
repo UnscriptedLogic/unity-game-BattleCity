@@ -93,7 +93,7 @@ public class PowerUpManager : EntityManager
     {
         if (gameManager.playSounds)
         {
-            MiscEffects miscEffects = RandomValue.FromList(entitySettings.miscEffects);
+            MiscEffects miscEffects = RandomValue.FromList(settings.miscEffects);
             AudioDetails details = new AudioDetails(
                 clip: RandomValue.FromList(miscEffects.sounds),
                 volume: miscEffects.volume,

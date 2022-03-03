@@ -16,7 +16,7 @@ public class BulletHealth : EntityHealth
         EntityManager entityManager = other.GetComponent<EntityManager>();
         if (entityManager)
         {
-            DamageManager.DealDamage(bulletManager.health, entityManager, bulletManager);
+            DamageManager.DealDamage(amount: bulletManager.health, victim: entityManager, bulletManager: bulletManager);
             return;
         }
 

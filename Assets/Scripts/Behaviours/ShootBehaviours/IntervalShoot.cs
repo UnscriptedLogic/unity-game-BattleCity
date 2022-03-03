@@ -25,7 +25,8 @@ public class IntervalShoot : ShootBehaviour
                 tankManager.bulletLifetime,
                 transform.GetComponent<TankTeamIndexer>().teamIndex,
                 tankManager.damage,
-                tankManager
+                tankManager,
+                tankManager.tankSettings.bulletSettings
                 );
 
             CreateBullet(tankManager.bulletPrefab, shootAnchor, details, out BulletManager bulletScript);

@@ -3,27 +3,35 @@ using UnityEngine;
 
 public class BlockHealth : EntityHealth
 {
-    private BlockManager wallManager;
-    BulletManager bmanager;
+    private BlockManager blockManager;
 
-    //public override void Initialize(EntityManager entityManager)
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        blockManager = manager as BlockManager;
+    }
+
+    public void BlockTakeDamage(int amount, int originalBulletHealth)
+    {
+        Debug.Log(originalBulletHealth >= blockManager.requiredHealth);
+
+        if (originalBulletHealth >= blockManager.requiredHealth)
+        {
+            TakeDamage(amount);
+        }
+    }
+
+    //public override void TakeDamage(int damage)
     //{
-    //    wallManager = (BlockManager)manager;
-
-    //    base.Initialize(entityManager);
+    //    base.TakeDamage(damage);
     //}
 
     //public override void TakeDamage(int damage, EntityManager source)
     //{
     //    TankManager tankManager = source as TankManager;
-    //    if (tankManager.bulletHealth >= wallManager.requiredHealth)
+    //    if (tankManager.bulletHealth >= blockManager.requiredHealth)
     //    {
     //        base.TakeDamage(damage, source);
     //    }
-    //}
-
-    //protected override void OnCollisionEnter(Collision collision)
-    //{
-
     //}
 }

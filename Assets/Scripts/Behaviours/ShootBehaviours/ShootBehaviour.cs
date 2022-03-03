@@ -9,14 +9,16 @@ public class BulletDetails
     public int team;
     public int health;
     public TankManager origin;
+    public BulletSettings bulletEffects;
 
-    public BulletDetails(float speed, float lifetime, int team, int health, TankManager origin)
+    public BulletDetails(float speed, float lifetime, int team, int health, TankManager origin, BulletSettings bulletEffects)
     {
         this.speed = speed;
         this.lifetime = lifetime;
         this.team = team;
         this.health = health;
         this.origin = origin;
+        this.bulletEffects = bulletEffects;
     }
 }
 
@@ -39,6 +41,7 @@ public class ShootBehaviour
         bulletScript.teamIndex = details.team;
         bulletScript.health = details.health;
         bulletScript.origin = details.origin;
+        bulletScript.settings = details.bulletEffects;
         onBulletShot?.Invoke();
 
         return bullet;

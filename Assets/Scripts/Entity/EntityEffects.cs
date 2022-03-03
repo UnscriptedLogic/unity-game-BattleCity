@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,39 +25,64 @@ public class DependantFX
 
 public class EntityEffects : Semaphore
 {
-    public EntityManager manager;
-    public EntityMovement movementScript; 
-    public EntityHealth healthScript;
     private GameManager gameManager;
+    private EntityManager entityManager;
+
+    public EntityMovement movementScript; 
+    public EntityHealth entityHealth;
 
     private MiscEffects[] miscFXes;
 
-    public bool randomRotation;
-
-    public DependantFX[] dependantFXes;
-
     public float checkDistance;
+    public bool randomRotation;
     public bool activated;
-
-    private bool initialized = false;
 
     private List<AudioSource> whileMovingSounds = new List<AudioSource>();
     private List<ParticleSystem> whileMovingParticles = new List<ParticleSystem>();
+
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        gameManager = GameManager.instance;
+
+        entityManager = manager as EntityManager;
+        miscFXes = entityManager.settings.miscEffects;
+    }
+
+    public void InitializeEvents()
+    {
+        entityHealth.onKilled += delegate ()
+        {
+            PlayOneShot(CreateOn.Destroyed);
+        };
+
+        entityHealth.onHealthDeducted += delegate (int amount)
+        {
+            PlayOneShot(CreateOn.Hurt);
+        };
+
+        //For sound effects that only play on spawn
+        PlayOneShot(CreateOn.Spawn);
+    }
+
+    public void PlayOneShot(CreateOn createOn)
+    {
+        for (int i = 0; i < miscFXes.Length; i++)
+        {
+            if (miscFXes[i].createOn == createOn)
+            {
+                CreateParticlesGO(miscFXes[i]);
+                CreateSoundGO(miscFXes[i], true);
+            }
+        }
+    }
 
     //public override void Initialize(EntityManager manager)
     //{
     //    healthScript.onKilled += PlayDestroyedFX;
     //    healthScript.onHealthDeducted += PlayOnHurt;
 
-    //    gameManager = GameManager.instance;
-    //    miscFXes = manager.entitySettings.miscEffects;
-
     //    PlayOnCreate();
-
-    //    if (randomRotation)
-    //    {
-    //        transform.forward = RandomValue.OfVectorDirectionAny();
-    //    }
 
     //    if (movementScript != null)
     //    {
@@ -181,29 +207,29 @@ public class EntityEffects : Semaphore
     //    PlayFX(CreateOn.Hurt);
     //}
 
-    //public void CreateSoundGO(MiscEffects miscFX, bool destroy = true, Transform parent = null)
-    //{
-    //    if (gameManager.playSounds && miscFX.sounds.Length > 0)
-    //    {
-    //        AudioDetails details = new AudioDetails(
-    //            clip: RandomValue.FromList(miscFX.sounds),
-    //            volume: miscFX.volume,
-    //            priority: miscFX.priority,
-    //            maxDistance: miscFX.maxDistance,
-    //            spatialBlend: miscFX.spatialBlend
-    //        );
-    //        EffectsManager.CreateAudioGameObject(details: details, position: transform.position, destroy, parent);
-    //    }
-    //}
+    public void CreateSoundGO(MiscEffects miscFX, bool destroy = true, Transform parent = null)
+    {
+        if (gameManager.playSounds && miscFX.sounds.Length > 0)
+        {
+            AudioDetails details = new AudioDetails(
+                clip: RandomValue.FromList(miscFX.sounds),
+                volume: miscFX.volume,
+                priority: miscFX.priority,
+                maxDistance: miscFX.maxDistance,
+                spatialBlend: miscFX.spatialBlend
+            );
+            EffectsManager.CreateAudioGameObject(details: details, position: transform.position, destroy, parent);
+        }
+    }
 
-    //public void CreateParticlesGO(MiscEffects miscFX)
-    //{
-    //    if (gameManager.playParticles && miscFX.particles.Length > 0)
-    //    {
-    //        GameObject particle = Instantiate(RandomValue.FromList(miscFX.particles), transform.position, transform.rotation);
-    //        Destroy(particle, 10f);
-    //    }
-    //}
+    public void CreateParticlesGO(MiscEffects miscFX)
+    {
+        if (gameManager.playParticles && miscFX.particles.Length > 0)
+        {
+            GameObject particle = Instantiate(RandomValue.FromList(miscFX.particles), transform.position, transform.rotation);
+            Destroy(particle, 10f);
+        }
+    }
 
     //public void CreateParticlesGO(DependantFX miscFX)
     //{

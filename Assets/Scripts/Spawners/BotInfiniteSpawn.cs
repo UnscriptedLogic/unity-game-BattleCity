@@ -91,7 +91,7 @@ public class BotInfiniteSpawn : EntitySpawnManager
 
             int index = RandomIndex();
             GameObject entity = Spawn(entitySpawns[index].prefab, pos);
-            entity.GetComponent<EntityManager>().entitySettings = entitySpawns[index].settings;
+            entity.GetComponent<EntityManager>().settings = entitySpawns[index].settings;
             spawnCounter++;
 
             if (spawnCounter == maxSpawn)

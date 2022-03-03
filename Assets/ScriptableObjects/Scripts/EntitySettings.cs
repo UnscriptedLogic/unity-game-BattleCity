@@ -5,6 +5,8 @@ public enum CreateOn
     Spawn,
     Hurt,
     Destroyed,
+    Moving,
+    Collision
 }
 
 [System.Serializable]

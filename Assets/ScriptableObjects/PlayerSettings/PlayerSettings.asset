@@ -15,7 +15,7 @@ MonoBehaviour:
   health: 1
   speed: 6
   rotationSpeed: 50
-  damage: 1
+  damage: 2
   miscEffects:
   - createOn: 1
     particles: []

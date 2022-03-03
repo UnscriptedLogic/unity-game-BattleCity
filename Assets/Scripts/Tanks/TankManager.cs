@@ -12,12 +12,12 @@ public class TankManager : EntityManager
     public GameObject bulletPrefab;
     public int tankIndex;
 
-    private TankSettings tankSettings;
+    public TankSettings tankSettings { get; private set; }
 
     public override void InitializeEntity()
     {
         base.InitializeEntity();
-        tankSettings = (TankSettings)entitySettings;
+        tankSettings = (TankSettings)settings;
         TankIndexManager.instance.IndexMe(this);
 
         bulletSpeed = tankSettings.bulletSettings.speed;
