@@ -46,7 +46,6 @@ public class ConnectionManager : Semaphore
     public bool initialized;
 
     public event Action<Player> onPlayerInitialized;
-    public GameVariables gameVariables;
 
     protected override void SephamoreStart(Manager manager)
     {

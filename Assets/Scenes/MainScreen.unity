@@ -2988,7 +2988,7 @@ MonoBehaviour:
   scorePrefix: 'Score: '
   nameTMP: {fileID: 3819280}
   hiscoreTMP: {fileID: 1123064505}
-  connectionManager: {fileID: 419572482}
+  connectionManager: {fileID: 0}
 --- !u!1 &137642817
 GameObject:
   m_ObjectHideFlags: 0
@@ -8118,9 +8118,6 @@ GameObject:
   - component: {fileID: 419572479}
   - component: {fileID: 419572477}
   - component: {fileID: 419572480}
-  - component: {fileID: 419572482}
-  - component: {fileID: 419572483}
-  - component: {fileID: 419572484}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -8198,9 +8195,6 @@ MonoBehaviour:
   sephamores:
   - {fileID: 419572480}
   - {fileID: 419572477}
-  - {fileID: 419572482}
-  - {fileID: 419572483}
-  - {fileID: 419572484}
   enableAfterInitialize:
   - {fileID: 1939577016}
   - {fileID: 685996574}
@@ -8224,73 +8218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingIndex: 1
---- !u!114 &419572482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e3bd51106b4ce3409544e3a7e1152c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connRoute: https://www.google.com/
-  dateRoute: http://localhost/UnityBackendTutorial/GetDate.php
-  getUserByID: http://localhost/UnityBackendTutorial/GetUserIDs.php
-  scoresRoute: http://localhost/UnityBackendTutorial/GetScores.php
-  addScoreRoute: http://localhost/UnityBackendTutorial/AddScore.php
-  loginRoute: http://localhost/UnityBackendTutorial/LogIn.php
-  signupRoute: http://localhost/UnityBackendTutorial/SignUp.php
-  deleteUserRoute: http://localhost/UnityBackendTutorial/DeleteUser.php
-  initialized: 0
-  gameVariables: {fileID: 11400000, guid: 549512ce8fb11da4c9efe9e0a3a8671a, type: 2}
---- !u!114 &419572483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9575361581ad58541b0d31a36c609b21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connManager: {fileID: 419572482}
-  connStatusTMP: {fileID: 863755308}
-  stateTMP: {fileID: 863755308}
-  login_startbutton: {fileID: 324677964}
-  login_username: {fileID: 1831006982}
-  login_password: {fileID: 950449738}
-  login_button: {fileID: 387396957}
-  signup_startbutton: {fileID: 857271597}
-  signup_username: {fileID: 1794009656}
-  signup_password: {fileID: 1237678309}
-  signup_repeatPassword: {fileID: 512980363}
-  signup_button: {fileID: 1178007893}
-  logout_button: {fileID: 1283003960}
-  deleteuser_button: {fileID: 696674580}
---- !u!114 &419572484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2be5c64117f2149a154f8c15c8ca9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  content: {fileID: 1181192852}
-  scoreCardPrefab: {fileID: 4278384416904711348, guid: b30d4e168ef9a3942a51b2e7d27c025f,
-    type: 3}
-  reloadScoreButton: {fileID: 1534641938}
-  leaderboardButton: {fileID: 1246416203}
-  myColor: {r: 0.31243324, g: 0.5566038, b: 0.31365147, a: 1}
-  connManager: {fileID: 419572482}
 --- !u!1 &419996114
 GameObject:
   m_ObjectHideFlags: 0
@@ -10623,7 +10550,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &533158311
 GameObject:
@@ -10776,7 +10703,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &534808534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10823,7 +10750,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540517598
 GameObject:
@@ -13244,7 +13171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &685996575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13287,7 +13214,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &696674578
 GameObject:
@@ -13397,7 +13324,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 419572484}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LeaderboardManager, Assembly-CSharp
         m_MethodName: PerformDisplayScore
         m_Mode: 1
@@ -15168,7 +15095,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &838432013
 PrefabInstance:
@@ -15261,7 +15188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &838462876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15309,7 +15236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851314678
 GameObject:
@@ -25715,7 +25642,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 419572484}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LeaderboardManager, Assembly-CSharp
         m_MethodName: PerformDisplayScore
         m_Mode: 1
@@ -26795,6 +26722,106 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1332169850}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1343458215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1343458216}
+  - component: {fileID: 1343458218}
+  - component: {fileID: 1343458217}
+  - component: {fileID: 1343458219}
+  m_Layer: 0
+  m_Name: ConnectionManagers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1343458216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343458215}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1343458217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343458215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9575361581ad58541b0d31a36c609b21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connManager: {fileID: 1343458218}
+  connStatusTMP: {fileID: 863755308}
+  stateTMP: {fileID: 863755308}
+  login_startbutton: {fileID: 324677964}
+  login_username: {fileID: 1831006982}
+  login_password: {fileID: 950449738}
+  login_button: {fileID: 387396957}
+  signup_startbutton: {fileID: 857271597}
+  signup_username: {fileID: 1794009656}
+  signup_password: {fileID: 1237678309}
+  signup_repeatPassword: {fileID: 512980363}
+  signup_button: {fileID: 1178007893}
+  logout_button: {fileID: 1283003960}
+  deleteuser_button: {fileID: 696674580}
+--- !u!114 &1343458218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343458215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3bd51106b4ce3409544e3a7e1152c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connRoute: https://www.google.com/
+  dateRoute: http://localhost/UnityBackendTutorial/GetDate.php
+  getUserByID: http://localhost/UnityBackendTutorial/GetUserIDs.php
+  scoresRoute: http://localhost/UnityBackendTutorial/GetScores.php
+  addScoreRoute: http://localhost/UnityBackendTutorial/AddScore.php
+  loginRoute: http://localhost/UnityBackendTutorial/LogIn.php
+  signupRoute: http://localhost/UnityBackendTutorial/SignUp.php
+  deleteUserRoute: http://localhost/UnityBackendTutorial/DeleteUser.php
+  initialized: 0
+--- !u!114 &1343458219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343458215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2be5c64117f2149a154f8c15c8ca9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: {fileID: 1181192852}
+  scoreCardPrefab: {fileID: 4278384416904711348, guid: b30d4e168ef9a3942a51b2e7d27c025f,
+    type: 3}
+  reloadScoreButton: {fileID: 1534641938}
+  leaderboardButton: {fileID: 1246416203}
+  myColor: {r: 0.31243324, g: 0.5566038, b: 0.31365147, a: 1}
+  connManager: {fileID: 1343458218}
 --- !u!1001 &1350498293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30016,7 +30043,7 @@ Transform:
   - {fileID: 1642461069}
   - {fileID: 1306049558}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1534479502
 GameObject:
@@ -37370,7 +37397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1939577017
 Transform:
   m_ObjectHideFlags: 0
@@ -37571,7 +37598,7 @@ Transform:
   - {fileID: 1920899876}
   - {fileID: 1686728878}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1940555913
 PrefabInstance:
@@ -40228,7 +40255,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1001 &2101465604
 PrefabInstance:
@@ -40553,7 +40580,7 @@ RectTransform:
   - {fileID: 85721812}
   - {fileID: 730850747}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
