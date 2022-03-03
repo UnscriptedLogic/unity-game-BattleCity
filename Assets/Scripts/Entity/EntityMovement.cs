@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EntityMovement : Semaphore
 {
-    protected MovementBehaviour movementBehaviour;
+    public MovementBehaviour movementBehaviour;
     protected MovementBehaviour prevMovementBehaviour;
 
     public virtual void SetDefaultBehaviour()

@@ -36,21 +36,25 @@ public class EntityEffects : Semaphore
     public float checkDistance;
     public bool randomRotation;
     public bool activated;
+    private Vector3 prevPos;
 
     private List<AudioSource> whileMovingSounds = new List<AudioSource>();
-    private List<ParticleSystem> whileMovingParticles = new List<ParticleSystem>();
+    public List<ParticleSystem> whileMovingParticles = new List<ParticleSystem>();
 
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
-        gameManager = GameManager.instance;
 
         entityManager = manager as EntityManager;
         miscFXes = entityManager.settings.miscEffects;
+
+        //For moving sounds
+        prevPos = transform.position;
     }
 
     public void InitializeEvents()
     {
+        gameManager = GameManager.instance;
         entityHealth.onKilled += delegate ()
         {
             PlayOneShot(CreateOn.Destroyed);
@@ -63,6 +67,21 @@ public class EntityEffects : Semaphore
 
         //For sound effects that only play on spawn
         PlayOneShot(CreateOn.Spawn);
+
+        //For creating sounds and initializing effects that stay on the player
+        //throughout the game
+        SetConstantEffects();
+
+        if (movementScript)
+        {
+            //For playing movement related soungs
+            movementScript.movementBehaviour.onEntityMove += MovementBehaviour_onEntityMove; 
+        }
+    }
+
+    private void MovementBehaviour_onEntityMove(bool value)
+    {
+        PlayEntityMovedFX(value);
     }
 
     public void PlayOneShot(CreateOn createOn)
@@ -73,6 +92,35 @@ public class EntityEffects : Semaphore
             {
                 CreateParticlesGO(miscFXes[i]);
                 CreateSoundGO(miscFXes[i], true);
+            }
+        }
+    }
+
+    public void SetConstantEffects()
+    {
+        for (int i = 0; i < miscFXes.Length; i++)
+        {
+            if (miscFXes[i].createOn == CreateOn.Moving)
+            {
+                AudioDetails details = new AudioDetails(
+                    clip: RandomValue.FromList(miscFXes[i].sounds),
+                    volume: miscFXes[i].volume,
+                    priority: miscFXes[i].priority,
+                    maxDistance: miscFXes[i].maxDistance,
+                    loop: true,
+                    spatialBlend: miscFXes[i].spatialBlend
+                );
+
+                EffectsManager.CreateAudioGameObject(details, transform.position, source: out AudioSource source, false, attachedTo: transform);
+                whileMovingSounds.Add(source);
+                source.Stop();
+
+                for (int j = 0; j < miscFXes[i].particles.Length; j++)
+                {
+                    ParticleSystem particleSystem = miscFXes[i].particles[j].GetComponent<ParticleSystem>();
+                    whileMovingParticles.Add(particleSystem);
+                    particleSystem.Stop();
+                }
             }
         }
     }
@@ -136,44 +184,45 @@ public class EntityEffects : Semaphore
     //    }
     //}
 
-    //private void PlayEntityMovedFX(bool value)
-    //{
-    //    if (value)
-    //    {
-    //        if (gameManager.playSounds)
-    //        {
-    //            for (int i = 0; i < whileMovingSounds.Count; i++)
-    //            {
-    //                whileMovingSounds[i].Play();
-    //            }
-    //        }
+    private void PlayEntityMovedFX(bool value)
+    {
+        if (value)
+        {
+            if (gameManager.playSounds)
+            {
+                for (int i = 0; i < whileMovingSounds.Count; i++)
+                {
+                    whileMovingSounds[i].Play();
+                }
+            }
 
-    //        if (gameManager.playParticles)
-    //        {
-    //            for (int j = 0; j < whileMovingParticles.Count; j++)
-    //            {
-    //                whileMovingParticles[j].Play();
-    //            } 
-    //        }
-    //    } else
-    //    {
-    //        if (gameManager.playSounds)
-    //        {
-    //            for (int i = 0; i < whileMovingSounds.Count; i++)
-    //            {
-    //                whileMovingSounds[i].Stop();
-    //            } 
-    //        }
+            if (gameManager.playParticles)
+            {
+                for (int j = 0; j < whileMovingParticles.Count; j++)
+                {
+                    whileMovingParticles[j].Play();
+                }
+            }
+        }
+        else
+        {
+            if (gameManager.playSounds)
+            {
+                for (int i = 0; i < whileMovingSounds.Count; i++)
+                {
+                    whileMovingSounds[i].Stop();
+                }
+            }
 
-    //        if (gameManager.playParticles)
-    //        {
-    //            for (int j = 0; j < whileMovingParticles.Count; j++)
-    //            {
-    //                whileMovingParticles[j].Stop();
-    //            } 
-    //        }
-    //    }
-    //}
+            if (gameManager.playParticles)
+            {
+                for (int j = 0; j < whileMovingParticles.Count; j++)
+                {
+                    whileMovingParticles[j].Stop();
+                }
+            }
+        }
+    }
 
     //protected void PlayFX(CreateOn createOn)
     //{

@@ -17,6 +17,14 @@ MonoBehaviour:
   rotationSpeed: 45
   damage: 1
   miscEffects:
+  - createOn: 3
+    particles: []
+    sounds:
+    - {fileID: 8300000, guid: 34f756cc89845c046a10c1ea8efeafe6, type: 3}
+    priority: 225
+    volume: 0.05
+    maxDistance: 15
+    spatialBlend: 1
   - createOn: 1
     particles: []
     sounds:

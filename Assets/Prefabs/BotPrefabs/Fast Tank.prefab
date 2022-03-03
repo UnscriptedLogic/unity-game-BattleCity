@@ -205,6 +205,9 @@ MonoBehaviour:
   checkDistance: 0
   randomRotation: 0
   activated: 0
+  whileMovingParticles:
+  - {fileID: 6704816285904775692}
+  - {fileID: 4190734791101683396}
 --- !u!114 &1120309206891625367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +631,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4588283719888397077}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4190734791101683396 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 397619332271273425, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4588283719888397077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6379606494547075037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -700,6 +709,12 @@ PrefabInstance:
 --- !u!4 &6704816285904775690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 397619332271273431, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6379606494547075037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6704816285904775692 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 397619332271273425, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
     type: 3}
   m_PrefabInstance: {fileID: 6379606494547075037}
   m_PrefabAsset: {fileID: 0}

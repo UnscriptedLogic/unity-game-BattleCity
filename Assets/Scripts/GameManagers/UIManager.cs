@@ -7,15 +7,14 @@ public class UIManager : Semaphore
     private GameManager manager;
     public GameObject gameoverScreen;
 
-    //public override void Initialize()
-    //{
-    //    manager = GameManager.instance;
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        this.manager = GameManager.instance;
 
-    //    manager.onGameOver += DisplayGOScreen;
-    //    gameoverScreen.SetActive(false);
-
-    //    base.Initialize();
-    //}
+        this.manager.onGameOver += DisplayGOScreen;
+        gameoverScreen.SetActive(false);
+    }
 
     public void ToggleEffects()
     {
