@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Onslaught.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Maps/Ranks.unity
+    guid: 6f03878ca9af5ec40a0446458e9010f8
+  - enabled: 1
+    path: Assets/Scenes/Maps/Lanes.unity
+    guid: 1b9a5ba0f1dd5f747898d0da15188731
+  - enabled: 1
+    path: Assets/Scenes/Maps/Sights.unity
+    guid: 92fbddc3fd362ea4a8c99c5b76b6f750
+  - enabled: 1
+    path: Assets/Scenes/Maps/Covers.unity
+    guid: 8d68b43449fbd8e49bdc8681a2f1bd8e
   m_configObjects: {}

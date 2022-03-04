@@ -5,37 +5,37 @@ using UnityEngine;
 public class HomeBaseFortify : MonoBehaviour
 {
     public GameObject emptyWall;
-
     public float duration;
+    private BaseBlockManager baseBlockManager;
 
-    public void Reconstruct(GameManager gameManager)
+    public void Reconstruct(BaseBlockManager blockManager)
     {
-        for (int i = 0; i < gameManager.baseWalls.Count; i++)
-        {
-            Transform entity = gameManager.baseWalls[i];
-            BlockManager blockManager = entity.GetChild(0).GetComponentInChildren<BlockManager>();
-            blockManager.myWallType = BlockName.Fortified;
-            blockManager.InitializeEntity();
-            blockManager.ReInitializeGraphics();
+        baseBlockManager = blockManager;
 
-            entity.gameObject.SetActive(true);
+        for (int i = 0; i < blockManager.baseWallManagers.Count; i++)
+        {
+            baseBlockManager.baseWallManagers[i].myWallType = BlockName.Fortified;
+            baseBlockManager.baseWallManagers[i].InitializeEntity();
+            baseBlockManager.baseWallManagers[i].ReInitializeGraphics();
+
+            baseBlockManager.baseWallManagers[i].gameObject.SetActive(true);
         }
 
-        StartCoroutine(Delay(gameManager));
+        StartCoroutine(Delay());
     }
 
-    private IEnumerator Delay(GameManager gameManager)
+    private IEnumerator Delay()
     {
         yield return new WaitForSeconds(duration);
 
-        Deconstruct(gameManager);
+        Deconstruct();
     }
 
-    public void Deconstruct(GameManager gameManager)
+    public void Deconstruct()
     {
-        for (int i = 0; i < gameManager.baseWalls.Count; i++)
+        for (int i = 0; i < baseBlockManager.baseWallManagers.Count; i++)
         {
-            BlockManager blockManager = gameManager.baseWalls[i].GetChild(0).GetComponentInChildren<BlockManager>();
+            BlockManager blockManager = baseBlockManager.baseWallManagers[i];
             blockManager.myWallType = BlockName.Normal;
             blockManager.InitializeEntity();
             blockManager.ReInitializeGraphics();

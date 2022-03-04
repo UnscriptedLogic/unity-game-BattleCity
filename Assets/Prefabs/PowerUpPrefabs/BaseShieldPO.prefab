@@ -92,9 +92,9 @@ MonoBehaviour:
   damage: 0
   entityHealth: {fileID: 8031577912417211566}
   powerUpType: 4
-  botTanks: 1
+  botTanks: 0
   playerTanks: 1
-  lifeTime: 10
+  lifeTime: 15
   duration: 15
   emptyWall: {fileID: 6567673726473145653, guid: 90ae63367785d6a479f35f2c72d3b1ae,
     type: 3}
@@ -130,6 +130,7 @@ MonoBehaviour:
   checkDistance: 1
   randomRotation: 0
   activated: 0
+  whileMovingParticles: []
 --- !u!54 &6443186135648665852
 Rigidbody:
   m_ObjectHideFlags: 0

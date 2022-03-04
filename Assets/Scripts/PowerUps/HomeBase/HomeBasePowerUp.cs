@@ -12,7 +12,7 @@ public class HomeBasePowerUp : PowerUpManager
         HomeBaseFortify homeBaseFortify = GameManager.instance.gameObject.AddComponent<HomeBaseFortify>();
         homeBaseFortify.duration = duration;
         homeBaseFortify.emptyWall = emptyWall;
-        homeBaseFortify.Reconstruct(GameManager.instance);
+        homeBaseFortify.Reconstruct(BaseBlockManager.instance);
 
         base.Activate(collision);
         Destroy(gameObject);

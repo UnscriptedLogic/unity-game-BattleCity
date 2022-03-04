@@ -17,10 +17,6 @@ public class GameManager : Manager
     public bool playSounds;
     public bool playParticles;
 
-    [Header("Home Base")]
-    public List<Transform> baseWalls = new List<Transform>();
-    [HideInInspector] public List<Vector3> baseWallPositions = new List<Vector3>();
-
     private void Awake()
     {
         instance = this;
@@ -38,13 +34,6 @@ public class GameManager : Manager
         for (int i = 0; i < enableAfterInitialize.Length; i++)
         {
             enableAfterInitialize[i].SetActive(true);   
-        }
-
-        for (int i = 0; i < baseWalls.Count; i++)
-        {
-            baseWallPositions.Add(baseWalls[i].position);
-            baseWalls[i].GetChild(0).GetChild(0).GetComponent<EntityHealth>().onDeathDisables = true;
-            baseWalls[i].GetChild(0).GetChild(0).GetComponent<EntityHealth>().onDeathDestroys = false;
         }
     }
 

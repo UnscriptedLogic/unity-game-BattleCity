@@ -26,24 +26,9 @@ public class ScoreUIManager : Semaphore
         UpdateScores(tankIndex);
     }
 
-    public void CheckScores()
-    {
-        for (int i = 0; i < scoreManager.entityScores.Count; i++)
-        {
-            int entityIndex = scoreManager.entityScores.ElementAt(i).Key;
-
-            if (entityUIScores.ContainsKey(entityIndex) == false)
-            {
-                CreateScore(entityIndex);
-                return;
-            }
-
-            UpdateScores(entityIndex);
-        }
-    }
-
     public void UpdateScores(int tankIndex)
     {
+        //Updates only when there is a score card reference in the dictionary
         if (entityUIScores.TryGetValue(tankIndex, out ScoreCard scoreCard))
         {
             scoreCard.SetScore(scoreManager.entityScores[tankIndex]);
@@ -55,6 +40,7 @@ public class ScoreUIManager : Semaphore
 
     public void CreateScore(int entityIndex)
     {
+        //This creates the card that appears at the top right of the screen
         GameObject scoreCardGO = Instantiate(scoreCardPrefab, scoreParent);
         ScoreCard scoreCardscript = scoreCardGO.GetComponent<ScoreCard>();
         scoreCardscript.entityIndex = entityIndex;
