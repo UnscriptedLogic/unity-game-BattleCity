@@ -1417,7 +1417,7 @@ MonoBehaviour:
     chance: 25
   startDelay: 5
   waveInterval: 15
-  spawnInterval: 5
+  spawnInterval: 8
   maxSpawn: 5
   spawnModifiers:
   - spawnSetting: 0
@@ -1428,21 +1428,27 @@ MonoBehaviour:
     counter: 0
   - spawnSetting: 1
     toComplete: 2
-    amount: -0.25
+    amount: -0.1
     modifyAfterSpawn: 1
-    clampValues: {x: 1, y: 10}
+    clampValues: {x: 4, y: 10}
+    counter: 0
+  - spawnSetting: 1
+    toComplete: 5
+    amount: 10
+    modifyAfterSpawn: 0
+    clampValues: {x: 5, y: 10}
     counter: 0
   - spawnSetting: 2
     toComplete: 2
     amount: -1
     modifyAfterSpawn: 0
-    clampValues: {x: 5, y: 20}
+    clampValues: {x: 7, y: 20}
     counter: 0
   - spawnSetting: 2
-    toComplete: 10
-    amount: 6
+    toComplete: 5
+    amount: 10
     modifyAfterSpawn: 0
-    clampValues: {x: 5, y: 20}
+    clampValues: {x: 5, y: 15}
     counter: 0
 --- !u!4 &534808535
 Transform:
