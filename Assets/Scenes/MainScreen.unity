@@ -331,8 +331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Creates a spherical barrer around its user, protecting anything inside
-    from outside damage.
+  m_text: Renders its user invincible, all incoming damage is reduced to 0.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5526,7 +5525,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Forcefield
+  m_text: Invincibility
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6815,7 +6814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 357132887}
   m_Layer: 5
-  m_Name: PowerUp (4)
+  m_Name: Nuke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9512,7 +9511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 464651217}
   m_Layer: 5
-  m_Name: PowerUp (3)
+  m_Name: TimeStop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13515,7 +13514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 659045684}
   m_Layer: 5
-  m_Name: Player Tank
+  m_Name: BrickBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15536,7 +15535,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796525277}
   m_Layer: 5
-  m_Name: FastTank
+  m_Name: ShrubBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15827,7 +15826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80.96211, y: -139.42822}
+  m_AnchoredPosition: {x: 80.96211, y: -139.76317}
   m_SizeDelta: {x: 161.92422, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &830008655
@@ -17348,7 +17347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 883309518}
   m_Layer: 5
-  m_Name: PowerUp (2)
+  m_Name: BaseFortify
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21375,24 +21374,7 @@ MonoBehaviour:
 
     -
     Bots are also capable of interacting with some power ups, having the effects
-    of the power up affect you instead.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Among the many tanks, these
-    artificially intelligent bots did not survive the trip back after being destroyed
-    and put back together, thus explaining their aimless behaviour.'
+    of the power up affect you instead.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -27250,7 +27232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1300383628}
   m_Layer: 5
-  m_Name: ArmoredTank
+  m_Name: WireSpikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29148,7 +29130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371658820}
   m_Layer: 5
-  m_Name: ArmoredTank (1)
+  m_Name: EagleBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31625,28 +31607,22 @@ MonoBehaviour:
 
 
     - Power
-    Ups are immune to bullets
+    Up boxes can collide with bullets. Using them as temporary shelter is possible.
 
 
-    - Power Ups that have a duration will reset the
-    duration if an attempt to stack the power up is peformed.
+    -
+    Power Ups that have a duration will reset the duration if an attempt to stack
+    the power up is peformed.
 
 
-    - [Forcefield]
-    does NOT make the user invincible. Damage not done by projectiles or any proectiles
-    shot inside the sphere can still damage the user.
+    - [Invincibility] Renders the user completely
+    invincible from harm. Sphere is merely for visual effect. Bullets shot inside
+    the sphere will not affect the player
 
 
-    - [Base Fortification]
-    will rebuild any broken walls that surrounded the base and then turn them into
-    [Fortified Blocks]. After the duration, the blocks will return back to [Brick
-    Blocks]
-
-
-
-
-    Like an on-the-go snack bar, these power ups boxes will raise
-    your confidence and vitality one way or another.'
+    - [Base Fortification] will rebuild
+    any broken walls that surrounded the base and then turn them into [Fortified
+    Blocks]. After the duration, the blocks will return back to [Brick Blocks]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -32539,7 +32515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1546185023}
   m_Layer: 5
-  m_Name: PowerUp
+  m_Name: Piercing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41582,7 +41558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988970070}
   m_Layer: 5
-  m_Name: PowerUp (5)
+  m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42107,7 +42083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80.96211, y: -39.88822}
+  m_AnchoredPosition: {x: 80.96211, y: -40.223167}
   m_SizeDelta: {x: 161.92422, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2005934689
@@ -42322,30 +42298,7 @@ MonoBehaviour:
 
 
     - It is GAME OVER
-    if [The Eagle] is destroyed. Protect it with your life.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Reminiscent
-    of the days missions carried dutily. Reconstructed with chemicals and wizardry
-    carefully'
+    if [The Eagle] is destroyed. Protect it with your life.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -43856,7 +43809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087445060}
   m_Layer: 5
-  m_Name: PowerUp (1)
+  m_Name: Invincible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44387,7 +44340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2122887083}
   m_Layer: 5
-  m_Name: NormalTank
+  m_Name: FortifiedBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44526,7 +44479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80.96211, y: -89.65822}
+  m_AnchoredPosition: {x: 80.96211, y: -89.993164}
   m_SizeDelta: {x: 161.92422, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2142081525
