@@ -31385,15 +31385,15 @@ MonoBehaviour:
   m_text: 'Mission: Protect the base from huge waves of enemies.
 
 
-    Onslaught:
-    No spawning pattern and appear more frequently over time.
+    About: Enemies
+    have no spawning pattern and appear more frequently over time.
 
 
-    The eagle base
-    is depicted as the brown block on the map. Protect it with your life as it only
-    takes 1 hit before it''s broken. Power ups are dropped from above and may aid
-    you or your enemies in battle should either of you come into contact with the
-    boxes.'
+    The eagle
+    base is depicted as the brown block on the map. Protect it with your life as
+    it only takes 1 hit before it''s broken. Power ups are dropped from above and
+    may aid you or your enemies in battle should either of you come into contact
+    with the boxes.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
