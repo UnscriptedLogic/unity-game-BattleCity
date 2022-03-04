@@ -47,7 +47,6 @@ public class ScoreUIManager : Semaphore
         if (entityUIScores.TryGetValue(tankIndex, out ScoreCard scoreCard))
         {
             scoreCard.SetScore(scoreManager.entityScores[tankIndex]);
-            //scoreCard.SetName(indexManager.tankIndexes[tankIndex].name);
             return;
         }
 
@@ -62,6 +61,6 @@ public class ScoreUIManager : Semaphore
 
         entityUIScores.Add(entityIndex, scoreCardscript);
         scoreCardscript.SetScore(scoreManager.entityScores[entityIndex]);
-        //scoreCardscript.SetName(GlobalVars.player != null ? GlobalVars.player.username : "Player");
+        scoreCardscript.SetName(UserManager.user.username);
     }
 }

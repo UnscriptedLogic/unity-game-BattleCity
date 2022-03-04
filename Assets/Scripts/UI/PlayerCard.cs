@@ -12,27 +12,27 @@ public class PlayerCard : MonoBehaviour
     public string scorePrefix = "Score: ";
 
     [Header("Detailed Card")]
-    public TextMeshProUGUI nameTMP;
+    public TMP_InputField nameTMP;
     public TextMeshProUGUI hiscoreTMP;
 
     public ConnectionManager connectionManager;
 
     private void Start()
     {
-        if (connectionManager.initialized)
-        {
-            //GlobalVars.onPlayerUpdated += delegate ()
-            //{
-            //    usernameTMP.text = GlobalVars.player.username;
-            //    nameTMP.text = GlobalVars.player.username;
+        UserManager.onUserUpdated += SetCredentials;
+        SetCredentials();
+    }
 
-            //    SetScore(GlobalVars.player.hiscore);
-            //};
-        }
+    private void SetCredentials()
+    {
+        usernameTMP.text = UserManager.user.username;
+        nameTMP.text = UserManager.user.username;
+        SetScore(UserManager.high_score);
+    }
 
-        //usernameTMP.text = GlobalVars.player.username;
-        //nameTMP.text = GlobalVars.player.username;
-        //SetScore(GlobalVars.player.hiscore);
+    public void SetUsername()
+    {
+        UserManager.UpdateUsername(nameTMP.text);
     }
 
     public void SetScore(int amount)

@@ -22,11 +22,38 @@ public static class UserManager
     }
 
     public static User user;
-    
     public static int high_score = 0;
 
-    public static void CreatePlayer(string username)
+    public static event Action onUserUpdated;
+
+    public static void CreateUser(User _user)
     {
-        user = new User(initialized: true, username: username);
+        user = _user;
+        onUserUpdated?.Invoke();
+        SaveManager.Save();
+    }
+
+    public static void UpdateUsername(string name)
+    {
+        user.username = name;
+        onUserUpdated?.Invoke();
+        SaveManager.Save();
+    }
+
+    public static void UpdateScore(int score)
+    {
+        high_score = score;
+        onUserUpdated?.Invoke();
+        SaveManager.Save();
+    }
+
+    public static User GetUser()
+    {
+        if (user == null)
+        {
+            CreateUser(new User());
+        }
+
+        return user;
     }
 }

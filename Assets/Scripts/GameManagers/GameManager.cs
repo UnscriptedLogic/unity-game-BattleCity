@@ -27,11 +27,6 @@ public class GameManager : Manager
         InitializeSephamores();
     }
 
-    public void LoadSaves()
-    {
-        SaveManager.Load();
-    }
-
     private void OnApplicationQuit()
     {
         SaveManager.Save();
