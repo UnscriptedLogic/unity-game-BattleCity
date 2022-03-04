@@ -959,13 +959,13 @@ MonoBehaviour:
   - {fileID: 419572485}
   - {fileID: 419572483}
   - {fileID: 419572484}
-  - {fileID: 1181489153}
   - {fileID: 534808534}
+  - {fileID: 1181489153}
   - {fileID: 419572486}
   enableAfterInitialize:
-  - {fileID: 1181489151}
-  - {fileID: 534808533}
   - {fileID: 970467778}
+  - {fileID: 534808533}
+  - {fileID: 1181489151}
   playEffects: 1
   playSounds: 1
   playParticles: 1
@@ -1455,7 +1455,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534808536
 MonoBehaviour:
@@ -2637,7 +2637,7 @@ MonoBehaviour:
       type: 3}
     chance: 15
   yOffset: 35
-  startDelay: 5
+  startDelay: 10
   spawnModifiers:
   - spawnSetting: 1
     toComplete: 1
@@ -4303,7 +4303,7 @@ PrefabInstance:
     - target: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
         type: 3}
