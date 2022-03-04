@@ -37,7 +37,9 @@ MonoBehaviour:
     maxDistance: 35
     spatialBlend: 1
   - createOn: 2
-    particles: []
+    particles:
+    - {fileID: 1089340773436427084, guid: 2d394bac14aae964eb83b8f2a5219c57, type: 3}
+    - {fileID: 1089340773436427084, guid: 0bb8c710b5a167440bbbb9481c09e5be, type: 3}
     sounds:
     - {fileID: 8300000, guid: 8a9706d6a93aebb44a40138f026e0d81, type: 3}
     priority: 100

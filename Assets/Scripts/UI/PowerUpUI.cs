@@ -36,28 +36,17 @@ public class PowerUpUI : Semaphore
                     StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Invincible, invincible.duration));
                     break;
                 case PowerUpType.Time:
-                    TimePowerUp time = powerUpManager as TimePowerUp;
-                    time.onTimeAffected += Time_onTimeAffected;
+                    StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Time, 10));
                     break;
                 case PowerUpType.Nuke:
                     StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Nuke, 3));
                     break;
                 case PowerUpType.HomeFortify:
-                    StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.HomeFortify, 10));
+                    StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.HomeFortify, 15));
                     break;
                 default:
                     break;
             }
         }
-    }
-
-    private void Time_onTimeAffected(TimeManager obj)
-    {
-        obj.onTimeResumed += Time_onTimeResumed;
-    }
-
-    private void Time_onTimeResumed()
-    {
-        uiManager.RemoveCard(PowerUpType.Time);
     }
 }

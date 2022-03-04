@@ -24,21 +24,20 @@ public class EntityInfiniteSpawner : EntitySpawnManager
     private List<EntitySpawnModifiers> onSpawnModify = new List<EntitySpawnModifiers>();
     public float spawnInterval;
 
-    //public override void Initialize()
-    //{
-    //    _interval = startDelay;
-    //    onSpawnEntity += ModifyAfterSpawn;
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+        _interval = startDelay;
+        onSpawnEntity += ModifyAfterSpawn;
 
-    //    for (int i = 0; i < spawnModifiers.Length; i++)
-    //    {
-    //        if (spawnModifiers[i].modifyAfterSpawn)
-    //        {
-    //            onSpawnModify.Add(spawnModifiers[i]);
-    //        }
-    //    }
-
-    //    base.Initialize();
-    //}
+        for (int i = 0; i < spawnModifiers.Length; i++)
+        {
+            if (spawnModifiers[i].modifyAfterSpawn)
+            {
+                onSpawnModify.Add(spawnModifiers[i]);
+            }
+        }
+    }
 
     private void Update()
     {

@@ -23,9 +23,9 @@ public class TimePowerUp : PowerUpManager
             timeManager.duration = duration;
             timeManager.collectorIndex = index;
             timeManager.AffectTime();
-            onTimeAffected?.Invoke(timeManager);
         }
 
+        onTimeAffected?.Invoke(timeManager);
         base.Activate(collision);
         Destroy(gameObject);
     }

@@ -27,5 +27,14 @@ MonoBehaviour:
     volume: 0.2
     maxDistance: 15
     spatialBlend: 1
+  - createOn: 2
+    particles:
+    - {fileID: 1089340773436427084, guid: 2d394bac14aae964eb83b8f2a5219c57, type: 3}
+    - {fileID: 1089340773436427084, guid: 0bb8c710b5a167440bbbb9481c09e5be, type: 3}
+    sounds: []
+    priority: 225
+    volume: 0.2
+    maxDistance: 15
+    spatialBlend: 1
   lifetime: 5
   bulletType: 0

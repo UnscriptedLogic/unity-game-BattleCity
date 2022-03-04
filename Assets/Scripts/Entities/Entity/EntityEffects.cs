@@ -33,8 +33,10 @@ public class EntityEffects : Semaphore
 
     private MiscEffects[] miscFXes;
 
-    public float checkDistance;
+    public Transform root;
     public bool randomRotation;
+    
+    public float checkDistance;
     public bool activated;
     private Vector3 prevPos;
 
@@ -76,6 +78,11 @@ public class EntityEffects : Semaphore
         {
             //For playing movement related soungs
             movementScript.movementBehaviour.onEntityMove += MovementBehaviour_onEntityMove; 
+        }
+
+        if (randomRotation)
+        {
+            root.forward = RandomValue.OfVectorDirectionAny();
         }
     }
 

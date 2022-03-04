@@ -229,9 +229,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 0}
   entityHealth: {fileID: 829459430234273685}
-  checkDistance: 0
+  root: {fileID: 4399916814955498125}
   randomRotation: 1
+  checkDistance: 0
   activated: 0
+  whileMovingParticles: []
 --- !u!65 &4083212386747266823
 BoxCollider:
   m_ObjectHideFlags: 0

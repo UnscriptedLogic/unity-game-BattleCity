@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8343415015249844167}
   - component: {fileID: 155999817675204172}
   - component: {fileID: 7383827651216571388}
+  - component: {fileID: 6343701198716520455}
   - component: {fileID: 6713352746729149335}
   m_Layer: 0
   m_Name: Collider
@@ -98,9 +99,22 @@ MonoBehaviour:
       m_Calls: []
   AfterInitialization:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6343701198716520455}
+        m_TargetAssemblyTypeName: EntityEffects, Assembly-CSharp
+        m_MethodName: InitializeEvents
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sephamores:
   - {fileID: 7383827651216571388}
+  - {fileID: 6343701198716520455}
   settings: {fileID: 11400000, guid: 26c68366f487daa4088bbc297740bd41, type: 2}
   health: 0
   speed: 0
@@ -136,6 +150,25 @@ MonoBehaviour:
   root: {fileID: 5136758117238408162}
   onDeathDestroys: 1
   onDeathDisables: 0
+--- !u!114 &6343701198716520455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650378142044863179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementScript: {fileID: 0}
+  entityHealth: {fileID: 7383827651216571388}
+  root: {fileID: 6381398092244348445}
+  randomRotation: 1
+  checkDistance: 0
+  activated: 0
+  whileMovingParticles: []
 --- !u!65 &6713352746729149335
 BoxCollider:
   m_ObjectHideFlags: 0

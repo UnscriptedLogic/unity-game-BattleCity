@@ -38,11 +38,11 @@ public class ConnectionManager : Semaphore
         //onInitialized?.Invoke(this);
         initialized = true;
 
-        StartCoroutine(UpdateScore((res) =>
-        {
-            Debug.Log(res);
+        //StartCoroutine(UpdateScore((res) =>
+        //{
+        //    Debug.Log(res);
 
-        }));
+        //}));
     }
 
     //Pinging to google

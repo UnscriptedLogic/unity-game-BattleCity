@@ -36,7 +36,6 @@ public class SaveManager : Semaphore
         binaryFormatter.Serialize(fileStream, saveData);
         fileStream.Close();
 
-        Debug.Log(savedData.username);
         Debug.Log("Saved");
     }
 
@@ -75,7 +74,6 @@ public class SaveManager : Semaphore
         UserManager.high_score = savedData.high_score;
         onDataLoaded?.Invoke();
 
-        Debug.Log(savedData.username);
         Debug.Log("Loaded");
     }
 

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f2c3659a60c294db24b92dd08db78d, type: 3}
   m_Name: InsancePBotBulletSettings
   m_EditorClassIdentifier: 
-  movementSpeed: 40
-  rotationSpeed: 45
   health: 2
+  speed: 30
+  rotationSpeed: 45
+  damage: 1
   miscEffects:
   - createOn: 0
     particles: []
@@ -23,6 +24,15 @@ MonoBehaviour:
     priority: 225
     volume: 0.1
     maxDistance: 5
+    spatialBlend: 1
+  - createOn: 2
+    particles:
+    - {fileID: 1089340773436427084, guid: 2d394bac14aae964eb83b8f2a5219c57, type: 3}
+    - {fileID: 1089340773436427084, guid: 0bb8c710b5a167440bbbb9481c09e5be, type: 3}
+    sounds: []
+    priority: 225
+    volume: 0.2
+    maxDistance: 15
     spatialBlend: 1
   lifetime: 5
   bulletType: 1
