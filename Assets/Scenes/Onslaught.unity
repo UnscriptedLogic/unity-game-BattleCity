@@ -1416,8 +1416,8 @@ MonoBehaviour:
     settings: {fileID: 11400000, guid: 7d17d2f98a147f949914032a0c6b5e56, type: 2}
     chance: 25
   startDelay: 5
-  waveInterval: 15
-  spawnInterval: 8
+  waveInterval: 10
+  spawnInterval: 4
   maxSpawn: 5
   spawnModifiers:
   - spawnSetting: 0
@@ -1428,27 +1428,15 @@ MonoBehaviour:
     counter: 0
   - spawnSetting: 1
     toComplete: 2
-    amount: -0.1
+    amount: -0.2
     modifyAfterSpawn: 1
-    clampValues: {x: 4, y: 10}
-    counter: 0
-  - spawnSetting: 1
-    toComplete: 5
-    amount: 10
-    modifyAfterSpawn: 0
-    clampValues: {x: 5, y: 10}
+    clampValues: {x: 3, y: 10}
     counter: 0
   - spawnSetting: 2
     toComplete: 2
     amount: -1
     modifyAfterSpawn: 0
-    clampValues: {x: 7, y: 20}
-    counter: 0
-  - spawnSetting: 2
-    toComplete: 5
-    amount: 10
-    modifyAfterSpawn: 0
-    clampValues: {x: 5, y: 15}
+    clampValues: {x: 6, y: 20}
     counter: 0
 --- !u!4 &534808535
 Transform:
