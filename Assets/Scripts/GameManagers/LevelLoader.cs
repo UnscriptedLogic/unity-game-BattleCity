@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+public class LevelLoader : Semaphore
 {
     [Header("All game maps")]
-    public List<Scene> maps;
-
+    public List<string> mapNames;
+    public int startingIndex = 2;
     public string gameMode;
     public string gameMap;
 
+    protected override void SephamoreStart(Manager manager)
+    {
+        base.SephamoreStart(manager);
+
+        for (int i = startingIndex; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+            mapNames.Add(sceneName);
+
+        }
+    }
+
+    #region Button Selecting
     public void SetGameMode(string modeName)
     {
         gameMode = modeName;
@@ -19,7 +33,8 @@ public class LevelLoader : MonoBehaviour
     public void SetGameMap(string mapName)
     {
         gameMap = mapName;
-    }
+    } 
+    #endregion
 
     public void LoadGame()
     {
@@ -28,30 +43,37 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadSceneAsync(gameMap, LoadSceneMode.Additive);
     }
 
-    public void ChangeGameMap(string currentMap, string newMap)
+    //Changing the current scene map
+    public void ChangeGameMap(string newMap)
     {
-        SceneManager.UnloadSceneAsync(currentMap);
+        if (gameMap != "")
+        {
+            SceneManager.UnloadSceneAsync(gameMap);
+        }
+
         SceneManager.LoadSceneAsync(newMap, LoadSceneMode.Additive);
         gameMap = newMap;
     }
 
+    public void LoadRandomMap()
+    {
+        ChangeGameMap(RandomValue.FromList(mapNames.ToArray()));
+    }
+
+    //For going through all possible maps
     public void NextMap()
     {
-        //Check where we are in the list of maps
-        for (int i = 0; i < maps.Count; i++)
+        for (int i = 0; i < mapNames.Count; i++)
         {
-            //Find our location in that list of maps
-            if (maps[i].name == gameMap)
+            if (mapNames[i] == gameMap)
             {
-                //Check if we are the last in line
                 int nextMapIndex = i + 1;
-                if (nextMapIndex > maps.Count)
+                if (nextMapIndex > mapNames.Count)
                 {
-                    //Reset to first map if we are
                     nextMapIndex = 0;
                 }
 
-                ChangeGameMap(gameMap, maps[nextMapIndex].name);
+                ChangeGameMap(mapNames[nextMapIndex]);
                 return;
             }
         }

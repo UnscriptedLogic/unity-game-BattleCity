@@ -30,9 +30,9 @@ public class ConnectionManager : Semaphore
     {
         base.SephamoreStart(manager);
         //if (GlobalVars.player == null)
-        {
-            //GlobalVars.SetEmptyPlayer();
-        }
+        //{
+        //  GlobalVars.SetEmptyPlayer();
+        //}
 
         //GlobalVars.PlayerUpdated();
         //onInitialized?.Invoke(this);

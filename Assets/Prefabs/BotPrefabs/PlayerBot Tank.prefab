@@ -120,6 +120,7 @@ MonoBehaviour:
   - {fileID: 3937699154213571040}
   - {fileID: -3224412601257698872}
   - {fileID: 6828335756188594336}
+  - {fileID: 6203801239630871477}
   settings: {fileID: 11400000, guid: 80770c5e56221284091c1d3b8715c4a3, type: 2}
   health: 0
   speed: 0
@@ -202,8 +203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 400500418037949601}
   entityHealth: {fileID: 3937699154213571040}
-  checkDistance: 0
+  root: {fileID: 0}
   randomRotation: 0
+  checkDistance: 0
   activated: 0
   whileMovingParticles:
   - {fileID: 3570401403397392675}
