@@ -8,73 +8,117 @@ using UnityEngine;
 public class PathFinder : Semaphore
 {
     public PathFinderGrid pfGrid;
-    public List<PFNode> path = new List<PFNode>();
     public bool drawGizmos;
 
-    public Transform start;
-    public Transform end;
-    public float delay = 0.5f;
+    private PathRequestManager requestManager;
 
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
-        FindPath(start.position, end.position);
+        requestManager = PathRequestManager.instance;
     }
 
-    public void FindPath(Vector3 startPos, Vector3 endPos)
+    public IEnumerator FindPath(Vector3 startPos, Vector3 endPos)
     {
         Stopwatch sw = new Stopwatch();
         sw.Start();
+
+        Vector3[] waypoints = new Vector3[0];
+        bool pathValid = false;
+
         PFNode startnode = pfGrid.GetPFNodeFromWorldPoint(startPos);
         PFNode endNode = pfGrid.GetPFNodeFromWorldPoint(endPos);
 
-        Heap<PFNode> openSet = new Heap<PFNode>(pfGrid.nodeManager.MaxSize);
-        HashSet<PFNode> closedSet = new HashSet<PFNode>();
-
-        openSet.Add(startnode);
-        while (openSet.Count > 0)
+        if (!startnode.isObstacle && !endNode.isObstacle)
         {
-            PFNode currentNode = openSet.RemoveFirst();
-            closedSet.Add(currentNode);
+            Heap<PFNode> openSet = new Heap<PFNode>(pfGrid.nodeManager.MaxSize);
+            HashSet<PFNode> closedSet = new HashSet<PFNode>();
 
-            if (currentNode == endNode)
+            openSet.Add(startnode);
+            while (openSet.Count > 0)
             {
-                sw.Stop();
-                UnityEngine.Debug.Log("Path found: " + sw.ElapsedMilliseconds + "ms");
-                RetracePath(startnode, endNode);
-                return;
-            }
+                PFNode currentNode = openSet.RemoveFirst();
+                closedSet.Add(currentNode);
 
-            foreach (PFNode neighbour in pfGrid.GetNeighbours(currentNode))
-            {
-                if (neighbour.isObstacle || closedSet.Contains(neighbour))
+                if (currentNode == endNode)
                 {
-                    continue;
+                    sw.Stop();
+                    pathValid = true;
+                    //UnityEngine.Debug.Log("Path found: " + sw.ElapsedMilliseconds + "ms");
+
+                    break;
                 }
 
-                float moveCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
-                if (moveCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                foreach (PFNode neighbour in pfGrid.GetNeighbours(currentNode))
                 {
-                    neighbour.gCost = moveCostToNeighbour;
-                    neighbour.hCost = GetDistance(neighbour, endNode);
-                    neighbour.parent = currentNode;
+                    if (neighbour.isObstacle || closedSet.Contains(neighbour))
+                    {
+                        continue;
+                    }
 
-                    if (!openSet.Contains(neighbour))
-                        openSet.Add(neighbour);
+                    float moveCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+                    if (moveCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                    {
+                        neighbour.gCost = moveCostToNeighbour;
+                        neighbour.hCost = GetDistance(neighbour, endNode);
+                        neighbour.parent = currentNode;
+
+                        if (!openSet.Contains(neighbour))
+                            openSet.Add(neighbour);
+                    }
                 }
             }
         }
+
+        yield return null;
+        if (pathValid)
+        {
+            waypoints = RetracePath(startnode, endNode);
+        }
+        requestManager.FinishProcessingPath(waypoints, pathValid);
     }
 
-    private void RetracePath(PFNode startNode, PFNode endNode)
+    internal void StartFindPath(Vector3 pathStart, Vector3 pathEnd)
     {
+        StartCoroutine(FindPath(pathStart, pathEnd));
+    }
+
+    private Vector3[] RetracePath(PFNode startNode, PFNode endNode)
+    {
+        List<PFNode> path = new List<PFNode>();
+
         PFNode _node = endNode;
         while (_node != startNode)
         {
             path.Add(_node);
             _node = _node.parent;
         }
-        path.Reverse();
+
+        Vector3[] waypoints = SimplifyPath(path);
+        Array.Reverse(waypoints);
+        return waypoints;
+    }
+
+    private Vector3[] SimplifyPath(List<PFNode> path)
+    {
+        List<Vector3> waypoints = new List<Vector3>();
+        //Vector2 directionOld = Vector2.zero;
+
+        //for (int i = 1; i < path.Count; i++)
+        //{
+        //    Vector2 directionNew = new Vector2(path[i-1].coordx - path[i].coordx, path[i - 1].coordy - path[i].coordy);
+        //    if (directionNew != directionOld)
+        //    {
+        //        waypoints.Add(path[i].position);
+        //    }
+        //    directionOld = directionNew;
+        //}
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            waypoints.Add(path[i].position);
+        }
+        return waypoints.ToArray();
     }
 
     private float GetDistance(PFNode nodeA, PFNode nodeB)
@@ -93,24 +137,7 @@ public class PathFinder : Semaphore
     {
         if (drawGizmos)
         {
-            if (pfGrid.GetPFNodeFromWorldPoint(start.position) != null && pfGrid.GetPFNodeFromWorldPoint(end.position) != null)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawCube(pfGrid.GetPFNodeFromWorldPoint(start.position).position, Vector3.one);
 
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawCube(pfGrid.GetPFNodeFromWorldPoint(end.position).position, Vector3.one);
-            }
-
-            if (path == null) { return; }
-            if (path.Count > 0)
-            {
-                for (int i = 0; i < path.Count; i++)
-                {
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawCube(path[i].position, Vector3.one);
-                }
-            }
         }
     }
 }

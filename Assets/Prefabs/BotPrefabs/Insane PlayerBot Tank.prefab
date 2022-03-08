@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 400500418037949596}
   - component: {fileID: 400500418037949598}
   - component: {fileID: 400500418037949599}
-  - component: {fileID: 400500418037949601}
   - component: {fileID: 400500418037949597}
   - component: {fileID: 1896893130607139609}
   - component: {fileID: 8027541029494611036}
@@ -20,6 +19,7 @@ GameObject:
   - component: {fileID: 400500418037949600}
   - component: {fileID: 400500418037949603}
   - component: {fileID: 4973614529453768099}
+  - component: {fileID: 500963327}
   m_Layer: 0
   m_Name: Insane PlayerBot Tank
   m_TagString: Untagged
@@ -77,8 +77,8 @@ MonoBehaviour:
   AfterInitialization:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 400500418037949601}
-        m_TargetAssemblyTypeName: BotMovement, Assembly-CSharp
+      - m_Target: {fileID: 500963327}
+        m_TargetAssemblyTypeName: PathFindingMovement, Assembly-CSharp
         m_MethodName: SetDefaultBehaviour
         m_Mode: 1
         m_Arguments:
@@ -115,12 +115,12 @@ MonoBehaviour:
         m_CallState: 2
   sephamores:
   - {fileID: 400500418037949599}
-  - {fileID: 400500418037949601}
   - {fileID: 400500418037949597}
   - {fileID: 1896893130607139609}
   - {fileID: 8027541029494611036}
   - {fileID: 7707915312038188773}
   - {fileID: -1608680342397484036}
+  - {fileID: 500963327}
   settings: {fileID: 11400000, guid: 631c7604803ab5940b14f3977ec7c99d, type: 2}
   health: 0
   speed: 0
@@ -147,20 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d7697432a56e24cafded5a974dba45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &400500418037949601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400500418037949602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 428eb7f08fd79e54baa92a8ea8b272db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 400500418037949600}
-  botInput: {fileID: 400500418037949599}
 --- !u!114 &400500418037949597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,10 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b95fee44b15664085667c882b75c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementScript: {fileID: 400500418037949601}
+  movementScript: {fileID: 0}
   entityHealth: {fileID: 1896893130607139609}
-  checkDistance: 0
+  root: {fileID: 0}
   randomRotation: 0
+  checkDistance: 0
   activated: 0
   whileMovingParticles:
   - {fileID: 4812291699454210385}
@@ -229,7 +216,7 @@ MonoBehaviour:
   boxCollider: {fileID: 400500418037949603}
   gfxGameobject: {fileID: 400500418455856428}
   toggleBehaviours:
-  - {fileID: 400500418037949601}
+  - {fileID: 0}
   - {fileID: 400500418037949597}
 --- !u!114 &-1608680342397484036
 MonoBehaviour:
@@ -281,6 +268,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400500418037949602}
   m_Enabled: 1
+--- !u!114 &500963327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e99a8d3f865b847a54a4fa41f743a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  rb: {fileID: 400500418037949600}
 --- !u!1 &400500418349970423
 GameObject:
   m_ObjectHideFlags: 0

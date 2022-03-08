@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: InsanePlayerBotSettings
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  rotationSpeed: 60
   health: 1
+  speed: 8
+  rotationSpeed: 60
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []
