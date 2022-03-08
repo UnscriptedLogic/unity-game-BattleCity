@@ -60,7 +60,11 @@ public class BlockManager : EntityManager
         if (!myWall.useCollider)
         {
             boxCollider.enabled = false;
+        } else
+        {
+            gameObject.layer = LayerMask.NameToLayer("Block");
         }
+
 
         if (myWall.onlyBullets)
         {

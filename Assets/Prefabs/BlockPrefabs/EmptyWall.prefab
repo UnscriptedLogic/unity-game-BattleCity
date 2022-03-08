@@ -89,7 +89,7 @@ MonoBehaviour:
   rotationSpeed: 30
   damage: 0
   wallSettings: {fileID: 11400000, guid: 651e344324844274eab25b69e3fdf146, type: 2}
-  myWallType: 1
+  myWallType: 5
   myWall:
     wallType: 0
     health: 1

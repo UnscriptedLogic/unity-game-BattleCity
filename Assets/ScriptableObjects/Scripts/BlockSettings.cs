@@ -9,7 +9,8 @@ public enum BlockName
     Fortified,
     Shrub,
     Rubble,
-    Base
+    Base,
+    Empty
 }
 
 [Serializable]

@@ -53,3 +53,10 @@ MonoBehaviour:
     endsGameOnDeath: 1
     wallGraphics: {fileID: 919132149155446097, guid: a9623df6eaf8b804aa8e6e948563d714,
       type: 3}
+  - wallType: 5
+    health: 0
+    requiredHealth: 0
+    onlyBullets: 0
+    useCollider: 0
+    endsGameOnDeath: 0
+    wallGraphics: {fileID: 0}
