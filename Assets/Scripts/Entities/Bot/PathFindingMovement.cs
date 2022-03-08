@@ -15,12 +15,8 @@ public class PathFindingMovement : EntityMovement
     {
         base.SephamoreStart(manager);
 		
-		entityManager = manager as EntityManager;
-	}
-
-    private void Update()
-    {
 		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+		entityManager = manager as EntityManager;
 	}
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
@@ -71,7 +67,7 @@ public class PathFindingMovement : EntityMovement
 
             //Debug.Log(Vector3.Dot(transform.position, currentWaypoint));
             //movementBehaviour.FaceMovement(transform, lookdir, entityManager.rotationSpeed, transform);
-            movementBehaviour.FaceMovement(transform, currentWaypoint - transform.position, entityManager.rotationSpeed, transform);
+            movementBehaviour.FaceMovement(transform, new Vector3(currentWaypoint.x, transform.position.y, currentWaypoint.z) - transform.position, entityManager.rotationSpeed, transform);
 
 			yield return null;
 
