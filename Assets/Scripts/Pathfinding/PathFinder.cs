@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,34 +23,24 @@ public class PathFinder : Semaphore
 
     public void FindPath(Vector3 startPos, Vector3 endPos)
     {
+        Stopwatch sw = new Stopwatch();
+        sw.Start();
         PFNode startnode = pfGrid.GetPFNodeFromWorldPoint(startPos);
         PFNode endNode = pfGrid.GetPFNodeFromWorldPoint(endPos);
 
-        List<PFNode> openSet = new List<PFNode>();
+        Heap<PFNode> openSet = new Heap<PFNode>(pfGrid.nodeManager.MaxSize);
         HashSet<PFNode> closedSet = new HashSet<PFNode>();
 
         openSet.Add(startnode);
         while (openSet.Count > 0)
         {
-            PFNode currentNode = openSet[0];
-            for (int i = 1; i < openSet.Count; i++)
-            {
-                if (openSet[i].fCost <= currentNode.fCost)
-                {
-                    if (openSet[i].hCost < currentNode.hCost)
-                    {
-                        currentNode = openSet[i];
-                    }
-                }
-            }
-
-            openSet.Remove(currentNode);
+            PFNode currentNode = openSet.RemoveFirst();
             closedSet.Add(currentNode);
 
             if (currentNode == endNode)
             {
-                Debug.Log("Path found!");
-
+                sw.Stop();
+                UnityEngine.Debug.Log("Path found: " + sw.ElapsedMilliseconds + "ms");
                 RetracePath(startnode, endNode);
                 return;
             }

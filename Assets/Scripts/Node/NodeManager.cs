@@ -9,6 +9,8 @@ public class NodeManager : Manager
     public GameObject[] possibleSpawns;
     public Dictionary<Tuple<int, int>, Node> grid = new Dictionary<Tuple<int, int>, Node>();
 
+    public int MaxSize { get { return (int)(gridSize.x * gridSize.y); } }
+
     [Header("Debug")]
     public bool showGrid;
 
