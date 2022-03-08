@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NodeManager : MonoBehaviour
+public class NodeManager : Manager
 {
     public Vector2 gridSize;
     public GameObject[] possibleSpawns;
@@ -13,6 +13,12 @@ public class NodeManager : MonoBehaviour
     public bool showGrid;
 
     private void Awake()
+    {
+        InitializeGrid();
+        InitializeSephamores();
+    }
+
+    private void InitializeGrid()
     {
         ForEveryNodePositionInGrid((coord, position) =>
         {

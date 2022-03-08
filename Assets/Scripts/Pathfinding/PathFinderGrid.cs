@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PathFinderGrid : MonoBehaviour
+public class PathFinderGrid : Semaphore
 {
     public NodeManager nodeManager;
     public LayerMask obstacleLayer;
@@ -13,9 +13,11 @@ public class PathFinderGrid : MonoBehaviour
     [Header("Debug")]
     public bool drawGizmos;
 
-    private void Start()
+    protected override void SephamoreStart(Manager manager)
     {
         CreateGrid();
+
+        base.SephamoreStart(manager);
     }
 
     private void CreateGrid()
@@ -28,6 +30,8 @@ public class PathFinderGrid : MonoBehaviour
 
             pathfindingGrid.Add(coord, new PFNode(coord.Item1, coord.Item2, isObstructed, value.position));
         }
+
+        Debug.Log(nodeManager.grid.Count);
     }
 
     private void ForEvery(Action<PFNode> method)
@@ -54,9 +58,9 @@ public class PathFinderGrid : MonoBehaviour
     {
         List<PFNode> neighbours = new List<PFNode>();
 
-        for (int x = -1; x < 1; x++)
+        for (int x = -1; x <= 1; x++)
         {
-            for (int y = -1; y < 1; y++)
+            for (int y = -1; y <= 1; y++)
             {
                 if (x == 0 && y == 0)
                 {
@@ -68,7 +72,7 @@ public class PathFinderGrid : MonoBehaviour
 
                 if (checkX >= 0 && checkX < nodeManager.gridSize.x && checkY >= 0 && checkY < nodeManager.gridSize.y)
                 {
-                    neighbours.Add(pathfindingGrid[new Tuple<int, int>(x, y)]);
+                    neighbours.Add(pathfindingGrid[new Tuple<int, int>(checkX, checkY)]);
                 }
             }
         }
