@@ -11,12 +11,12 @@ public class PFNode
     public Vector3 position; //real world position
 
     //algorithm values
-    public int gCost;
-    public int hCost;
+    public float gCost;
+    public float hCost;
 
     public PFNode parent;
 
-    public int fCost { get { return gCost + hCost; } }
+    public float fCost { get { return gCost + hCost; } }
 
     public PFNode(int coordx, int coordy, bool isWall, Vector3 position)
     {

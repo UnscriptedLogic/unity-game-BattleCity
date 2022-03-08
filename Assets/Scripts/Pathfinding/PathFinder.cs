@@ -31,19 +31,22 @@ public class PathFinder : Semaphore
 
 
         openSet.Add(startnode);
-        StartCoroutine(BeginCalculation(startnode, endNode));
+        BeginCalculation(startnode, endNode);
     }
 
-    private IEnumerator BeginCalculation(PFNode startnode, PFNode endNode)
+    private void BeginCalculation(PFNode startnode, PFNode endNode)
     {
         while (openSet.Count > 0)
         {
             currentNode = openSet[0];
             for (int i = 1; i < openSet.Count; i++)
             {
-                if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
+                if (openSet[i].fCost <= currentNode.fCost)
                 {
-                    currentNode = openSet[i];
+                    if (openSet[i].hCost < currentNode.hCost)
+                    {
+                        currentNode = openSet[i]; 
+                    }
                 }
             }
 
@@ -52,18 +55,20 @@ public class PathFinder : Semaphore
 
             if (currentNode == endNode)
             {
-                RetracePath(startnode, endNode);
+                Debug.Log("Path found!");
+
+                StartCoroutine(RetracePath(startnode, endNode));
                 return;
             }
 
             foreach (PFNode neighbour in pfGrid.GetNeighbours(currentNode))
             {
-                if (neighbour.isObstacle && closedSet.Contains(neighbour))
+                if (neighbour.isObstacle || closedSet.Contains(neighbour))
                 {
                     continue;
-                }
+                }   
 
-                int moveCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+                float moveCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
                 if (moveCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                 {
                     neighbour.gCost = moveCostToNeighbour;
@@ -74,27 +79,27 @@ public class PathFinder : Semaphore
                         openSet.Add(neighbour);
                 }
             }
-
-            yield return new WaitForSeconds(delay);
         }
     }
 
-    private void RetracePath(PFNode startNode, PFNode endNode)
+    private IEnumerator RetracePath(PFNode startNode, PFNode endNode)
     {
-        PFNode currentNode = endNode;
+        PFNode _node = endNode;
+        Debug.Log("Retracing...");
 
-        while (currentNode != startNode)
+        while (_node != startNode)
         {
-            path.Add(currentNode.parent);
-            currentNode = currentNode.parent;
+            path.Add(_node);
+            Debug.Log(_node.coordx + " " + _node.coordy);
+            _node = _node.parent;
+            yield return new WaitForSeconds(delay);
         }
 
         path.Reverse();
-        Debug.Log(path.Count);
 
     }
 
-    private int GetDistance(PFNode nodeA, PFNode nodeB)
+    private float GetDistance(PFNode nodeA, PFNode nodeB)
     {
         int distX = (int)MathF.Abs(nodeA.coordx - nodeB.coordx);
         int distY = (int)MathF.Abs(nodeA.coordy - nodeB.coordy);
@@ -103,6 +108,7 @@ public class PathFinder : Semaphore
             return (14 * distY) + 10 * (distX - distY);
 
         return (14 * distX) + 10 * (distY - distX);
+        //return Vector3.Distance(nodeB.position, nodeA.position);
     }
 
     private void OnDrawGizmos()
@@ -115,6 +121,21 @@ public class PathFinder : Semaphore
             Gizmos.color = Color.cyan;
             Gizmos.DrawCube(pfGrid.GetPFNodeFromWorldPoint(end.position).position, Vector3.one);
 
+            for (int i = 0; i < openSet.Count; i++)
+            {
+                Gizmos.color = Color.grey;
+                Gizmos.DrawCube(openSet[i].position, Vector3.one);
+            }
+
+            for (int i = 0; i < closedSet.Count; i++)
+            {
+                Gizmos.color = Color.black;
+                Gizmos.DrawCube(closedSet.ElementAt(i).position, Vector3.one);
+            }
+
+            Gizmos.color = Color.white;
+            Gizmos.DrawCube(currentNode.position, Vector3.one);
+
             if (path == null) { return; }
             if (path.Count > 0)
             {
@@ -124,21 +145,6 @@ public class PathFinder : Semaphore
                     Gizmos.DrawCube(path[i].position, Vector3.one);
                 }
             }
-
-            for (int i = 0; i < closedSet.Count; i++)
-            {
-                Gizmos.color = Color.grey;
-                Gizmos.DrawCube(closedSet.ElementAt(i).position, Vector3.one);
-            }
-
-            for (int i = 0; i < openSet.Count; i++)
-            {
-                Gizmos.color = Color.black;
-                Gizmos.DrawCube(openSet[i].position, Vector3.one);
-            }
-
-            Gizmos.color = Color.white;
-            Gizmos.DrawCube(currentNode.position, Vector3.one);
         }
     }
 }

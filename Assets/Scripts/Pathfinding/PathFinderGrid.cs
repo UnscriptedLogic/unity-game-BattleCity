@@ -30,8 +30,6 @@ public class PathFinderGrid : Semaphore
 
             pathfindingGrid.Add(coord, new PFNode(coord.Item1, coord.Item2, isObstructed, value.position));
         }
-
-        Debug.Log(nodeManager.grid.Count);
     }
 
     private void ForEvery(Action<PFNode> method)
@@ -62,10 +60,13 @@ public class PathFinderGrid : Semaphore
         {
             for (int y = -1; y <= 1; y++)
             {
-                if (x == 0 && y == 0)
+                if (Mathf.Abs(x) == Mathf.Abs(y))
                 {
                     continue;
                 }
+
+                //if (x == 0 && y == 0)
+                //    continue;
 
                 int checkX = node.coordx + x;
                 int checkY = node.coordy + y;
