@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9122821070693656014}
   - component: {fileID: 4287907690145296379}
   - component: {fileID: 5028545564383612325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2107337517021529824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4585093461205223335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ColliderParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4642404776783966255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RubbleBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,6 +318,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RubbleBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66f89997fcc23664f81b8cecb4c5396c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f89997fcc23664f81b8cecb4c5396c, type: 3}

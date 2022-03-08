@@ -49,7 +49,13 @@ public class PathFinderGrid : Semaphore
 
         int x = Mathf.FloorToInt(Mathf.Min(nodeManager.gridSize.x * percentageX, nodeManager.gridSize.x - 1));
         int y = Mathf.FloorToInt(Mathf.Min(nodeManager.gridSize.y * percentageY, nodeManager.gridSize.y - 1));
-        return pathfindingGrid[new Tuple<int, int>(x, y)];
+
+        if (pathfindingGrid.ContainsKey(new Tuple<int, int>(x, y)))
+        {
+            return pathfindingGrid[new Tuple<int, int>(x, y)];
+        }
+
+        return null;
     }
 
     public List<PFNode> GetNeighbours(PFNode node)
