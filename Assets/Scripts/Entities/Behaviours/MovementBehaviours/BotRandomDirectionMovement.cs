@@ -16,14 +16,14 @@ public enum MovementState
 public class BotRandomDirectionMovement : MovementBehaviour
 {
     private BotManager botManager;
-    private BotInput botInput;
+    private RandomBotInput botInput;
     private Rigidbody rigidbody;
     private Transform transform;
 
     private Vector3 moveDir;
     private Vector3 lookDir;
 
-    public BotRandomDirectionMovement(BotManager botManager, BotInput botInput, Rigidbody rigidbody, Transform transform)
+    public BotRandomDirectionMovement(BotManager botManager, RandomBotInput botInput, Rigidbody rigidbody, Transform transform)
     {
         this.botManager = botManager;
         this.botInput = botInput;

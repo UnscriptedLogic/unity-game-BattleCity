@@ -65,6 +65,8 @@ public class PathFinder : Semaphore
 
                         if (!openSet.Contains(neighbour))
                             openSet.Add(neighbour);
+                        else
+                            openSet.UpdateItem(neighbour);
                     }
                 }
             }

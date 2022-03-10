@@ -15,8 +15,13 @@ public class PathFindingMovement : EntityMovement
     {
         base.SephamoreStart(manager);
 		
-		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+		//PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 		entityManager = manager as EntityManager;
+	}
+
+    private void Update()
+    {
+		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 	}
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)

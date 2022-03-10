@@ -5,7 +5,7 @@ using UnityEngine;
 public class BotMovement : EntityMovement
 {
     public Rigidbody rb;
-    public BotInput botInput;
+    public RandomBotInput botInput;
     private BotManager botManager;
 
     protected override void SephamoreStart(Manager manager)
