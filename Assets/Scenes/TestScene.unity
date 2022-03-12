@@ -7366,6 +7366,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 512494774}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &516406939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8135042284632126369, guid: b6f7eac00f16ee74d96e362283ce0f3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597337892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &516654515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24650,6 +24656,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8135042285216460262, guid: b6f7eac00f16ee74d96e362283ce0f3c,
+        type: 3}
+      propertyPath: bulletAnchor
+      value: 
+      objectReference: {fileID: 516406939}
     - target: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
         type: 3}
       propertyPath: m_RootOrder
@@ -29564,6 +29575,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1952700240}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1958987818 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597337892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1964372792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32277,6 +32294,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1958987818}
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
       propertyPath: m_RootOrder
@@ -32290,7 +32311,7 @@ PrefabInstance:
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.0000002
       objectReference: {fileID: 0}
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}

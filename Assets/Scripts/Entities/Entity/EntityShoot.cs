@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EntityShoot : Semaphore
 {
+    [HideInInspector] public Transform shootAnchor;
     protected ShootBehaviour shootBehaviour;
     protected ShootBehaviour prevShootBehaviour;
 

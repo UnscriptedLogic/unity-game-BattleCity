@@ -5,32 +5,37 @@ public class IntervalShoot : ShootBehaviour
 {
     private TankManager tankManager;
     private Transform transform;
-    private Transform shootAnchor;
+    private EntityShoot entityShoot;
 
     private float _interval = 1f;
 
-    public IntervalShoot(TankManager tankManager, Transform transform, Transform shootAnchor)
+    public IntervalShoot(TankManager tankManager, EntityShoot entityShoot, Transform transform)
     {
         this.tankManager = tankManager;
         this.transform = transform;
-        this.shootAnchor = shootAnchor;
+        this.entityShoot = entityShoot;
     }
 
     public override void Shoot()
     {
         if (_interval <= 0f)
         {
-            BulletDetails details = new BulletDetails(
-                tankManager.bulletSpeed,
-                tankManager.bulletLifetime,
-                transform.GetComponent<TankTeamIndexer>().teamIndex,
-                tankManager.damage,
-                tankManager,
-                tankManager.tankSettings.bulletSettings
-                );
-
-            CreateBullet(tankManager.bulletPrefab, shootAnchor, details, out BulletManager bulletScript);
+            ShootBullet();
         }
+    }
+
+    public void ShootBullet()
+    {
+        BulletDetails details = new BulletDetails(
+            tankManager.bulletSpeed,
+            tankManager.bulletLifetime,
+            transform.GetComponent<TankTeamIndexer>().teamIndex,
+            tankManager.damage,
+            tankManager,
+            tankManager.tankSettings.bulletSettings
+            );
+
+        CreateBullet(tankManager.bulletPrefab, entityShoot.shootAnchor, details, out BulletManager bulletScript);
     }
 
     public void ResetInterval(float duration)

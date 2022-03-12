@@ -10,13 +10,14 @@ public class PlayerShoot : EntityShoot
 {
     public PlayerInput playerInput;
     private PlayerManager playerManager;
-    public Transform shootAnchor;
+    public Transform bulletAnchor;
     public int airborneBullets = 1;
 
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
         playerManager = manager as PlayerManager;
+        shootAnchor = bulletAnchor;
     }
 
     public override void SetDefaultBehaviour()

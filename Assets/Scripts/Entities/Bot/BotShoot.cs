@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class BotShoot : EntityShoot
 {
-    private BotManager botManager;
-    public Transform shootAnchor;
 
+    private BotManager botManager;
+    public Transform bulletAnchor;
     private IntervalShoot intervalShoot;
 
     protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
         botManager = manager as BotManager;
+        shootAnchor = bulletAnchor;
     }
 
     public override void SetDefaultBehaviour()
     {
-        shootBehaviour = new IntervalShoot(botManager, transform, shootAnchor);
+        shootBehaviour = new IntervalShoot(tankManager: botManager, entityShoot: this, transform: transform);
         intervalShoot = shootBehaviour as IntervalShoot;
         intervalShoot.onBulletShot += IntervalShoot_onBulletShot;
     }
@@ -28,7 +29,7 @@ public class BotShoot : EntityShoot
 
     private void Update()
     {
-        intervalShoot.Shoot();
+        intervalShoot.Shoot(); 
         intervalShoot.IntervalUpdate();
     }
 }

@@ -31,7 +31,7 @@ public class ShootBehaviour
 
     }
 
-    protected GameObject CreateBullet(GameObject prefab, Transform _shootAnchor, BulletDetails details, out BulletManager bulletScript)
+    public GameObject CreateBullet(GameObject prefab, Transform _shootAnchor, BulletDetails details, out BulletManager bulletScript)
     {
         GameObject bullet = UnityEngine.Object.Instantiate(prefab, _shootAnchor.position, _shootAnchor.rotation);
 
