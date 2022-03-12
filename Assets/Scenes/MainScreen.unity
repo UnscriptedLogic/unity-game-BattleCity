@@ -9129,10 +9129,10 @@ MonoBehaviour:
   entitySpawns:
   - prefab: {fileID: 400500418037949602, guid: 7a190ca499a03f344b99ef88760fc50c, type: 3}
     settings: {fileID: 11400000, guid: 80770c5e56221284091c1d3b8715c4a3, type: 2}
-    chance: 95
+    chance: 100
   - prefab: {fileID: 400500418037949602, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
     settings: {fileID: 11400000, guid: 631c7604803ab5940b14f3977ec7c99d, type: 2}
-    chance: 5
+    chance: 0
   startDelay: 0
   waveInterval: 1
   spawnInterval: 1
@@ -11319,7 +11319,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6.65
+  m_fontSize: 6.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

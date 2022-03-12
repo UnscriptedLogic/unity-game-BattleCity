@@ -2919,7 +2919,7 @@ MonoBehaviour:
     modifyAfterSpawn: 1
     clampValues: {x: 10, y: 60}
     counter: 0
-  spawnInterval: 30
+  spawnInterval: 25
 --- !u!1 &1189070852
 GameObject:
   m_ObjectHideFlags: 0

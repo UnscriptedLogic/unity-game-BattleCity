@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1309624557003366617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6d7697432a56e24cafded5a974dba45, type: 3}
+  m_Script: {fileID: 11500000, guid: 720865306e54a2a4f97d35d6d7cf89c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1309624557003366618
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootAnchor: {fileID: 1309624557333215119}
+  bulletAnchor: {fileID: 1309624557333215119}
 --- !u!114 &8176679367477853343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,8 +203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 1309624557003366618}
   entityHealth: {fileID: 8176679367477853343}
-  checkDistance: 0
+  root: {fileID: 0}
   randomRotation: 0
+  checkDistance: 0
   activated: 0
   whileMovingParticles:
   - {fileID: 6704816285904775692}
@@ -274,7 +276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309624557333215116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.255, z: 1.2560046}
+  m_LocalPosition: {x: 0, y: 0.143, z: 1.0060046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
