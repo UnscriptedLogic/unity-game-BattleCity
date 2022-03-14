@@ -13,13 +13,16 @@ public class BulletHealth : EntityHealth
 
     private void OnTriggerEnter(Collider other)
     {
-        EntityManager entityManager = other.GetComponent<EntityManager>();
-        if (entityManager)
+        if (other as BoxCollider)
         {
-            DamageManager.DealDamage(amount: bulletManager.health, victim: entityManager, bulletManager: bulletManager);
-            return;
-        }
+            EntityManager entityManager = other.GetComponent<EntityManager>();
+            if (entityManager)
+            {
+                DamageManager.DealDamage(amount: bulletManager.health, victim: entityManager, bulletManager: bulletManager);
+                return;
+            }
 
-        KillEntity();
+            KillEntity();
+        }
     }
 }

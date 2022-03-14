@@ -14,7 +14,7 @@ public class MovementBehaviour
 
     public void MoveEntity(float speed, Vector3 direction, Rigidbody rb, Transform transform)
     {
-        rb.MovePosition(transform.position + (direction * speed * Time.deltaTime));
+        rb.MovePosition(transform.position + (direction * speed * Time.fixedDeltaTime));
 
         if (direction.magnitude > 0f)
         {

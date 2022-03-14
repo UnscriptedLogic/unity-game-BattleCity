@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PathFindingMovement : EntityMovement
 {
-	public Transform target;
+	public Vector3 target;
 	public Rigidbody rb;
 	private EntityManager entityManager;
 	public float checkRadius;
@@ -18,9 +18,10 @@ public class PathFindingMovement : EntityMovement
 		entityManager = manager as EntityManager;
 	}
 
-	public void Move()
+	public void Move(Vector3 pos)
 	{
-		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+		PathRequestManager.RequestPath(transform.position, pos, OnPathFound);
+		target = pos;
 	}
 
 	public void Stop()

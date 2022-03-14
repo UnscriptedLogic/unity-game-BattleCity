@@ -20,13 +20,14 @@ GameObject:
   - component: {fileID: 4973614529453768099}
   - component: {fileID: 500963327}
   - component: {fileID: 1025475603}
-  m_Layer: 0
+  - component: {fileID: 1229055934727960479}
+  m_Layer: 7
   m_Name: Insane PlayerBot Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &400500418037949596
 Transform:
   m_ObjectHideFlags: 0
@@ -120,6 +121,7 @@ MonoBehaviour:
   - {fileID: 7707915312038188773}
   - {fileID: -1608680342397484036}
   - {fileID: 500963327}
+  - {fileID: 1025475603}
   settings: {fileID: 11400000, guid: 631c7604803ab5940b14f3977ec7c99d, type: 2}
   health: 0
   speed: 0
@@ -204,7 +206,7 @@ MonoBehaviour:
   boxCollider: {fileID: 400500418037949603}
   gfxGameobject: {fileID: 400500418455856428}
   toggleBehaviours:
-  - {fileID: 0}
+  - {fileID: 500963327}
   - {fileID: 400500418037949597}
 --- !u!114 &-1608680342397484036
 MonoBehaviour:
@@ -218,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e9bf43dae54c748b8e06835e527a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamIndex: 0
+  teamIndex: 1
 --- !u!54 &400500418037949600
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -268,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e99a8d3f865b847a54a4fa41f743a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   rb: {fileID: 400500418037949600}
   checkRadius: 0.1
 --- !u!114 &1025475603
@@ -284,11 +286,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfMovement: {fileID: 500963327}
-  randomMoveRange: 5
+  botState: 0
   target: {fileID: 0}
+  tankInteractionRange: 8.5
   stoppingDistance: 7
+  tankLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  sphereCollider: {fileID: 1229055934727960479}
   recalculatePathInterval: 2
+  roamRange: 10
+  roamInterval: 3
   rayDistanceMult: 2
+--- !u!135 &1229055934727960479
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400500418037949602}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &400500418349970423
 GameObject:
   m_ObjectHideFlags: 0

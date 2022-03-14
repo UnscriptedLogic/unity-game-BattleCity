@@ -63,12 +63,12 @@ public static class RandomValue
         }
     }
 
-    public static Vector3 PointAtCircumferenceXZ(Vector2 center, int radius)
+    public static Vector3 PointAtCircumferenceXZ(Vector3 center, float radius)
     {
-        int theta = FromIntZeroTo(360);
+        float theta = FromFloatZeroTo(360);
         float opposite = radius * Mathf.Sin(theta);
         float adjacent = radius * Mathf.Cos(theta);
-        return center + new Vector2(adjacent, opposite);
+        return center + new Vector3(adjacent, 0f, opposite);
     }
 
     public static Vector3 OfVectorDirectionAny()

@@ -5655,6 +5655,7 @@ GameObject:
   - component: {fileID: 419572482}
   - component: {fileID: 419572483}
   - component: {fileID: 419572484}
+  - component: {fileID: 419572485}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -5715,7 +5716,9 @@ MonoBehaviour:
   - {fileID: 419572482}
   - {fileID: 419572483}
   - {fileID: 763207013}
-  enableAfterInitialize: []
+  - {fileID: 419572485}
+  enableAfterInitialize:
+  - {fileID: 2107800860}
   playEffects: 1
   playSounds: 1
   playParticles: 1
@@ -5781,6 +5784,57 @@ MonoBehaviour:
   scoreCardPrefab: {fileID: 5444023367885444849, guid: 2394edbbef359e740b74949d4dbaf63a,
     type: 3}
   scoreParent: {fileID: 110202437}
+--- !u!114 &419572485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419572476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a7de550cc714c42ad72740ee2a8273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpUIDetails:
+  - powerUpType: 0
+    icon: {fileID: 21300000, guid: 19471322041c2444380606ec63a00156, type: 3}
+    color: {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
+    description: Hardens your bullets with tungsten, increasing your bullet damage,
+      allowing them to break tougher blocks and pierce through objects and tanks.
+      This ability resets when dying.
+    lostOnDeath: 1
+    stackCount: 0
+  - powerUpType: 1
+    icon: {fileID: 21300000, guid: f9433aaba3a45ec49b1e7a126d49aaa8, type: 3}
+    color: {r: 0.35359558, g: 0.5359713, b: 0.5471698, a: 1}
+    description: All incoming damage is reduced to 0, leaving you unscathed
+    lostOnDeath: 0
+    stackCount: 0
+  - powerUpType: 2
+    icon: {fileID: 21300000, guid: bdc95da6958a10e4c8f352d99cb382ee, type: 3}
+    color: {r: 0.3808332, g: 0.7830189, b: 0.380429, a: 1}
+    description: Stops time for all opponents except your team for 10 seconds. Entites
+      stopped in time cannot move or shoot.
+    lostOnDeath: 0
+    stackCount: 0
+  - powerUpType: 3
+    icon: {fileID: 21300000, guid: c09486f8ad914b9408abf23abd9f8cb3, type: 3}
+    color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    description: Instantly destroys all opponents on the field simultaneously regardless
+      of health. Does not apply to all types of bosses.
+    lostOnDeath: 0
+    stackCount: 0
+  - powerUpType: 4
+    icon: {fileID: 21300000, guid: 527bb7da0b258f3448534bc6dcc7087f, type: 3}
+    color: {r: 0.9948177, g: 1, b: 0.5801887, a: 1}
+    description: 'Reconstructs and fortifies the walls around your base for a period
+      of time. '
+    lostOnDeath: 0
+    stackCount: 0
+  uiParent: {fileID: 1191714096}
+  uiPrefab: {fileID: 3785148427989631944, guid: 1481a29cb7401cb479fe7c09fc98a4df,
+    type: 3}
 --- !u!1001 &423037135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24723,6 +24777,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8135042285216460269, guid: b6f7eac00f16ee74d96e362283ce0f3c,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135042285216460269, guid: b6f7eac00f16ee74d96e362283ce0f3c,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -29575,12 +29634,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1952700240}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1958987818 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8135042285216460268, guid: b6f7eac00f16ee74d96e362283ce0f3c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1597337892}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1964372792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31837,6 +31890,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
+--- !u!1 &2107800860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 400500418037949602, guid: a666d919bd5996e4e8bdc302f89edfdc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1590545415550461139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2114785561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32295,9 +32354,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1958987818}
+      propertyPath: roamRange
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
+      propertyPath: stateCheck
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
+      propertyPath: roamInterval
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
+      propertyPath: stoppingDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
+      propertyPath: tankInteractionRange
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
       propertyPath: m_RootOrder
@@ -32306,17 +32381,17 @@ PrefabInstance:
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.991657
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0000002
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 400500418037949596, guid: a666d919bd5996e4e8bdc302f89edfdc,
         type: 3}
@@ -32357,6 +32432,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Insane PlayerBot Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 400500418037949602, guid: a666d919bd5996e4e8bdc302f89edfdc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
