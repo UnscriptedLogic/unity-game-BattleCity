@@ -9,8 +9,7 @@ public class Invincible : MonoBehaviour
     public void Start()
     {
         //Create a gameobject to house the fake collider
-        fakeColliderGO = new GameObject();
-        fakeColliderGO.transform.SetParent(transform);
+        fakeColliderGO = Instantiate(AssetManager.instance.forcefield, transform);
         fakeColliderGO.transform.position = transform.position;
         fakeColliderGO.transform.localScale = Vector3.one;
 

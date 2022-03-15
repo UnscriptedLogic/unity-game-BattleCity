@@ -11,7 +11,10 @@ public class PathFindingMovement : EntityMovement
 	Vector3[] path;
 	int targetIndex;
 
-    protected override void SephamoreStart(Manager manager)
+	[Header("Debug")]
+	public bool drawPathGizmos;
+
+	protected override void SephamoreStart(Manager manager)
     {
         base.SephamoreStart(manager);
 		
@@ -44,45 +47,49 @@ public class PathFindingMovement : EntityMovement
 
 	private IEnumerator FollowPath()
 	{
-		Vector3 currentWaypoint = path[0];
-		while (true)
-		{
-            if (Vector3.Distance(transform.position, currentWaypoint) <= checkRadius)
-            //if (transform.position == currentWaypoint)
-            {
-				targetIndex++;
-				if (targetIndex >= path.Length)
+        if (path.Length > 0)
+        {
+			Vector3 currentWaypoint = path[0];
+			while (true)
+			{
+				if (Vector3.Distance(transform.position, currentWaypoint) <= checkRadius)
+				//if (transform.position == currentWaypoint)
 				{
-					yield break;
+					targetIndex++;
+					if (targetIndex >= path.Length)
+					{
+						yield break;
+					}
+					currentWaypoint = path[targetIndex];
 				}
-				currentWaypoint = path[targetIndex];
-            } else
-            {
-				movementBehaviour.Move();
+				else
+				{
+					movementBehaviour.Move();
+				}
+
+				movementBehaviour.FaceMovement(transform, VectorHelper.CorrectToCartesianXZ((currentWaypoint - transform.position).normalized), entityManager.rotationSpeed, transform);
+				//Vector3 lookdir = Vector3.zero;
+				//float LRdirection = Vector3.Dot(transform.right, currentWaypoint - transform.position);
+				//if (LRdirection >= angleCheckRadius)
+				//{
+				//    //lookdir = Vector3.left;
+				//    transform.forward = transform.right;
+
+				//}
+				//else if (LRdirection <= -angleCheckRadius)
+				//{
+				//    //lookdir = Vector3.right;
+				//    transform.forward = -transform.right;
+				//    Debug.Log(LRdirection);
+
+				//}
+
+				//Debug.Log(Vector3.Dot(transform.position, currentWaypoint));
+				//movementBehaviour.FaceMovement(transform, lookdir, entityManager.rotationSpeed, transform);
+
+				yield return null;
+
 			}
-
-			movementBehaviour.FaceMovement(transform, VectorHelper.CorrectToCartesianXZ((currentWaypoint - transform.position).normalized), entityManager.rotationSpeed, transform);
-			//Vector3 lookdir = Vector3.zero;
-			//float LRdirection = Vector3.Dot(transform.right, currentWaypoint - transform.position);
-			//if (LRdirection >= angleCheckRadius)
-			//{
-			//    //lookdir = Vector3.left;
-			//    transform.forward = transform.right;
-
-			//}
-			//else if (LRdirection <= -angleCheckRadius)
-			//{
-			//    //lookdir = Vector3.right;
-			//    transform.forward = -transform.right;
-			//    Debug.Log(LRdirection);
-
-			//}
-
-			//Debug.Log(Vector3.Dot(transform.position, currentWaypoint));
-			//movementBehaviour.FaceMovement(transform, lookdir, entityManager.rotationSpeed, transform);
-
-			yield return null;
-
 		}
 	}
 
@@ -93,14 +100,17 @@ public class PathFindingMovement : EntityMovement
 
     public void OnDrawGizmos()
 	{
-        if (path != null)
+        if (drawPathGizmos)
         {
-            for (int i = targetIndex; i < path.Length; i++)
-            {
-                Gizmos.color = pathGizmoColour;
-                Gizmos.DrawCube(path[i], Vector3.one * 0.5f);
-            }
-        }
+			if (path != null)
+			{
+				for (int i = targetIndex; i < path.Length; i++)
+				{
+					Gizmos.color = pathGizmoColour;
+					Gizmos.DrawCube(path[i], Vector3.one * 0.5f);
+				}
+			}
+		}
 
         Gizmos.DrawWireSphere(transform.position, checkRadius);
     }

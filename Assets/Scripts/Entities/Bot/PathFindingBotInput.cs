@@ -109,7 +109,7 @@ public class PathFindingBotInput : Semaphore
             case BotState.ChasingEnemy:
                 if (_recalcChasePath <= 0f)
                 {
-                    pfMovement.Move(target.position);
+                    pfMovement.Move(target.position + (target.transform.forward * 2f));
                     _recalcChasePath = recalcChasePath;
                 }
 
@@ -160,13 +160,14 @@ public class PathFindingBotInput : Semaphore
         {
             if (other.gameObject.layer == Mathf.RoundToInt(Mathf.Log(tankLayer.value, 2)))
             {
-                Debug.Log(enemyTanks.Count);
-
-                if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+                if (other as BoxCollider != null)
                 {
-                    target = tankManager.transform;
-                    botState = BotState.ChasingEnemy;
-                } 
+                    if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+                    {
+                        target = tankManager.transform;
+                        botState = BotState.ChasingEnemy;
+                    }
+                }
             }
 
             //if (other.TryGetComponent(out BulletManager bulletManager))

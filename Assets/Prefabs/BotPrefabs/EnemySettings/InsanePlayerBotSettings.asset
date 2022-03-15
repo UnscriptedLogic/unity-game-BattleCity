@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: InsanePlayerBotSettings
   m_EditorClassIdentifier: 
   health: 1
-  speed: 4
+  speed: 9
   rotationSpeed: 60
   damage: 1
   miscEffects:
@@ -41,7 +41,7 @@ MonoBehaviour:
   bulletSettings: {fileID: 11400000, guid: 3069de3fa03c3a94c97d4f7b8212f34a, type: 2}
   bulletPrefab: {fileID: 2906201547787963750, guid: be89ef6fe7f49b14a9208c57abfc1bcd,
     type: 3}
-  shootInterval: {x: 0.1, y: 0.5}
+  shootInterval: {x: 0.5, y: 0.6}
   decisionInterval: {x: 0.05, y: 1}
   moveDecisions:
   - movementState: 0
