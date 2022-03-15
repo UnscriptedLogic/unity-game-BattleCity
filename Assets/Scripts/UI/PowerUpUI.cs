@@ -21,6 +21,11 @@ public class PowerUpUI : Semaphore
         uiManager.RemoveOnDeath();
     }
 
+    public void RespawnShield(float duration)
+    {
+        StartCoroutine(uiManager.RemoveAfterDuration(PowerUpType.Invincible, duration));
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         powerUpManager = collision.transform.GetComponent<PowerUpManager>();

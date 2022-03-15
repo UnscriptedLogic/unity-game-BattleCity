@@ -192,12 +192,13 @@ public class PathFindingBotInput : Semaphore
         {
             if (other.gameObject.layer == Mathf.RoundToInt(Mathf.Log(tankLayer.value, 2)))
             {
-                Debug.Log(enemyTanks.Count);
-
-                if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+                if (other as BoxCollider != null)
                 {
-                    target = null;
-                    botState = BotState.Roam;
+                    if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+                    {
+                        target = null;
+                        botState = BotState.Roam;
+                    }
                 }
             }
         }
@@ -213,9 +214,5 @@ public class PathFindingBotInput : Semaphore
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, tankInteractionRange);
-        
-        //Gizmos.color = Color.cyan;
-        //Gizmos.DrawRay(transform.position, (target.position - transform.position).normalized * rayDistanceMult);
-        //Gizmos.DrawRay(transform.position, VectorHelper.CorrectToCartesianXZ((target.position - transform.position).normalized) * rayDistanceMult);
     }
 }

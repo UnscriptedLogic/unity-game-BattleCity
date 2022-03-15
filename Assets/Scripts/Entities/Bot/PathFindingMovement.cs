@@ -5,6 +5,7 @@ public class PathFindingMovement : EntityMovement
 {
 	public Vector3 target;
 	public Rigidbody rb;
+	public Color pathGizmoColour = Color.green;
 	private EntityManager entityManager;
 	public float checkRadius;
 	Vector3[] path;
@@ -96,7 +97,7 @@ public class PathFindingMovement : EntityMovement
         {
             for (int i = targetIndex; i < path.Length; i++)
             {
-                Gizmos.color = Color.green;
+                Gizmos.color = pathGizmoColour;
                 Gizmos.DrawCube(path[i], Vector3.one * 0.5f);
             }
         }
