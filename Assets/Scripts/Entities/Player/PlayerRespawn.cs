@@ -97,7 +97,6 @@ public class PlayerRespawn : Semaphore
             if (transform.GetComponent<PowerUpUI>())
             {
                 transform.GetComponent<PowerUpUI>().RespawnShield(3f);
-
             }
 
             onPlayerRespawned?.Invoke();
