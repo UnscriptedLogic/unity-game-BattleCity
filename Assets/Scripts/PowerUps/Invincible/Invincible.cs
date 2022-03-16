@@ -5,9 +5,21 @@ public class Invincible : MonoBehaviour
 {
     private GameObject fakeColliderGO;
     private BoxCollider boxCollider;
+    public float duration;
 
     public void Start()
     {
+        Invincible[] invincibleScripts = transform.GetComponents<Invincible>();
+        for (int i = 0; i < invincibleScripts.Length; i++)
+        {
+            if (invincibleScripts[i] != this)
+            {
+                invincibleScripts[i].Activate(invincibleScripts[i].duration);
+                Destroy(this);
+                return;
+            }
+        }
+
         //Create a gameobject to house the fake collider
         fakeColliderGO = Instantiate(AssetManager.instance.forcefield, transform);
         fakeColliderGO.transform.position = transform.position;
@@ -25,6 +37,7 @@ public class Invincible : MonoBehaviour
 
     public void Activate(float duration)
     {
+        this.duration = duration;
         StartCoroutine(LifeTime(duration));
     }
 

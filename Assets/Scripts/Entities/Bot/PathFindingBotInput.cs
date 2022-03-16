@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
+[System.Serializable]
 public enum BotState
 {
     Roam,
+    AttackingEnemy,
+    CoordMatching,
     ChasingEnemy,
     ChasingBase,
     StandingGaurd
@@ -17,19 +21,28 @@ public class PathFindingBotInput : Semaphore
 
     public BotState botState;
 
-    public Transform target;
     public LayerMask tankLayer;
     public SphereCollider sphereCollider;
 
     public Dictionary<BoxCollider, TankManager> enemyTanks = new Dictionary<BoxCollider, TankManager>();
+
+    private Transform target;
+    private Transform homeBase;
+
+    public UnityEvent onDefaultBehaviour;
+    public UnityEvent<Transform> onEnemyInRange;
 
     [Header("Roam")]
     public float roamRange = 10f;
     public float roamInterval = 10f;
     private float _roamInterval;
 
+    [Header("Attacking")]
+    [Range(0, 100)]
+    public int coordMatchChance = 50;
+
     [Header("Chase")]
-    [Tooltip("The interval in which a new path is requested when chasing a unit")]
+    [Tooltip("The interval in which a new path is requested when chasing a unit.")]
     public float recalcChasePath = 2f;
     private float _recalcChasePath;
 
@@ -40,6 +53,15 @@ public class PathFindingBotInput : Semaphore
     public float stateCheck = 3f;
     private float _stateCheck;
 
+    [Header("Coord Matching")]
+    public float coordFailOffset;
+    public float repositionInterval = 3f;
+    private float _repositionInterval;
+    private Vector3 coordMatchPos;
+
+    [Header("Line of Sight")]
+    public LayerMask blockLayer;
+    private float currOffset;
     private Vector3 pos;
 
     protected override void SephamoreStart(Manager manager)
@@ -55,34 +77,13 @@ public class PathFindingBotInput : Semaphore
 
         sphereCollider.radius = tankInteractionRange;
         sphereCollider.isTrigger = true;
-    }
 
-    private void Start()
-    {
-        //Vector3 pos = RandomValue.PointAtCircumferenceXZ(transform.position, randomMoveRange);
-        //pfMovement.Move(pos);
-
+        homeBase = BaseBlockManager.instance.transform;
+        onDefaultBehaviour?.Invoke();
     }
 
     private void Update()
     {
-        //if (Vector3.Distance(transform.position, target.position) >= stoppingDistance)
-        //{
-        //    ChaseTarget();
-        //} 
-        //else
-        //{
-        //    pfMovement.Stop();
-        //    _recalculatePathInterval = recalculatePathInterval;
-        //    LookAtTarget();
-        //}
-
-        //_recalculatePathInterval -= Time.deltaTime;
-
-        //check if a tank is nearby
-        //is tank an enemy => chase
-        //is tank an ally => plot
-        //else => roam
         switch (botState)
         {
             case BotState.Roam:
@@ -106,10 +107,26 @@ public class PathFindingBotInput : Semaphore
                 _roamInterval -= Time.deltaTime;
                 _recalcChasePath = 0f;
                 break;
+            case BotState.AttackingEnemy:
+                int random = RandomValue.FromIntZeroTo(100);
+                if (random <= coordMatchChance)
+                {
+                    botState = BotState.CoordMatching;
+                } else
+                {
+                    botState = BotState.ChasingEnemy;
+                }
+                break;
             case BotState.ChasingEnemy:
                 if (_recalcChasePath <= 0f)
                 {
-                    pfMovement.Move(target.position + (target.transform.forward * 2f));
+                    Vector3 position = target.position + (target.transform.forward * 2f);
+                    if (!ValidPosition(position))
+                    {
+                        position = target.position;
+                    }
+
+                    pfMovement.Move(position);
                     _recalcChasePath = recalcChasePath;
                 }
 
@@ -120,7 +137,43 @@ public class PathFindingBotInput : Semaphore
 
                 _recalcChasePath -= Time.deltaTime;
                 break;
+            case BotState.CoordMatching:
+                if (_repositionInterval <= 0)
+                {
+                    currOffset = 0f;
+                    SingleCoordMatch();
+                    _repositionInterval = repositionInterval;
+                }
+
+                if (Vector3.Distance(coordMatchPos, transform.position) <= 0.5f)
+                {
+                    pfMovement.Stop();
+                    LookAtTarget();
+
+                    float angle = Vector3.Angle(transform.forward, target.position - transform.position);
+                    if (angle <= 5f)
+                    {
+                        Debug.Log(notClearLOS());
+                        if (notClearLOS())
+                        {
+                            botState = BotState.ChasingEnemy;
+                        }
+                    }
+                }
+
+                _repositionInterval -= Time.deltaTime;
+                break;
             case BotState.ChasingBase:
+                if (target != homeBase)
+                {
+                    target = homeBase;
+                    pfMovement.Move(homeBase.position);
+                    if (Vector3.Distance(transform.position, homeBase.position) <= stoppingDistance)
+                    {
+                        pfMovement.Stop();
+                        LookAtTarget();
+                    }
+                }
                 break;
             case BotState.StandingGaurd:
                 pfMovement.Stop();
@@ -131,7 +184,7 @@ public class PathFindingBotInput : Semaphore
                     float dist = Vector3.Distance(transform.position, target.position);
                     if (dist <= tankInteractionRange && dist >= stoppingDistance)
                     {
-                        botState = BotState.ChasingEnemy;
+                        botState = BotState.AttackingEnemy;
                     }
 
                     if (dist >= tankInteractionRange)
@@ -147,11 +200,63 @@ public class PathFindingBotInput : Semaphore
             default:
                 break;
         }
+
+        if (target == null)
+        {
+            target = null;
+            botState = BotState.Roam;
+        }
+    }
+
+    public void SetChase()
+    {
+        botState = BotState.AttackingEnemy;
+    }
+
+    public void SetChaseBase()
+    {
+        botState = BotState.ChasingBase;
+    }
+
+    private bool ValidPosition(Vector3 position)
+    {
+        //If there is no obstacle and there is ground
+        return !Physics.CheckSphere(coordMatchPos, 0.45f) && Physics.Raycast(coordMatchPos, Vector3.down, 1f);
     }
 
     private void LookAtTarget()
     {
         transform.forward = VectorHelper.CorrectToCartesianXZ((target.position - transform.position).normalized);
+    }
+
+    private void SingleCoordMatch()
+    {
+        coordMatchPos = new Vector3(target.position.x, transform.position.y, transform.position.z);
+        while (ValidPosition(coordMatchPos))
+        {
+            coordMatchPos = new Vector3(target.position.x, transform.position.y, transform.position.z - currOffset);
+            currOffset += coordFailOffset;
+        }
+        pfMovement.Move(coordMatchPos);
+    }
+
+    private bool notClearLOS()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50f, blockLayer))
+        {
+            Debug.Log(hit.transform.name);
+
+            BlockManager blockManager = hit.transform.GetComponent<BlockManager>();
+            if (blockManager)
+            {
+                if (blockManager.myWallType == BlockName.Fortified)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -160,48 +265,58 @@ public class PathFindingBotInput : Semaphore
         {
             if (other.gameObject.layer == Mathf.RoundToInt(Mathf.Log(tankLayer.value, 2)))
             {
-                if (other as BoxCollider != null)
+                //if (other as BoxCollider != null)
+                //{
+                //    if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+                //    {
+                //        target = tankManager.transform;
+                //        botState = BotState.AttackingEnemy;
+                //    }
+                //}
+
+                Debug.Log(other.transform.name);
+
+                Debug.Log(TeamManager.instance.GetTeamOfTank(other.GetComponent<TankManager>()));
+                if (TeamManager.instance.GetTeamOfTank(other.GetComponent<TankManager>()) != TeamManager.instance.GetTeamOfTank(tankManager))
                 {
-                    if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+                    if (target != null)
                     {
-                        target = tankManager.transform;
-                        botState = BotState.ChasingEnemy;
+                        if (Vector3.Distance(transform.position, other.transform.position) <= Vector3.Distance(transform.position, target.position))
+                        {
+                            target = other.transform;
+                            onEnemyInRange?.Invoke(other.transform);
+                            return;
+                        } 
                     }
+
+                    target = other.transform;
+                    onEnemyInRange?.Invoke(other.transform);
                 }
             }
-
-            //if (other.TryGetComponent(out BulletManager bulletManager))
-            //{
-            //    if (bulletManager.teamIndex != TeamManager.instance.GetTeamOfTank(tankManager))
-            //    {
-            //        //Checks if its going to collide with us
-            //        if (Physics.Raycast(bulletManager.transform.position, bulletManager.transform.forward, out RaycastHit hit, 50f))
-            //        {
-            //            if (hit.transform == transform)
-            //            {
-            //                Debug.Log(Vector3.Dot(transform.forward, bulletManager.transform.forward));
-            //            }
-            //        }
-            //    }
-            //}
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform != transform)
+        //if (other.transform != transform)
+        //{
+        //    if (other.gameObject.layer == Mathf.RoundToInt(Mathf.Log(tankLayer.value, 2)))
+        //    {
+        //        if (other as BoxCollider != null)
+        //        {
+        //            if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
+        //            {
+        //                target = null;
+        //                botState = BotState.Roam;
+        //            }
+        //        }
+        //    }
+        //}
+
+        if (other.transform == target)
         {
-            if (other.gameObject.layer == Mathf.RoundToInt(Mathf.Log(tankLayer.value, 2)))
-            {
-                if (other as BoxCollider != null)
-                {
-                    if (enemyTanks.TryGetValue(other as BoxCollider, out TankManager tankManager))
-                    {
-                        target = null;
-                        botState = BotState.Roam;
-                    }
-                }
-            }
+            target = null;
+            botState = BotState.Roam;
         }
     }
 
@@ -215,5 +330,8 @@ public class PathFindingBotInput : Semaphore
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, tankInteractionRange);
+
+        Gizmos.color = Color.black;
+        Gizmos.DrawSphere(coordMatchPos, 0.5f);
     }
 }

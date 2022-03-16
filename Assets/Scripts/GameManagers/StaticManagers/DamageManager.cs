@@ -9,11 +9,17 @@ public static class DamageManager
     public static event Action<int, TankManager, TankManager> onTankHitEvent;
 
     //The entrance. This filters out who function is called based on the victim
-    public static void DealDamage(int amount, EntityManager victim, BulletManager bulletManager = null)
+    public static void DealDamage(int amount, EntityManager victim, BulletManager bulletManager = null, int tankIndex = -1)
     {
         if (victim as TankManager)
         {
-            DealDamageBetweenTanks(amount: amount, victim: victim as TankManager, culprit: bulletManager.origin, bulletManager: bulletManager);
+            if (bulletManager != null)
+            {
+                DealDamageBetweenTanks(amount: amount, victim: victim as TankManager, culprit: bulletManager.origin, bulletManager: bulletManager);
+            } else
+            {
+                DealDamageBetweenTanks(amount: amount, victim: victim as TankManager, culpritTankIndex: tankIndex);
+            }
         } else
         {
             DealDamageToEntities(amount: amount, victim: victim, bulletManager: bulletManager);
@@ -29,10 +35,14 @@ public static class DamageManager
         if (entityHealth as BlockHealth)
         {
             BlockHealth blockHealth = entityHealth as BlockHealth;
-            blockHealth.BlockTakeDamage(amount, bulletManager.origin.damage);
-        } else
-        {
-            entityHealth.TakeDamage(amount);
+            if (bulletManager != null)
+            {
+                blockHealth.BlockTakeDamage(amount, bulletManager.origin.damage);
+            }
+            else
+            {
+                blockHealth.TakeDamage(amount);
+            }
         }
 
         //In case of indirect damage
@@ -72,7 +82,7 @@ public static class DamageManager
         }
     }
 
-    public static void DealDamageBetweenTanks(int amount, TankManager victim, int culpritTankIndex, BulletManager bulletManager = null)
+    public static void DealDamageBetweenTanks(int amount, TankManager victim, int culpritTankIndex)
     {
         TankManager culprit = TankIndexManager.instance.tankIndexes[culpritTankIndex];
 
@@ -88,17 +98,17 @@ public static class DamageManager
                 if (culprit)
                 {
                     //Announce who killed who
-                    onKillEvent?.Invoke(bulletManager.origin, victim);
+                    onKillEvent?.Invoke(TankIndexManager.instance.GetTankFromIndex(culpritTankIndex), victim);
                 }
             }
 
-            //Sometimes damage is done indirectly. E.g. Nuke powerup
-            if (bulletManager)
-            {
-                BulletHealth bulletHealth = bulletManager.GetComponent<BulletHealth>();
-                bulletHealth.TakeDamage(victimHealth);
-                onTankHitEvent?.Invoke(victimHealth - victim.health, bulletManager.origin, victim);
-            }
+            ////Sometimes damage is done indirectly. E.g. Nuke powerup
+            //if (bulletManager)
+            //{
+            //    BulletHealth bulletHealth = bulletManager.GetComponent<BulletHealth>();
+            //    bulletHealth.TakeDamage(victimHealth);
+            //    onTankHitEvent?.Invoke(victimHealth - victim.health, bulletManager.origin, victim);
+            //}
 
             onTankHitEvent?.Invoke(victimHealth - victim.health, culprit, victim);
         }

@@ -88,11 +88,16 @@ public class PlayerRespawn : Semaphore
         if (value)
         {
             Invincible invincible = gameObject.AddComponent<Invincible>();
-            invincible.Activate(5f);
+            invincible.Activate(3f);
             //if (transform.TryGetComponent(out PowerUpUI powerUpUI))
             //{
             //    powerUpUI.RespawnShield(5f);
             //}
+
+            if (transform.GetComponent<PowerUpUI>())
+            {
+                transform.GetComponent<PowerUpUI>().RespawnShield(3f);
+            }
 
             onPlayerRespawned?.Invoke();
         }

@@ -30,16 +30,13 @@ public class SaveManager : Semaphore
             high_score = UserManager.high_score
         };
 
-        if (savePath != null)
-        {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            FileStream fileStream = new FileStream(savePath, FileMode.Create);
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        FileStream fileStream = new FileStream(savePath, FileMode.Create);
 
-            binaryFormatter.Serialize(fileStream, saveData);
-            fileStream.Close();
+        binaryFormatter.Serialize(fileStream, saveData);
+        fileStream.Close();
 
-            Debug.Log("Saved");
-        }
+        Debug.Log("Saved");
     }
 
     public static void GetSavedData()

@@ -94,6 +94,7 @@ public class BotInfiniteSpawn : EntitySpawnManager
             entity.GetComponent<EntityManager>().settings = entitySpawns[index].settings;
             spawnCounter++;
 
+
             if (spawnCounter == maxSpawn)
             {
                 _interval = waveInterval;

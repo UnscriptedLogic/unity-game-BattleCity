@@ -29,6 +29,11 @@ public class TankIndexManager : Semaphore
         tankIndexes.Remove(index);
     }
 
+    public TankManager GetTankFromIndex(int index)
+    {
+        return tankIndexes[index];
+    }
+
     public void IndexMe(TankManager tankManager)
     {
         //Only index the tank if it does not exist already

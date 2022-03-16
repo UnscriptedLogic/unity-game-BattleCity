@@ -18,7 +18,7 @@ public class HomeBaseFortify : MonoBehaviour
             baseBlockManager.baseWallManagers[i].InitializeEntity();
             baseBlockManager.baseWallManagers[i].ReInitializeGraphics();
 
-            baseBlockManager.baseWallManagers[i].gameObject.SetActive(true);
+            baseBlockManager.baseWallManagers[i].GetComponent<BlockHealth>().root.SetActive(true);
         }
 
         StartCoroutine(Delay());

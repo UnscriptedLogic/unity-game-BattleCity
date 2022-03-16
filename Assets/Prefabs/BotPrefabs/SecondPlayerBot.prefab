@@ -279,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2975455552836140137
 Transform:
   m_ObjectHideFlags: 0
@@ -402,17 +402,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pfMovement: {fileID: 3225751669724860170}
   botState: 0
-  target: {fileID: 0}
   tankLayer:
     serializedVersion: 2
     m_Bits: 128
   sphereCollider: {fileID: 4452467740070211434}
-  roamRange: 25
+  onDefaultBehaviour:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnemyInRange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3225751670257442022}
+        m_TargetAssemblyTypeName: PathFindingBotInput, Assembly-CSharp
+        m_MethodName: SetChase
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  roamRange: 15
   roamInterval: 5
-  recalcChasePath: 1.5
+  coordMatchChance: 50
+  recalcChasePath: 3
   tankInteractionRange: 35
-  stoppingDistance: 5
+  stoppingDistance: 2
   stateCheck: 3
+  coordFailOffset: -1
+  repositionInterval: 3
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &3225751669724860170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,8 +451,8 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   rb: {fileID: 2975455552836140117}
   pathGizmoColour: {r: 0, g: 1, b: 0, a: 1}
-  checkRadius: 0.1
-  drawPathGizmos: 1
+  checkRadius: 0.25
+  drawPathGizmos: 0
 --- !u!114 &2975455552836140136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +549,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3370342, y: 0.802546, z: 1.3370342}
+  m_Size: {x: 1.2398733, y: 0.802546, z: 1.3370342}
   m_Center: {x: 0, y: -0.067014456, z: 0}
 --- !u!135 &4452467740070211434
 SphereCollider:
@@ -548,7 +571,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2975455552836140119}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!54 &2975455552836140117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5366,7 +5389,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 44ccd6e43b5f04b40a2e4f8a348b5071, type: 2}
+  - {fileID: 2100000, guid: ec6c1949fc2015b46a5c685e4c593b93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

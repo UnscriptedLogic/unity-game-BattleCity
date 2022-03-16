@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: -260199602727693230}
   - component: {fileID: 886481422484413850}
   - component: {fileID: 886481422484413849}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armored Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}

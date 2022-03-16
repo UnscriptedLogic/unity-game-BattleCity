@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 2906201547787963750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.25, z: 2}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.5}
+  m_LocalScale: {x: 0.1742339, y: 0.1742339, z: 0.5807796}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7692268609916951341}
@@ -155,9 +155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 2799467363345020295}
   entityHealth: {fileID: 2459325868669607596}
-  checkDistance: 0
+  root: {fileID: 0}
   randomRotation: 0
+  checkDistance: 0
   activated: 0
+  whileMovingParticles: []
 --- !u!33 &3319586622171045480
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.6258352, y: 1.6258352, z: 1.6258353}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6620182899678443970
 GameObject:

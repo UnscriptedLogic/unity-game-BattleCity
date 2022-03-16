@@ -10,13 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
-  m_Name: PlayerBotSettings
+  m_Name: GBoreSettings
   m_EditorClassIdentifier: 
-  health: 1
-  speed: 7
-  rotationSpeed: 45
+  health: 10
+  speed: 1.25
+  rotationSpeed: 20
   damage: 1
   miscEffects:
+  - createOn: 3
+    particles: []
+    sounds:
+    - {fileID: 8300000, guid: 34f756cc89845c046a10c1ea8efeafe6, type: 3}
+    priority: 225
+    volume: 0.05
+    maxDistance: 15
+    spatialBlend: 1
   - createOn: 1
     particles: []
     sounds:
@@ -32,30 +40,30 @@ MonoBehaviour:
     particles:
     - {fileID: 8333206598823610587, guid: 04b0e5b03ed4f9b45887da4d915dad89, type: 3}
     sounds:
-    - {fileID: 8300000, guid: 51699d00291bf5849a334b2d643e8940, type: 3}
+    - {fileID: 8300000, guid: 60dd80174a9f8de42a3ec9801ab8c20e, type: 3}
     priority: 225
-    volume: 0.25
-    maxDistance: 10
-    spatialBlend: 1
-  bulletSettings: {fileID: 11400000, guid: 6a009ee031f42f14eadd7a0b1bacd79b, type: 2}
+    volume: 0.4
+    maxDistance: 30
+    spatialBlend: 0.95
+  bulletSettings: {fileID: 11400000, guid: 9b23158fa3bf3e24abe7e213fe1e62d9, type: 2}
   bulletPrefab: {fileID: 2906201547787963750, guid: be89ef6fe7f49b14a9208c57abfc1bcd,
     type: 3}
-  shootInterval: {x: 0.05, y: 0.75}
-  decisionInterval: {x: 0.35, y: 0.8}
+  shootInterval: {x: 0.5, y: 1.25}
+  decisionInterval: {x: 0.35, y: 1}
   moveDecisions:
   - movementState: 0
-    chance: 12.5
+    chance: 14
   - movementState: 1
-    chance: 12.5
+    chance: 13
   - movementState: 2
-    chance: 12.5
+    chance: 13
   - movementState: 3
-    chance: 12.5
+    chance: 10
   - movementState: 4
-    chance: 12.5
+    chance: 11
   - movementState: 5
-    chance: 12.5
+    chance: 11
   - movementState: 6
-    chance: 18
+    chance: 11
   - movementState: 7
-    chance: 7
+    chance: 14

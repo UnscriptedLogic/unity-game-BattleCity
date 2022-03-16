@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1120309206891625367}
   - component: {fileID: 1309624557003366619}
   - component: {fileID: 1309624557003366616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fast Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
