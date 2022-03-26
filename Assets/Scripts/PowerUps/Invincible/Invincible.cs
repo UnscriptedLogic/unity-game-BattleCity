@@ -38,6 +38,7 @@ public class Invincible : MonoBehaviour
     public void Activate(float duration)
     {
         this.duration = duration;
+        StopAllCoroutines();
         StartCoroutine(LifeTime(duration));
     }
 

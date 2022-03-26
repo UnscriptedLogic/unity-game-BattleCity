@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 5801837590540396334}
-  onDeathDestroys: 1
-  onDeathDisables: 0
+  onDeathDestroys: 0
+  onDeathDisables: 1
 --- !u!114 &2914395667515941605
 MonoBehaviour:
   m_ObjectHideFlags: 0
