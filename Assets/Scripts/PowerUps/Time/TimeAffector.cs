@@ -60,9 +60,9 @@ public class TimeAffector : MonoBehaviour
         switch (timeModifyType)
         {
             case TimeModifyTypes.Stop:
-                movement.enabled = !value;
-                shoot.enabled = !value;
-                entityEffects.enabled = !value;
+                if (movement) movement.enabled = !value;
+                if (shoot) shoot.enabled = !value;
+                if (entityEffects) entityEffects.enabled = !value;
                 break;
             case TimeModifyTypes.Slow:
                 if (value)
