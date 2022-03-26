@@ -16,7 +16,6 @@ public class DeathEndsGame : MonoBehaviour
             enabled = false;
             return;
         }
-
         entityHealth.onKilled += EntityHealth_onKilled;
     }
 
