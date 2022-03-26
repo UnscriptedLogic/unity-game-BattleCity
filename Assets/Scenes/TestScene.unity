@@ -5718,8 +5718,6 @@ MonoBehaviour:
   - {fileID: 419572485}
   enableAfterInitialize:
   - {fileID: 763207012}
-  - {fileID: 5681686448125460681}
-  - {fileID: 0}
   playEffects: 1
   playSounds: 1
   playParticles: 1
@@ -10974,16 +10972,17 @@ MonoBehaviour:
   addOnSpawn: []
   canSpawn: 1
   entitySpawns:
-  - prefab: {fileID: 400500418037949602, guid: b54214d1cb308e147b4b499f34b12bf7, type: 3}
-    settings: {fileID: 11400000, guid: e260d9902bb4e4b47a8d894790a41a01, type: 2}
-    chance: 35
+  - prefab: {fileID: 2731442686784575376, guid: bc12a79036b7751478b8040c9d759fe6,
+      type: 3}
+    settings: {fileID: 11400000, guid: 0db753550daa4244d84239c995fe07c1, type: 2}
+    chance: 100
   - prefab: {fileID: 1309624557003366617, guid: 4cb66190dc1924f429432b442e73bf34,
       type: 3}
     settings: {fileID: 11400000, guid: aad676aff64c65d458bccd2c4b2ed62c, type: 2}
-    chance: 35
+    chance: 0
   - prefab: {fileID: 886481422484413848, guid: da7229816bb7805478228084d9835356, type: 3}
     settings: {fileID: 11400000, guid: 7d17d2f98a147f949914032a0c6b5e56, type: 2}
-    chance: 30
+    chance: 0
   startDelay: 1
   waveInterval: 1
   spawnInterval: 1
@@ -32348,6 +32347,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 500963327, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
+      propertyPath: drawPathGizmos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1025475603, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -32419,9 +32422,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a666d919bd5996e4e8bdc302f89edfdc, type: 3}
---- !u!1 &5681686448125460681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 400500418037949602, guid: a666d919bd5996e4e8bdc302f89edfdc,
-    type: 3}
-  m_PrefabInstance: {fileID: 5681686448125460680}
-  m_PrefabAsset: {fileID: 0}

@@ -351,7 +351,7 @@ MonoBehaviour:
   rb: {fileID: 2731442686784575378}
   pathGizmoColour: {r: 0, g: 1, b: 0, a: 1}
   checkRadius: 0.05
-  drawPathGizmos: 0
+  drawPathGizmos: 1
 --- !u!114 &8528409318226579332
 MonoBehaviour:
   m_ObjectHideFlags: 0
