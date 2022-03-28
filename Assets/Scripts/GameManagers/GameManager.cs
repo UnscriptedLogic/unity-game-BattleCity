@@ -9,6 +9,7 @@ public class GameManager : Manager
     public static GameManager instance;
     public event Action onGameStarted;
     public event Action onGameOver;
+    public event Action onGameWon;
 
     public GameObject[] enableAfterInitialize;
 
@@ -35,6 +36,12 @@ public class GameManager : Manager
         {
             enableAfterInitialize[i].SetActive(true);   
         }
+    }
+
+    public void GameWon()
+    {
+        Debug.Log("Game Won");
+        onGameWon?.Invoke();
     }
 
     public void GameOver()

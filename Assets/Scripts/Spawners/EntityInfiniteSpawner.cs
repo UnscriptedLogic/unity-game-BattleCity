@@ -43,13 +43,14 @@ public class EntityInfiniteSpawner : EntitySpawnManager
     {
         if (_interval <= 0f)
         {
+            //Skips the whole loop and tries again if a invalid position is found.
             Vector3 pos = transform.position + RandomValue.InArea(new Vector3(spawnArea.x, 0f, spawnArea.y));
-            if (!CheckSpawnValid(pos, 0.45f) || HasReachedEntityCap())
+            if (!CheckSpawnValid(pos, blockLayer, 0.45f) || HasReachedEntityCap())
             {
                 return;
             }
 
-            //int index = RandomIndex();
+            //Randomizes the entity to spawn
             float[] chances = new float[entityChances.Length];
             for (int i = 0; i < chances.Length; i++)
             {

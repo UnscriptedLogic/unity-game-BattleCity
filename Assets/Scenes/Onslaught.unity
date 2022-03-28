@@ -878,7 +878,6 @@ GameObject:
   - component: {fileID: 419572483}
   - component: {fileID: 419572484}
   - component: {fileID: 419572485}
-  - component: {fileID: 419572486}
   - component: {fileID: 419572487}
   m_Layer: 0
   m_Name: GameManagers
@@ -963,12 +962,10 @@ MonoBehaviour:
   - {fileID: 419572484}
   - {fileID: 534808534}
   - {fileID: 1181489153}
-  - {fileID: 419572486}
   enableAfterInitialize:
-  - {fileID: 988356465}
+  - {fileID: 970467778}
   - {fileID: 534808533}
   - {fileID: 1181489151}
-  - {fileID: 970467778}
   playEffects: 1
   playSounds: 1
   playParticles: 1
@@ -1066,27 +1063,6 @@ MonoBehaviour:
   uiParent: {fileID: 145094797}
   uiPrefab: {fileID: 3785148427989631944, guid: 1481a29cb7401cb479fe7c09fc98a4df,
     type: 3}
---- !u!114 &419572486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419572476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e3bd51106b4ce3409544e3a7e1152c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connRoute: https://www.google.com/
-  dateRoute: http://localhost/UnityBackendTutorial/GetDate.php
-  getUserByID: http://localhost/UnityBackendTutorial/GetUserByID.php
-  scoresRoute: http://localhost/UnityBackendTutorial/GetScores.php
-  addScoreRoute: http://localhost/UnityBackendTutorial/AddScore.php
-  loginRoute: http://localhost/UnityBackendTutorial/LogIn.php
-  signupRoute: http://localhost/UnityBackendTutorial/SignUp.php
-  deleteUserRoute: http://localhost/UnityBackendTutorial/DeleteUser.php
-  initialized: 0
 --- !u!114 &419572487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,9 +1378,11 @@ MonoBehaviour:
   spawnArea: {x: 30.1, y: 13.55}
   spawnParent: {fileID: 534808535}
   maxAlive: 15
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 0
   addOnSpawn:
   - {fileID: 534808536}
-  canSpawn: 0
   entitySpawns:
   - prefab: {fileID: 400500418037949602, guid: b54214d1cb308e147b4b499f34b12bf7, type: 3}
     settings: {fileID: 11400000, guid: e260d9902bb4e4b47a8d894790a41a01, type: 2}
@@ -2634,115 +2612,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987533979}
   m_CullTransparentMesh: 1
---- !u!1 &988356465
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 988356470}
-  - component: {fileID: 988356469}
-  - component: {fileID: 988356468}
-  - component: {fileID: 988356467}
-  - component: {fileID: 988356466}
-  m_Layer: 0
-  m_Name: NodeParent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &988356466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988356465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a66b1053c95ec44a86679dab9433790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &988356467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988356465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aecff09e550b3e4f90d3bd23c015c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pfGrid: {fileID: 988356468}
-  drawGizmos: 1
---- !u!114 &988356468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988356465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe36809b8baa334da717b1ed68987f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeManager: {fileID: 988356469}
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  drawGizmos: 0
---- !u!114 &988356469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988356465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c237ea771216594b9f5d6ed97b814ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeforeInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  SephamoreInitialized:
-    m_PersistentCalls:
-      m_Calls: []
-  AfterInitialization:
-    m_PersistentCalls:
-      m_Calls: []
-  sephamores:
-  - {fileID: 988356468}
-  - {fileID: 988356466}
-  - {fileID: 988356467}
-  gridSize: {x: 31, y: 31}
-  possibleSpawns:
-  - {fileID: 4920282570340690472, guid: e9a7ea9d57758374d90240faaef034ba, type: 3}
-  - {fileID: 2506689164246591346, guid: 7bff097ae73db1544b230204a6d22e67, type: 3}
-  - {fileID: 6893615782639771088, guid: 3606a03ca36d0f14a8910c70b3461790, type: 3}
-  showGrid: 0
---- !u!4 &988356470
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988356465}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 1, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018929424
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,8 +2875,10 @@ MonoBehaviour:
   spawnArea: {x: 29.2, y: 17.27}
   spawnParent: {fileID: 1181489152}
   maxAlive: 1
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 0
   addOnSpawn: []
-  canSpawn: 0
   entityChances:
   - prefab: {fileID: 5115430143269033301, guid: e0df5fcb75177ce4fa3ea7033ca2ebe6,
       type: 3}

@@ -14,7 +14,7 @@ public class NodeManager : Manager
     [Header("Debug")]
     public bool showGrid;
 
-    private void Awake()
+    private void Start()
     {
         InitializeGrid();
         InitializeSephamores();

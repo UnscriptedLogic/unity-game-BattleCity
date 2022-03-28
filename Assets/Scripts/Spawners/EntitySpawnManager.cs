@@ -35,11 +35,10 @@ public class EntitySpawnManager : Semaphore
     [Tooltip("The spawner will stop spawning when it has reached this limit of entities alive on the field. Set zero to infinite")]
     public int maxAlive = 0;
 
+    public LayerMask blockLayer;
     public Component[] addOnSpawn;
     public event Action<GameObject> onSpawn;
     public event Action<int> onReachedEntityCap;
-
-    public bool canSpawn = false;
 
     public virtual void Start()
     {
@@ -50,13 +49,6 @@ public class EntitySpawnManager : Semaphore
     {
         base.SephamoreStart(manager);
         gameManager = manager as GameManager;
-
-        gameManager.onGameStarted += OnGameInitialized;
-    }
-
-    protected void OnGameInitialized()
-    {
-        canSpawn = true;
     }
 
     protected GameObject Spawn(GameObject prefab, Vector3 position)
@@ -72,9 +64,9 @@ public class EntitySpawnManager : Semaphore
         return entity;
     }
 
-    protected bool CheckSpawnValid(Vector3 position, float checkRadius = 0.25f)
+    protected bool CheckSpawnValid(Vector3 position, LayerMask layer, float checkRadius = 0.25f)
     {
-        return !Physics.CheckSphere(position, checkRadius);
+        return !Physics.CheckSphere(position, checkRadius, layer);
     }
 
     protected void OnDrawGizmos()

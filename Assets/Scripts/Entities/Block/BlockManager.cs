@@ -62,7 +62,7 @@ public class BlockManager : EntityManager
             boxCollider.enabled = false;
         } else
         {
-            gameObject.layer = LayerMask.NameToLayer("Block");
+            //gameObject.layer = LayerMask.NameToLayer("Block");
         }
 
 

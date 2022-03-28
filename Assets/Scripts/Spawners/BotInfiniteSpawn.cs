@@ -53,29 +53,9 @@ public class BotInfiniteSpawn : EntitySpawnManager
         }
     }
 
-    //public override void Initialize()
-    //{
-    //    _interval = startDelay;
-    //    onWaveCompleted += ModifyAfterWave;
-    //    onSpawnEntity += ModifyAfterSpawn;
-
-    //    for (int i = 0; i < spawnModifiers.Length; i++)
-    //    {
-    //        if (spawnModifiers[i].modifyAfterSpawn)
-    //        {
-    //            onSpawnModify.Add(spawnModifiers[i]);
-    //        }
-    //        else
-    //        {
-    //            onWaveModify.Add(spawnModifiers[i]);
-    //        }
-    //    }
-
-    //    base.Initialize();
-    //}
-
     private void Update()
     {
+        //Prevents the spawner from filling up the map
         if (HasReachedEntityCap())
         {
             return;
@@ -83,18 +63,20 @@ public class BotInfiniteSpawn : EntitySpawnManager
 
         if (_interval <= 0)
         {
+            //Skips the whole loop and tries again if a invalid position is found.
             Vector3 pos = transform.position + RandomValue.InArea(new Vector3(spawnArea.x, 0f, spawnArea.y));
-            if (!CheckSpawnValid(pos, 0.45f))
+            if (!CheckSpawnValid(pos, blockLayer, 0.45f))
             {
                 return;
             }
 
+            //Randomizes the entity to spawn
             int index = RandomIndex();
             GameObject entity = Spawn(entitySpawns[index].prefab, pos);
             entity.GetComponent<EntityManager>().settings = entitySpawns[index].settings;
             spawnCounter++;
 
-
+            //We have reached the amount needed to spawn for this wave. Proceed to next wave
             if (spawnCounter == maxSpawn)
             {
                 _interval = waveInterval;
@@ -121,6 +103,7 @@ public class BotInfiniteSpawn : EntitySpawnManager
         ModifySettings(onSpawnModify);
     }
 
+    //Reduces the spawner's stats for every entity spawned or after every n entites have spawned
     public void ModifySettings(List<EntitySpawnModifiers> _modifiers)
     {
         for (int i = 0; i < _modifiers.Count; i++)

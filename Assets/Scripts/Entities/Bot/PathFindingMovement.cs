@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PathFindingMovement : EntityMovement
@@ -8,11 +9,15 @@ public class PathFindingMovement : EntityMovement
 	public Color pathGizmoColour = Color.green;
 	private EntityManager entityManager;
 	public float checkRadius;
+
 	Vector3[] path;
 	int targetIndex;
 
 	[Header("Debug")]
 	public bool drawPathGizmos;
+
+	public float DistToDest { get => Vector3.Distance(transform.position, target); }
+	public event Action onFailedPath;
 
 	protected override void SephamoreStart(Manager manager)
     {
@@ -20,6 +25,7 @@ public class PathFindingMovement : EntityMovement
 		
 		//PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
 		entityManager = manager as EntityManager;
+		target = transform.position;
 	}
 
 	public void Move(Vector3 pos)
@@ -42,7 +48,10 @@ public class PathFindingMovement : EntityMovement
 			targetIndex = 0;
 			StopCoroutine("FollowPath");
 			StartCoroutine("FollowPath");
-		}
+		} else
+        {
+			onFailedPath?.Invoke();
+        }
 	}
 
 	private IEnumerator FollowPath()
