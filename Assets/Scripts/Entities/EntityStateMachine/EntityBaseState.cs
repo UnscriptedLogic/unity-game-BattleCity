@@ -35,6 +35,8 @@ public abstract class EntityBaseState
     protected void SwitchState(EntityBaseState newState)
     {
         ExitState();
+
+        stateMachine.PathFinder.Stop();
         newState.EnterState();
 
         stateMachine.CurrentState = newState;

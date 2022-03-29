@@ -5099,7 +5099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2194336699182740823}
   m_LocalRotation: {x: -0, y: 0.0000058710566, z: -0, w: -1}
-  m_LocalPosition: {x: 0, y: -0.014, z: -0.222}
+  m_LocalPosition: {x: 0, y: -0.317, z: -0.369}
   m_LocalScale: {x: 0.95265627, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5119,9 +5119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankManager: {fileID: 8064754062388680900}
-  damageInterval: 0.25
-  checkRadius: 2
-  checkDistance: 3
+  damageInterval: 0.1
+  checkRadius: 2.1
+  checkDistance: 3.45
 --- !u!65 &4998924861600727228
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5133,8 +5133,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.121929, y: 1.3237982, z: 0.21907449}
-  m_Center: {x: 5.070163e-14, y: 0.12030518, z: 0.5062113}
+  m_Size: {x: 2.121929, y: 1.3237982, z: 0.8969221}
+  m_Center: {x: -9.2045566e-14, y: 0.120305225, z: 0.8451354}
 --- !u!1 &2655796780712299859
 GameObject:
   m_ObjectHideFlags: 0
@@ -15450,7 +15450,7 @@ MonoBehaviour:
   - {fileID: 4348564809075392739}
   - {fileID: 538319973528932998}
   - {fileID: 1382150161859077902}
-  settings: {fileID: 11400000, guid: 0db753550daa4244d84239c995fe07c1, type: 2}
+  settings: {fileID: 11400000, guid: a2d21bec07e682b458b1ce3318ff57eb, type: 2}
   health: 0
   speed: 0
   rotationSpeed: 30
@@ -15473,13 +15473,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8064754062388680952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e4d4d5829197014abaa4eb12ee4d22b, type: 3}
+  m_Script: {fileID: 11500000, guid: b1e7135ce0ebcd549aa227d2dc19bec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roamRange: 15
-  attackRange: 10
+  idleDuration: 8
+  roamRange: 0
+  attackRange: 9
   chaseRange: 12
-  tooCloseRange: 3
+  tooCloseRange: 5
+  dashSpeed: 8
+  dashDuration: 1
+  maxDist: 5
 --- !u!114 &4348564809075392749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15573,8 +15577,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 0.95943344}
-  m_Center: {x: 9.3462944e-14, y: 0, z: -0.5202833}
+  m_Size: {x: 2, y: 1.0472622, z: 1.7493261}
+  m_Center: {x: 6.7695754e-14, y: -0.023630898, z: -0.12533712}
 --- !u!135 &4348564809075392750
 SphereCollider:
   m_ObjectHideFlags: 0

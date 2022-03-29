@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EntityChaseState : EntityBaseState
+public class EntitySnipeState : EntityBaseState
 {
-    public EntityChaseState(EntityStateMachine ctx, EntityStateFactory factory) : base(ctx, factory)
+    public EntitySnipeState(EntityStateMachine ctx, EntityStateFactory factory) : base(ctx, factory)
     {
     }
 
     public override void CheckSwitchCondition()
     {
-        
+
     }
 
     public override void EnterState()
     {
+        Debug.Log("Snipe State");
 
     }
 

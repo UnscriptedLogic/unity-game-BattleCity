@@ -134,12 +134,4 @@ public class PathFinder : Semaphore
         return (14 * distX) + 10 * (distY - distX);
         //return Vector3.Distance(nodeB.position, nodeA.position);
     }
-
-    private void OnDrawGizmos()
-    {
-        if (drawGizmos)
-        {
-
-        }
-    }
 }

@@ -16,12 +16,13 @@ public class PathFinderGrid : Semaphore
     protected override void SephamoreStart(Manager manager)
     {
         CreateGrid();
-
+        InvokeRepeating("RefreshObstructed", 2f, 2f);
         base.SephamoreStart(manager);
     }
 
     private void CreateGrid()
     {
+        pathfindingGrid.Clear();
         for (int i = 0; i < nodeManager.grid.Count; i++)
         {
             Tuple<int, int> coord = nodeManager.grid.ElementAt(i).Key;
@@ -30,6 +31,14 @@ public class PathFinderGrid : Semaphore
 
             pathfindingGrid.Add(coord, new PFNode(coord.Item1, coord.Item2, isObstructed, value.position));
         }
+    }
+
+    private void RefreshObstructed()
+    {
+        ForEvery(node => 
+        {
+            node.isObstacle = Physics.CheckSphere(node.position, 0.45f, obstacleLayer);
+        });
     }
 
     private void ForEvery(Action<PFNode> method)
