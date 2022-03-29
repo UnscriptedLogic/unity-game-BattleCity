@@ -8,10 +8,19 @@ public class GiantBoreDashState : EntityBaseState
 {
     private Transform entity;
 
-    private float delay = 0.75f;
+    private int dashRepeat = 3;
+    private int _dashCount;
+
+    private float aimingTime = 0.75f;
+    private float _aimTime;
+
+    private float delay = 0.3f;
     private float _delay;
 
-    private float speed = 10;
+    private float repeatDashAimTime = 0.5f;
+    private float repeatDashDelayTime = 0.5f;
+
+    private float speed;
     private float _duration;
 
     private float originalSpeed;
@@ -31,41 +40,67 @@ public class GiantBoreDashState : EntityBaseState
     {
         Debug.Log("Dash State");
         boreStateMachine = stateMachine as GiantBoreStateMachine;
+        stateMachine.PathFinder.Stop();
 
         entity = stateMachine.transform;
+        startPos = entity.position;
+        originalSpeed = stateMachine.Manager.speed;
+
         speed = boreStateMachine.dashSpeed;
         _duration = boreStateMachine.dashDuration;
-        startPos = entity.position;
-
-        originalSpeed = stateMachine.Manager.speed;
         _delay = delay;
+        _aimTime = aimingTime;
     }
 
     public override void UpdateState()
     {
-        if (_delay > 0)
+        if (_aimTime <= 0f)
         {
-            _delay -= Time.deltaTime;
-            return;
-        }
-
-        if (Vector3.Distance(startPos, entity.position) <= boreStateMachine.maxDist && stateMachine.Target.gameObject.activeInHierarchy)
-        {
-            if (_duration > 0)
+            if (_delay <= 0f)
             {
-                stateMachine.Manager.speed = speed;
-                //entity.LookAt(new Vector3(stateMachine.Target.position.x, entity.position.y, stateMachine.Target.position.z));
-                stateMachine.PathFinder.movementBehaviour.MoveEntity(speed, entity.forward, stateMachine.PathFinder.rb, entity);
-                _duration -= Time.deltaTime;
+                if (_dashCount < dashRepeat)
+                {
+                    Dash();
+                }
+            } else
+            {
+                _delay -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (_dashCount < dashRepeat)
+            {
+                Vector3 pos = stateMachine.Target.position;
+                entity.LookAt(new Vector3(pos.x, entity.position.y, pos.z));
+
+                _aimTime -= Time.deltaTime;
             } else
             {
                 SwitchState(factory.BoreIdle());
-                return;
             }
+        }
+    }
+
+    private void Dash()
+    {
+
+        if (Vector3.Distance(startPos, entity.position) <= boreStateMachine.maxDist || _duration > 0)
+        {
+            stateMachine.Manager.speed = speed;
+            //entity.LookAt(new Vector3(stateMachine.Target.position.x, entity.position.y, stateMachine.Target.position.z));
+            stateMachine.PathFinder.movementBehaviour.MoveEntity(speed, entity.forward, stateMachine.PathFinder.rb, entity);
+            _duration -= Time.deltaTime;
         } else
         {
-            SwitchState(factory.BoreIdle());
-            return;
+            if (_dashCount < dashRepeat)
+            {
+                stateMachine.PathFinder.rb.velocity = Vector3.zero;
+                _aimTime = repeatDashAimTime;
+                _delay = repeatDashDelayTime;
+                _duration = boreStateMachine.dashDuration;
+                _dashCount++;
+            }
         }
     }
 
@@ -82,6 +117,12 @@ public class GiantBoreDashState : EntityBaseState
 
     public override void OnCollisionEnter(Collision collision)
     {
-
+        if (_dashCount > 0)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Walls"))
+            {
+                SwitchState(factory.BoreIdle());
+            }
+        }
     }
 }

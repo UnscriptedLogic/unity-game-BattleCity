@@ -11,7 +11,7 @@ public class GiantBoreChaseBaseState : EntityChaseBaseState
     {
         if (stateMachine.isTargetInChaseRange)
         {
-            SwitchState(factory.BoreHold());
+            SwitchState(factory.BoreDash());
             return;
         }
     }

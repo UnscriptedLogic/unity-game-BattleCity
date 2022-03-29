@@ -733,7 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 69945832}
   - component: {fileID: 69945833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1377,7 +1377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 103904643}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2866,23 +2866,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3505939957320594241, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
+      propertyPath: checkRadius
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505939957320594241, guid: 2dd8618bdf696c54881c88867920c095,
+        type: 3}
       propertyPath: checkDistance
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 3505939957320594241, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
       propertyPath: damageInterval
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5932069335587112128, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
       propertyPath: maxDist
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5932069335587112128, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
       propertyPath: dashSpeed
-      value: 12
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5932069335587112128, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
@@ -2897,7 +2902,7 @@ PrefabInstance:
     - target: {fileID: 5932069335587112128, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
       propertyPath: dashDuration
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 5932069335587112128, guid: 2dd8618bdf696c54881c88867920c095,
         type: 3}
@@ -3556,7 +3561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 270444649}
   - component: {fileID: 270444650}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5633,7 +5638,7 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7994,7 +7999,7 @@ GameObject:
   m_Component:
   - component: {fileID: 535663832}
   - component: {fileID: 535663833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12569,7 +12574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852314052}
   - component: {fileID: 852314053}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22224,6 +22229,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageArea
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2c5cd1922e11a7f41a55658482f320fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5cd1922e11a7f41a55658482f320fc, type: 3}
 --- !u!1001 &1393857448
@@ -27616,7 +27626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1787153757}
   - component: {fileID: 1787153758}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29114,7 +29124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tunnel Boring Tank, Rynul
+  m_text: Great Bore Tank
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

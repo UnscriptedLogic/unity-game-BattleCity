@@ -9,7 +9,7 @@ public class GiantBoreHoldState : EntityHoldState
 
     public override void CheckSwitchCondition()
     {
-        if (stateMachine.isTargetInAttackRange)
+        if (stateMachine.isTargetInAttackRange && stateMachine.Target.GetComponent<EntityManager>().health > 0f)
         {
             SwitchState(factory.BoreDash());
             return;
@@ -25,7 +25,7 @@ public class GiantBoreHoldState : EntityHoldState
     {
         CheckSwitchCondition();
         //entity.forward = VectorHelper.CorrectToCartesianXZ((stateMachine.Target.position - entity.position).normalized);
-        Vector3 pos = stateMachine.Target.position;
-        entity.LookAt(new Vector3(pos.x, entity.position.y, pos.z));
+        //Vector3 pos = stateMachine.Target.position;
+        //entity.LookAt(new Vector3(pos.x, entity.position.y, pos.z));
     }
 }

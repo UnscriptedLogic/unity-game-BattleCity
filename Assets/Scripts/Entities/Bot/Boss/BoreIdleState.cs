@@ -20,7 +20,13 @@ public class BoreIdleState : EntityIdleState
 
         if (_duration <= 0f)
         {
-            SwitchState(factory.BoreChaseBase());
+            if (stateMachine.isTargetInAttackRange)
+            {
+                SwitchState(factory.BoreDash());
+            } else
+            {
+                SwitchState(factory.BoreChaseBase());
+            }
         }
     }
 

@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 25784
+  controlID: 20523
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 25968
+  controlID: 20462
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,10 +201,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 17}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 32f7ffff
       m_LastClickedID: -2254
-      m_ExpandedIDs: a675fdff32f7ffff12fbffff38740000
+      m_ExpandedIDs: 32f7ffff12fbffff40740000cc790000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -296,7 +296,8 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders: []
+    m_Folders:
+    - Assets/Prefabs/BotPrefabs/EnemySettings/GamePlaySettings/BossSettings
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
@@ -310,7 +311,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 3cb40000
     m_LastClickedID: 46140
-    m_ExpandedIDs: ffffffff000000001282000014820000188200001c82000022820000d2820000
+    m_ExpandedIDs: ffffffff0000000000840000028400000484000006840000088400000a84000082840000aa8400008c8600008e8600009086000092860000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -335,10 +336,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 401}
     m_SelectedIDs: 32f7ffff
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000001282000014820000188200001c82000022820000d2820000
+    m_ExpandedIDs: ffffffff0000000000840000028400000484000006840000088400000a84000082840000aa8400008c8600008e8600009086000092860000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -446,7 +447,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 25905
+  controlID: 20545
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -754,9 +755,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.51985836, y: 0.18193202, z: -0.1143942, w: -0.82677823}
   m_Size:
-    m_Target: 11.642117
+    m_Target: 14.620354
     speed: 2
-    m_Value: 11.140781
+    m_Value: 14.620354
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1007,7 +1008,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 25785
+  controlID: 20524
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1071,7 +1072,7 @@ MonoBehaviour:
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 270
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

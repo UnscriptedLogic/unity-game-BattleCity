@@ -23,7 +23,6 @@ public class EntityHoldState : EntityBaseState
     public override void EnterState()
     {
         Debug.Log("Hold State");
-
         entity = stateMachine.transform;
     }
 
