@@ -6,6 +6,7 @@ public class LevelUIManager : Semaphore
 {
     private GameManager manager;
     public GameObject gameoverScreen;
+    public GameObject gamewinScreen;
 
     protected override void SephamoreStart(Manager manager)
     {
@@ -13,7 +14,9 @@ public class LevelUIManager : Semaphore
         this.manager = GameManager.instance;
 
         this.manager.onGameOver += DisplayGOScreen;
+        this.manager.onGameWon += DisplayGWScreen;
         gameoverScreen.SetActive(false);
+        gamewinScreen.SetActive(false);
     }
 
     public void ToggleEffects()
@@ -36,5 +39,10 @@ public class LevelUIManager : Semaphore
     private void DisplayGOScreen()
     {
         gameoverScreen.SetActive(true);
+    }
+
+    private void DisplayGWScreen()
+    {
+        gamewinScreen.SetActive(true);
     }
 }

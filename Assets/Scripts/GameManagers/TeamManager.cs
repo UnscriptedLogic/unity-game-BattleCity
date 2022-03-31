@@ -12,7 +12,7 @@ public class Team
     public List<TankManager> entities;
 }
 
-
+[RequireComponent(typeof(TankIndexManager))]
 public class TeamManager : Semaphore
 {
     public static TeamManager instance;

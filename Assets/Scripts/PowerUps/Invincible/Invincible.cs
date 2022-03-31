@@ -28,6 +28,7 @@ public class Invincible : MonoBehaviour
         //Create a fake collider - damage scripts will look for an entityhealth. Seeing there's none, no damage done
         boxCollider = transform.GetComponent<BoxCollider>();
         BoxCollider fakeBoxCollider = fakeColliderGO.AddComponent<BoxCollider>();
+        fakeColliderGO.layer = LayerMask.NameToLayer("Ignore Raycast"); //Ignores raycast for any damage
         fakeBoxCollider.size = boxCollider.size;
         fakeBoxCollider.center = boxCollider.center;
         fakeBoxCollider.isTrigger = false;

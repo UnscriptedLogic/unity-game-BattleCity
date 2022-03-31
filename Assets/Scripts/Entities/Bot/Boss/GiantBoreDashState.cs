@@ -84,7 +84,7 @@ public class GiantBoreDashState : EntityBaseState
 
     private void Dash()
     {
-
+        stateMachine.PathFinder.Stop();
         if (Vector3.Distance(startPos, entity.position) <= boreStateMachine.maxDist || _duration > 0)
         {
             stateMachine.Manager.speed = speed;

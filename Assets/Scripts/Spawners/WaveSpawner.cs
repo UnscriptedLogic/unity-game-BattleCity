@@ -61,6 +61,15 @@ public class WaveSpawner : EntitySpawnManager
 
     private void Update()
     {
+        if (checkClearStage)
+        {
+            if (spawnParent.childCount == 0)
+            {
+                Debug.Log("Game Cleared!");
+                GameManager.instance.GameWon();
+            }
+        }
+
         if (stopSpawning)
         {
             return;
@@ -131,6 +140,7 @@ public class WaveSpawner : EntitySpawnManager
         if (waveIndex >= waves.Length)
         {
             Debug.Log("All waves completed");
+            checkClearStage = true;
             onAllWavesCompleted?.Invoke();
             stopSpawning = true;
             return;

@@ -21,7 +21,7 @@ public class DamageRegion : MonoBehaviour
                 BoxCollider boxCollider = hitInfo.transform.GetComponent<BoxCollider>();
                 if (boxCollider)
                 {
-                    EntityManager entityManager = hitInfo.transform.GetComponent<EntityManager>();
+                    EntityManager entityManager = boxCollider.GetComponent<EntityManager>();
                     if (entityManager)
                     {
                         _interval = damageInterval;

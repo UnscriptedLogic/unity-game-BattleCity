@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 1482348910171959459}
   - component: {fileID: 1900879557874800809}
   - component: {fileID: 9051367939211148650}
+  - component: {fileID: 2230557888732848455}
+  - component: {fileID: 2473380853420638981}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -239,6 +241,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6258352, y: 1.6258352, z: 1.6258353}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2230557888732848455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906201547787963750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0feb2ee69ea6f469adaadd29b84010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy: 0
+--- !u!114 &2473380853420638981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906201547787963750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e025415fb9c58ab43bcd8ddd60113cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy: 0
 --- !u!1 &6620182899678443970
 GameObject:
   m_ObjectHideFlags: 0

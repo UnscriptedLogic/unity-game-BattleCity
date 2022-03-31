@@ -8,11 +8,14 @@ public class EntityHealth : Semaphore
     [Tooltip("Leave empty only if this script is on the root of the object.")]
     public GameObject root;
 
+    public event Action<int> onHealthChanged;
     public event Action<int> onHealthDeducted;
     public event Action onKilled;
     
     public bool onDeathDestroys;
     public bool onDeathDisables = false;
+
+    public EntityManager Manager { get => entityManager; }
 
     protected override void SephamoreStart(Manager manager)
     {
@@ -35,6 +38,7 @@ public class EntityHealth : Semaphore
         }
 
         onHealthDeducted?.Invoke(damage);
+        onHealthChanged?.Invoke(entityManager.health);
     }
 
     public void KillEntity()

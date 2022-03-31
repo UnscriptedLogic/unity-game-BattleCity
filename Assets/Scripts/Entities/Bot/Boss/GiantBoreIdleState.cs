@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class BoreIdleState : EntityIdleState
+public class GiantBoreIdleState : EntityIdleState
 {
-    public BoreIdleState(EntityStateMachine ctx, EntityStateFactory factory) : base(ctx, factory)
+    public GiantBoreIdleState(EntityStateMachine ctx, EntityStateFactory factory) : base(ctx, factory)
     {
         
     }
 
     public override void CheckSwitchCondition()
     {
+        //Promp a premature dash if the player is really close to the boss
         if (stateMachine.isTargetTooClose && stateMachine.Target.GetComponent<EntityManager>().health > 0)
         {
             Vector3 pos = stateMachine.Target.position;
@@ -20,13 +21,14 @@ public class BoreIdleState : EntityIdleState
 
         if (_duration <= 0f)
         {
-            if (stateMachine.isTargetInAttackRange)
-            {
-                SwitchState(factory.BoreDash());
-            } else
-            {
-                SwitchState(factory.BoreChaseBase());
-            }
+            //if (stateMachine.isTargetInAttackRange)
+            //{
+            //    SwitchState(factory.BoreDash());
+            //} else
+            //{
+            //    SwitchState(factory.BoreChaseBase());
+            //}
+            SwitchState(factory.BoreChaseBase());
         }
     }
 

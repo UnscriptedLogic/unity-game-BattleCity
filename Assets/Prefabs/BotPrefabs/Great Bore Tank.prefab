@@ -5119,9 +5119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankManager: {fileID: 8064754062388680900}
-  damageInterval: 0.1
-  checkRadius: 2.1
-  checkDistance: 3.45
+  damageInterval: 0
+  checkRadius: 1.5
+  checkDistance: 2
 --- !u!65 &4998924861600727228
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5133,8 +5133,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.121929, y: 1.3237982, z: 0.8969221}
-  m_Center: {x: -9.2045566e-14, y: 0.120305225, z: 0.8451354}
+  m_Size: {x: 1.3777038, y: 0.99046946, z: 0.32020944}
+  m_Center: {x: 3.5471376e-13, y: 0.2869699, z: 1.1123292}
 --- !u!1 &2655796780712299859
 GameObject:
   m_ObjectHideFlags: 0
@@ -15359,11 +15359,12 @@ GameObject:
   - component: {fileID: 4348564809075392739}
   - component: {fileID: 538319973528932998}
   - component: {fileID: 1382150161859077902}
+  - component: {fileID: 8239763418446376522}
   - component: {fileID: 8064754062388680954}
   - component: {fileID: 8064754062388680953}
   - component: {fileID: 4348564809075392750}
   m_Layer: 7
-  m_Name: Giant Bore Tank
+  m_Name: Great Bore Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15450,6 +15451,7 @@ MonoBehaviour:
   - {fileID: 4348564809075392739}
   - {fileID: 538319973528932998}
   - {fileID: 1382150161859077902}
+  - {fileID: 8239763418446376522}
   settings: {fileID: 11400000, guid: a2d21bec07e682b458b1ce3318ff57eb, type: 2}
   health: 0
   speed: 0
@@ -15476,14 +15478,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e7135ce0ebcd549aa227d2dc19bec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleDuration: 8
+  idleDuration: 4
   roamRange: 0
-  attackRange: 9
-  chaseRange: 12
-  tooCloseRange: 5
-  dashSpeed: 8
-  dashDuration: 1
-  maxDist: 5
+  attackRange: 10
+  chaseRange: 10
+  tooCloseRange: 3
+  dashSpeed: 32
+  dashDuration: 0.4
+  maxDist: 4
 --- !u!114 &4348564809075392749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15550,6 +15552,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 1
+--- !u!114 &8239763418446376522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8064754062388680952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4d5374532b654478dc699d3a001257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &8064754062388680954
 Rigidbody:
   m_ObjectHideFlags: 0

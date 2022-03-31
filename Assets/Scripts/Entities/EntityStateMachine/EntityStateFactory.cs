@@ -17,5 +17,5 @@ public class EntityStateFactory
     public EntityBaseState BoreDash() { return new GiantBoreDashState(_context, this); }
     public EntityBaseState BoreChaseBase() { return new GiantBoreChaseBaseState(_context, this); }
     public EntityBaseState BoreHold() { return new GiantBoreHoldState(_context, this); }
-    public EntityBaseState BoreIdle() { return new BoreIdleState(_context, this); }
+    public EntityBaseState BoreIdle() { return new GiantBoreIdleState(_context, this); }
 }

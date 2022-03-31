@@ -3,16 +3,24 @@ using UnityEngine;
 
 public class GiantBoreChaseBaseState : EntityChaseBaseState
 {
+    private float chaseCooldown = 1f;
+
     public GiantBoreChaseBaseState(EntityStateMachine ctx, EntityStateFactory factory) : base(ctx, factory)
     {
     }
 
     public override void CheckSwitchCondition()
     {
-        if (stateMachine.isTargetInChaseRange)
+        if (chaseCooldown <= 0f)
         {
-            SwitchState(factory.BoreDash());
-            return;
+            if (stateMachine.isTargetInChaseRange)
+            {
+                SwitchState(factory.BoreDash());
+                return;
+            }
+        } else
+        {
+            chaseCooldown -= Time.deltaTime;
         }
     }
 
