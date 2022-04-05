@@ -167,7 +167,6 @@ public class PathFindingBotInput : Semaphore
                 if (target != homeBase)
                 {
                     target = homeBase;
-                    Debug.Log(pfMovement);
                     pfMovement.Move(homeBase.position);
                     if (Vector3.Distance(transform.position, homeBase.position) <= stoppingDistance)
                     {

@@ -15478,14 +15478,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e7135ce0ebcd549aa227d2dc19bec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleDuration: 4
+  idleDuration: 6
   roamRange: 0
   attackRange: 10
   chaseRange: 10
   tooCloseRange: 3
-  dashSpeed: 32
-  dashDuration: 0.4
-  maxDist: 4
+  dashSpeed: 30
+  dashDuration: 0.35
+  maxDist: 3
 --- !u!114 &4348564809075392749
 MonoBehaviour:
   m_ObjectHideFlags: 0
