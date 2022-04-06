@@ -16,4 +16,7 @@ public class AssetManager : MonoBehaviour
     }
 
     public GameObject forcefield;
+    public GameObject piercingAura;
+    public GameObject timeStopAura;
+    public GameObject timeStopAuraIndividual;
 }

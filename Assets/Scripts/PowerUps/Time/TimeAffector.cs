@@ -16,10 +16,12 @@ public class TimeAffector : MonoBehaviour
     private EntityMovement movement;
     private EntityShoot shoot;
     private EntityEffects entityEffects;
+    private EntityStateMachine entityStateMachine;
 
     private float originalSpeed;
     private float originalBulletSpeed;
 
+    private GameObject particle;
     public float duration;
 
     private void Start()
@@ -28,14 +30,35 @@ public class TimeAffector : MonoBehaviour
         movement = GetComponent<EntityMovement>();
         shoot = GetComponent<EntityShoot>();
         entityEffects = GetComponent<EntityEffects>();
+        entityStateMachine = GetComponent<EntityStateMachine>();
 
         Toggle(value: true);
 
-
+        //Respawn
         PlayerRespawn playerRespawn = GetComponent<PlayerRespawn>();
         if (playerRespawn)
         {
             playerRespawn.onPlayerRespawned += PlayerRespawn_onPlayerRespawned;
+        }
+
+        //State Machines
+        if (entityStateMachine)
+        {
+            entityStateMachine.enabled = false;
+        }
+
+        //VFX
+        particle = Instantiate(AssetManager.instance.timeStopAuraIndividual, transform);
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 10f))
+        {
+            particle.transform.position = hit.point;
+        }
+
+        BoxCollider boxCollider = transform.GetComponent<BoxCollider>();
+        if (boxCollider)
+        {
+            float scale = Mathf.Max(boxCollider.size.x, boxCollider.size.z) / 1.5f;
+            particle.transform.localScale = new Vector3(scale, 1f, scale);
         }
     }
 
@@ -51,7 +74,15 @@ public class TimeAffector : MonoBehaviour
         {
             playerRespawn.onPlayerRespawned -= PlayerRespawn_onPlayerRespawned;
         }
+
+        if (entityStateMachine)
+        {
+            entityStateMachine.enabled = true;
+        }
+
         Toggle(value: false);
+
+        Destroy(particle);
     }
 
     public void Toggle(bool value)

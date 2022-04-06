@@ -22,8 +22,10 @@ public class TimePowerUp : PowerUpManager
             timeManager = GameManager.instance.gameObject.AddComponent<TimeManager>();
             timeManager.duration = duration;
             timeManager.collectorIndex = index;
-            timeManager.AffectTime();
         }
+
+        GameObject particle = Instantiate(AssetManager.instance.timeStopAura, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
+        Destroy(particle, 10.5f);
 
         onTimeAffected?.Invoke(timeManager);
         base.Activate(collision);

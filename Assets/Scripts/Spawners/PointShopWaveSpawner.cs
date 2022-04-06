@@ -19,7 +19,8 @@ public class PointShopWaveSpawner : EntitySpawnManager
         StartDelay,
         WaveDelay,
         Spawning,
-        SpawnWait
+        SpawnWait,
+        MaxCapWait
     }
 
     [Header("Point Shop Variables")]
@@ -89,13 +90,16 @@ public class PointShopWaveSpawner : EntitySpawnManager
                 onWaveStarting?.Invoke();
                 _waveInterval = waveInterval;
                 waveInterval += waveIntervalIncrement;
+
+                toSpawnIndex = 0;
                 entitiesToSpawn = GetListOfEntities();
                 break;
             case PointSpawnerState.Spawning:
-                toSpawnIndex = 0;
                 break;
             case PointSpawnerState.SpawnWait:
                 _waitInterval = waitInterval;
+                break;
+            case PointSpawnerState.MaxCapWait:
                 break;
             default:
                 break;
@@ -143,11 +147,18 @@ public class PointShopWaveSpawner : EntitySpawnManager
                     if (toSpawnIndex >= entitiesToSpawn.Length)
                     {
                         SwitchState(PointSpawnerState.SpawnWait);
+                        break;
                     }
                 }
                 else
                 {
                     _spawnInterval -= Time.deltaTime;
+                }
+
+                if (spawnParent.childCount >= maxAlive)
+                {
+                    SwitchState(PointSpawnerState.MaxCapWait);
+                    break;
                 }
                 break;
             case PointSpawnerState.SpawnWait:
@@ -165,6 +176,12 @@ public class PointShopWaveSpawner : EntitySpawnManager
                     }
 
                     _waitInterval -= Time.deltaTime;
+                }
+                break;
+            case PointSpawnerState.MaxCapWait:
+                if (spawnParent.childCount < maxAlive)
+                {
+                    SwitchState(PointSpawnerState.Spawning);
                 }
                 break;
             default:
@@ -189,6 +206,8 @@ public class PointShopWaveSpawner : EntitySpawnManager
                 break;
             case PointSpawnerState.SpawnWait:
                 waitInterval += waitIntervalIncrement;
+                break;
+            case PointSpawnerState.MaxCapWait:
                 break;
             default:
                 break;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: GiantBoreSettings
   m_EditorClassIdentifier: 
-  health: 200
+  health: 150
   speed: 1
   rotationSpeed: 40
   damage: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     spatialBlend: 0.95
   - createOn: 2
     particles:
-    - {fileID: 8333206598823610587, guid: 04b0e5b03ed4f9b45887da4d915dad89, type: 3}
+    - {fileID: 8552191079053789170, guid: 6a3d0f5fc92569849ac65889b458aaf1, type: 3}
     sounds:
     - {fileID: 8300000, guid: 60dd80174a9f8de42a3ec9801ab8c20e, type: 3}
     priority: 225

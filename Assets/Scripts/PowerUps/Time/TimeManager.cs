@@ -14,17 +14,34 @@ public class TimeManager : MonoBehaviour
 
     public event Action onTimeResumed;
 
+    private float delay = 2f;
+    private float _delay;
+
+    private void Start()
+    {
+        _delay = delay;
+    }
+
     public void Update()
     {
-        if (activated)
+        if (_delay <= 0f)
         {
-            if (_duration <= 0)
+            if (activated)
             {
-                ResumeTime();
-                activated = false;
-            }
+                if (_duration <= 0)
+                {
+                    ResumeTime();
+                    activated = false;
+                }
 
-            _duration -= Time.deltaTime;
+                _duration -= Time.deltaTime;
+            } else
+            {
+                AffectTime();
+            }
+        } else
+        {
+            _delay -= Time.deltaTime;
         }
     }
 
@@ -35,6 +52,22 @@ public class TimeManager : MonoBehaviour
         for (int i = 0; i < collectorEnemies.Count; i++)
         {
             timeAffectors.Add(collectorEnemies[i].gameObject.AddComponent<TimeAffector>());
+
+            //VFX
+            //GameObject particle = Instantiate(AssetManager.instance.timeStopAura, collectorEnemies[i].transform);
+            //if (Physics.Raycast(collectorEnemies[i].transform.position, Vector3.down, out RaycastHit hit, 10f))
+            //{
+            //    particle.transform.position = hit.point;
+            //}
+
+            //BoxCollider boxCollider = collectorEnemies[i].transform.GetComponent<BoxCollider>();
+            //if (boxCollider)
+            //{
+            //    float scale = Mathf.Max(boxCollider.size.x, boxCollider.size.z) / 1.5f;
+            //    particle.transform.localScale = new Vector3(scale, 1f, scale);
+            //}
+
+            //Destroy(particle, 10.5f);
         }
 
         //For new enemies spawning in
