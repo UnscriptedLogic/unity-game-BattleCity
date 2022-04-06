@@ -52,8 +52,7 @@ public class PlayerRespawn : Semaphore
             {
                 tankManager.InitializeEntity();
 
-                transform.position = spawnPosition;
-                transform.rotation = Quaternion.Euler(Vector3.zero);
+                ResetPosition();
 
                 isDead = false;
                 TogglePlayer(true);
@@ -89,10 +88,6 @@ public class PlayerRespawn : Semaphore
         {
             Invincible invincible = gameObject.AddComponent<Invincible>();
             invincible.Activate(3f);
-            //if (transform.TryGetComponent(out PowerUpUI powerUpUI))
-            //{
-            //    powerUpUI.RespawnShield(5f);
-            //}
 
             if (transform.GetComponent<PowerUpUI>())
             {
@@ -102,5 +97,11 @@ public class PlayerRespawn : Semaphore
 
             onPlayerRespawned?.Invoke();
         }
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = spawnPosition;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 }

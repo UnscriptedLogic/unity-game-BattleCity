@@ -13779,7 +13779,7 @@ MonoBehaviour:
   maxAlive: 1
   blockLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   addOnSpawn: []
   entityChances:
   - prefab: {fileID: 2069431871578061643, guid: 7065912e6f392554981ab2212d1f50c7,
@@ -34734,7 +34734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.2813, y: -31.3275}
+  m_AnchoredPosition: {x: 138.2813, y: -31.327393}
   m_SizeDelta: {x: 276.5626, y: 62.655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1948977442

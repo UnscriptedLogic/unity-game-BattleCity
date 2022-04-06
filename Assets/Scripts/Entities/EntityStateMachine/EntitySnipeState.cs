@@ -17,7 +17,6 @@ public class EntitySnipeState : EntityBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Snipe State");
 
     }
 
