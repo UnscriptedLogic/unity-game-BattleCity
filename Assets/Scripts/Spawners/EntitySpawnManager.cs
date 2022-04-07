@@ -54,6 +54,7 @@ public class EntitySpawnManager : Semaphore
     protected GameObject Spawn(GameObject prefab, Vector3 position)
     {
         GameObject entity = Instantiate(prefab, position, Quaternion.identity, spawnParent);
+        entity.transform.forward = -Vector3.forward;
 
         for (int i = 0; i < addOnSpawn.Length; i++)
         {

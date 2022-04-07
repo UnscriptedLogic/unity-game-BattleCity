@@ -70,11 +70,21 @@ public class EntityStateMachine : Semaphore
 
     protected void FixedUpdate()
     {
+        if (!initialized)
+        {
+            return;
+        }
+
         currentState.FixedUpdate();
     }
 
     protected void OnCollisionEnter(Collision collision)
     {
+        if (!initialized)
+        {
+            return;
+        }
+
         currentState.OnCollisionEnter(collision);
     }
 

@@ -196,7 +196,7 @@ MonoBehaviour:
   waveInterval: 5
   waveIntervalIncrement: 0
   waitInterval: 3
-  waitIntervalIncrement: 4
+  waitIntervalIncrement: 2
   checkRadius: 0.45
   spawnerState: 0
   spawnItems:
@@ -3559,7 +3559,7 @@ MonoBehaviour:
   entityChances:
   - prefab: {fileID: 5115430143269033301, guid: e0df5fcb75177ce4fa3ea7033ca2ebe6,
       type: 3}
-    chance: 20
+    chance: 30
   - prefab: {fileID: 7772481263441006460, guid: 2cc9c78e82ed08f4594435e781ee8139,
       type: 3}
     chance: 20
@@ -3568,10 +3568,10 @@ MonoBehaviour:
     chance: 20
   - prefab: {fileID: 7926169113917282297, guid: cba6340d1ad2b724da7489f6a3e6f603,
       type: 3}
-    chance: 20
+    chance: 15
   - prefab: {fileID: 2069431871578061643, guid: 7065912e6f392554981ab2212d1f50c7,
       type: 3}
-    chance: 20
+    chance: 15
   yOffset: 35
   startDelay: 10
   spawnModifiers:

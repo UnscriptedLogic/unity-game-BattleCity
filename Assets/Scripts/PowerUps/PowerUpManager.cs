@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PowerUpType
 {
@@ -28,6 +29,9 @@ public class PowerUpManager : EntityManager
     protected TankManager collectorManager;
     protected GameManager gameManager;
 
+    public Slider durationSlider;
+    public Color barColor;
+
     public event Action<TankManager> onPowerUp;
 
     protected float _lifetime;
@@ -39,6 +43,9 @@ public class PowerUpManager : EntityManager
         gameManager = GameManager.instance;
         _lifetime = lifeTime;
         notDespawning = lifeTime == -1f ? true : false;
+
+        durationSlider.maxValue = lifeTime;
+        durationSlider.transform.GetChild(0).GetComponent<Image>().color = barColor;
     }
 
     protected virtual void Update()
@@ -53,6 +60,7 @@ public class PowerUpManager : EntityManager
             Destroy(gameObject);
         } else
         {
+            durationSlider.value = lifeTime - _lifetime;
             _lifetime -= Time.deltaTime;
         }
     }

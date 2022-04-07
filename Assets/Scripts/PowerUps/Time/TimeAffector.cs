@@ -24,6 +24,8 @@ public class TimeAffector : MonoBehaviour
     private GameObject particle;
     private bool activated;
     private float delay = 0.4f;
+    private float check;
+    private float checkInt = 0.1f;
 
     private void Start()
     {
@@ -70,6 +72,19 @@ public class TimeAffector : MonoBehaviour
                 }
 
                 activated = true;
+            } else {
+                //if (check <= 0f)
+                //{
+                //    //State Machines
+                //    if (entityStateMachine)
+                //    {
+                //        entityStateMachine.enabled = false;
+                //    }
+                //    check = checkInt;
+                //} else
+                //{
+                //    check -= Time.deltaTime;
+                //}
             }
         } else
         {
