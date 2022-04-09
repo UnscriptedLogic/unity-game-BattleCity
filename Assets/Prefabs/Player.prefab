@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 944245947}
   - component: {fileID: 944245949}
   - component: {fileID: 944245948}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860959306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 8135042283586682354}
   - component: {fileID: 8135042283586682351}
   - component: {fileID: 8135042283586682352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8135042284632126369}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 8135042284711134174}
   - component: {fileID: 8135042284711134172}
   - component: {fileID: 8135042284711134173}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 8135042283719154126}
   - component: {fileID: 1804019343962599489}
   - component: {fileID: 3463377460008713194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8135042285342510353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,10 +757,65 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8135042285342510353}
     m_Modifications:
+    - target: {fileID: 100273083168298898, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 430540080337426277, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2051796319328065625, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2297713873389779241, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747129450961542439, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3797932731177756474, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5027432252553441589, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5265777706408713257, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727216350616790525, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604783443958178915, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8124422847095703888, guid: 7deee4677abbfdc43898a7ed8be7b70e,
         type: 3}
       propertyPath: m_Name
       value: PlayerTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 8124422847095703888, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8931886162810065898, guid: 7deee4677abbfdc43898a7ed8be7b70e,
         type: 3}
@@ -817,6 +872,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9193971520767307990, guid: 7deee4677abbfdc43898a7ed8be7b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7deee4677abbfdc43898a7ed8be7b70e, type: 3}
 --- !u!4 &3219581595948226288 stripped
@@ -836,6 +896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TankDustParticle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 397619332271273430, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 397619332271273431, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
         type: 3}
@@ -917,6 +982,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TankDustParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 397619332271273430, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 397619332271273431, guid: 0a9fad90fd540e945af08a51b8ddbf6c,
         type: 3}

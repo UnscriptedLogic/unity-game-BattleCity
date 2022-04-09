@@ -196,20 +196,34 @@ MonoBehaviour:
   waveInterval: 5
   waveIntervalIncrement: 0
   waitInterval: 3
-  waitIntervalIncrement: 2
+  waitIntervalIncrement: 3
   checkRadius: 0.45
   spawnerState: 0
   spawnItems:
   - item: {fileID: 400500418037949602, guid: b54214d1cb308e147b4b499f34b12bf7, type: 3}
     cost: 1
+    spawnAfterWave: 0
+    waveCooldown: 0
   - item: {fileID: 1309624557003366617, guid: 4cb66190dc1924f429432b442e73bf34, type: 3}
     cost: 2
+    spawnAfterWave: 3
+    waveCooldown: 0
   - item: {fileID: 886481422484413848, guid: da7229816bb7805478228084d9835356, type: 3}
     cost: 3
+    spawnAfterWave: 5
+    waveCooldown: 0
+  - item: {fileID: 4172074598657286209, guid: 5616ebcd921610342b59196f8869bac0, type: 3}
+    cost: 10
+    spawnAfterWave: 20
+    waveCooldown: 0
   - item: {fileID: 2731442686784575376, guid: bc12a79036b7751478b8040c9d759fe6, type: 3}
     cost: 4
+    spawnAfterWave: 7
+    waveCooldown: 0
   - item: {fileID: 8064754062388680952, guid: 2dd8618bdf696c54881c88867920c095, type: 3}
-    cost: 15
+    cost: 10
+    spawnAfterWave: 15
+    waveCooldown: 5
 --- !u!1 &69945831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7188b6a6659b949b751869466fb3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapIndex: 4
+  mapIndex: 5
 --- !u!114 &419572489
 MonoBehaviour:
   m_ObjectHideFlags: 0

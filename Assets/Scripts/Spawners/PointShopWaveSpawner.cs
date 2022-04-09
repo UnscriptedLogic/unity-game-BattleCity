@@ -11,6 +11,16 @@ public class PointShopWaveSpawner : EntitySpawnManager
     {
         public GameObject item;
         public int cost;
+        public int spawnAfterWave;
+        
+        [Tooltip("Determines how many waves between this entity's spawns. 0 = every wave, 1 = alternate...")]
+        public int waveCooldown;
+        private int _waveCD;
+
+        public bool isWaveCDDone { get => _waveCD >= waveCooldown; }
+        public void IncrementCD() => _waveCD++;
+        public void ResetWaveCD() => _waveCD = 0;
+        public void InitializeCD() => _waveCD = waveCooldown;
     }
 
     public enum PointSpawnerState
@@ -42,10 +52,14 @@ public class PointShopWaveSpawner : EntitySpawnManager
     private float _waveInterval;
     private float _waitInterval;
     private int toSpawnIndex;
+    private int waveCount;
 
     public SpawnItem[] spawnItems;
 
+    //Entity and their cost
     private Dictionary<GameObject, int> entityMenu = new Dictionary<GameObject, int>();
+    
+    //Copy of all entity gameobjects
     private List<GameObject> possibleEntities = new List<GameObject>();
 
     private GameObject[] entitiesToSpawn;
@@ -66,6 +80,7 @@ public class PointShopWaveSpawner : EntitySpawnManager
         {
             possibleEntities.Add(spawnItems[i].item);
             entityMenu.Add(spawnItems[i].item, spawnItems[i].cost);
+            spawnItems[i].InitializeCD();
         }
 
         SwitchState(PointSpawnerState.StartDelay);
@@ -90,11 +105,16 @@ public class PointShopWaveSpawner : EntitySpawnManager
                 onWaveStarting?.Invoke();
                 _waveInterval = waveInterval;
                 waveInterval += waveIntervalIncrement;
-
                 toSpawnIndex = 0;
+
                 entitiesToSpawn = GetListOfEntities();
                 break;
             case PointSpawnerState.Spawning:
+                waveCount++;
+                for (int i = 0; i < spawnItems.Length; i++)
+                {
+                    spawnItems[i].IncrementCD();
+                }
                 break;
             case PointSpawnerState.SpawnWait:
                 _waitInterval = waitInterval;
@@ -224,25 +244,52 @@ public class PointShopWaveSpawner : EntitySpawnManager
 
     private GameObject[] GetListOfEntities()
     {
-        int currAmount = maxPoints;
+        int attempts = 100;
+        int pointsToSpend = maxPoints;
         List<GameObject> potentialEntites = new List<GameObject>(possibleEntities);
         List<GameObject> confirmedEntities = new List<GameObject>();
 
-        while (currAmount > 0)
+        while (pointsToSpend > 0 && attempts > 0)
         {
-            GameObject selected = RandomValue.FromList(potentialEntites.ToArray(), out int index);
-            if (entityMenu[selected] <= currAmount)
+            GameObject selectedEntity = RandomValue.FromList(potentialEntites.ToArray(), out int index);
+
+            if (CanSelectEntity(index))
             {
-                currAmount -= entityMenu[selected];
-                confirmedEntities.Add(selected);
+                if (entityMenu[selectedEntity] <= pointsToSpend)
+                {
+                    pointsToSpend -= entityMenu[selectedEntity];
+                    confirmedEntities.Add(selectedEntity);
+                }
+                else
+                {
+                    //Cut off those that are no longer in the price range
+                    potentialEntites.RemoveRange(index, potentialEntites.Count - index);
+                }
             } else
             {
-                //Cut off those that are no longer in the price range
-                potentialEntites.RemoveRange(index, potentialEntites.Count - index);
+                potentialEntites.RemoveAt(index);
+            }
+
+            attempts--;
+        }
+        return confirmedEntities.ToArray();
+    }
+
+    private bool CanSelectEntity(int index)
+    {
+        Debug.Log(spawnItems[index].spawnAfterWave);
+        Debug.Log(waveCount);
+
+        if (spawnItems[index].spawnAfterWave <= waveCount)
+        {
+            if (spawnItems[index].isWaveCDDone)
+            {
+                spawnItems[index].ResetWaveCD();
+                return true;
             }
         }
 
-        return confirmedEntities.ToArray();
+        return false;
     }
 
     private GameObject SpawnEntity(GameObject entity)

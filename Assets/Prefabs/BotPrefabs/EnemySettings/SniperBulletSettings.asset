@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f2c3659a60c294db24b92dd08db78d, type: 3}
+  m_Name: SniperBulletSettings
+  m_EditorClassIdentifier: 
+  health: 2
+  speed: 60
+  rotationSpeed: 30
+  damage: 1
+  miscEffects:
+  - createOn: 0
+    particles:
+    - {fileID: 5341707550211372002, guid: 7b05a2263ae7e5f45a38b7e9cfee0413, type: 3}
+    sounds:
+    - {fileID: 8300000, guid: 0096ce72aadf16943a10a62c815430d0, type: 3}
+    - {fileID: 8300000, guid: de2f4fca921995f4caccf62a018463f0, type: 3}
+    - {fileID: 8300000, guid: d3b6f9dbd8a95f94e8a303274fed2f4d, type: 3}
+    priority: 225
+    volume: 0.2
+    maxDistance: 15
+    spatialBlend: 1
+  - createOn: 2
+    particles: []
+    sounds: []
+    priority: 225
+    volume: 0.2
+    maxDistance: 15
+    spatialBlend: 1
+  lifetime: 5
+  bulletType: 0

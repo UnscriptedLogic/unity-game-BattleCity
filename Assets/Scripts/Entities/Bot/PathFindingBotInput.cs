@@ -300,6 +300,8 @@ public class PathFindingBotInput : Semaphore
 
     private void SingleCoordMatch()
     {
+        Debug.Log(target);
+
         coordMatchPos = new Vector3(target.position.x, transform.position.y, transform.position.z);
         while (ValidPosition(coordMatchPos))
         {
