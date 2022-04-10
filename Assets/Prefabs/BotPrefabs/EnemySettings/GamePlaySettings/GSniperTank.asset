@@ -48,22 +48,22 @@ MonoBehaviour:
   bulletSettings: {fileID: 11400000, guid: 11efc07a157871a4a80578f766c31819, type: 2}
   bulletPrefab: {fileID: 2906201547787963750, guid: be89ef6fe7f49b14a9208c57abfc1bcd,
     type: 3}
-  shootInterval: {x: 2, y: 2}
-  decisionInterval: {x: 0.1, y: 0.35}
+  shootInterval: {x: 0.5, y: 2}
+  decisionInterval: {x: 0.95, y: 2}
   moveDecisions:
   - movementState: 0
-    chance: 10
+    chance: 40
   - movementState: 1
-    chance: 10
+    chance: 5
   - movementState: 2
-    chance: 10
+    chance: 5
   - movementState: 3
-    chance: 10
+    chance: 5
   - movementState: 4
-    chance: 14
+    chance: 16
   - movementState: 5
-    chance: 14
+    chance: 16
   - movementState: 6
-    chance: 14
+    chance: 8
   - movementState: 7
-    chance: 18
+    chance: 5

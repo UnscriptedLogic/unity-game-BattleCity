@@ -22,8 +22,8 @@ MonoBehaviour:
     wallGraphics: {fileID: 919132149155446097, guid: 39107b535863e2d439e675e47abfb80b,
       type: 3}
   - wallType: 1
-    health: 2
-    requiredHealth: 2
+    health: 4
+    requiredHealth: 4
     onlyBullets: 0
     useCollider: 1
     endsGameOnDeath: 0

@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 4920282570340690472, guid: e9a7ea9d57758374d90240faaef034ba, type: 3}
   - {fileID: 2506689164246591346, guid: 7bff097ae73db1544b230204a6d22e67, type: 3}
   - {fileID: 6893615782639771088, guid: 3606a03ca36d0f14a8910c70b3461790, type: 3}
-  showGrid: 1
+  showGrid: 0
 --- !u!114 &9192992218416767384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
-  drawGizmos: 1
+  drawGizmos: 0
 --- !u!114 &9192992218416767387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfGrid: {fileID: 9192992218416767384}
-  drawGizmos: 1
+  drawGizmos: 0
 --- !u!114 &9192992218416767386
 MonoBehaviour:
   m_ObjectHideFlags: 0

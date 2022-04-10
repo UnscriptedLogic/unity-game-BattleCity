@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Onslaught.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/WaveSystem.unity
-    guid: 93c5effd67b30934bb1d815dda38f89a
-  - enabled: 1
     path: Assets/Scenes/Maps/Ranks.unity
     guid: 6f03878ca9af5ec40a0446458e9010f8
   - enabled: 1

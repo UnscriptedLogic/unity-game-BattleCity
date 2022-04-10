@@ -212,18 +212,18 @@ MonoBehaviour:
     cost: 3
     spawnAfterWave: 5
     waveCooldown: 0
-  - item: {fileID: 4172074598657286209, guid: 5616ebcd921610342b59196f8869bac0, type: 3}
-    cost: 10
-    spawnAfterWave: 20
-    waveCooldown: 0
   - item: {fileID: 2731442686784575376, guid: bc12a79036b7751478b8040c9d759fe6, type: 3}
     cost: 4
     spawnAfterWave: 7
     waveCooldown: 0
+  - item: {fileID: 4172074598657286209, guid: ceefe26393576b14485d8c31f21e847e, type: 3}
+    cost: 5
+    spawnAfterWave: 20
+    waveCooldown: 0
   - item: {fileID: 8064754062388680952, guid: 2dd8618bdf696c54881c88867920c095, type: 3}
     cost: 10
     spawnAfterWave: 15
-    waveCooldown: 5
+    waveCooldown: 3
 --- !u!1 &69945831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1059,7 @@ GameObject:
   - component: {fileID: 419572488}
   - component: {fileID: 419572489}
   - component: {fileID: 419572490}
+  - component: {fileID: 419572491}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -1143,6 +1144,7 @@ MonoBehaviour:
   - {fileID: 26294394}
   - {fileID: 1181489153}
   - {fileID: 419572490}
+  - {fileID: 419572491}
   enableAfterInitialize:
   - {fileID: 970467778}
   - {fileID: 26294390}
@@ -1302,6 +1304,21 @@ MonoBehaviour:
   wavePrefix: 'Wave: '
   waveStartPrefix: 'Wave Starting in '
   waveSpawner: {fileID: 26294394}
+--- !u!114 &419572491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419572476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36aeafc7ca78ea74588539d47628cbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawner: {fileID: 26294394}
+  wavesToChange: 10
+  mapBuildIndexRange: {x: 2, y: 6}
 --- !u!1 &442552684
 GameObject:
   m_ObjectHideFlags: 0
