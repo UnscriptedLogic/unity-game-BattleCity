@@ -27,6 +27,8 @@ public class GiantBoreDashState : EntityBaseState
     private Vector3 startPos;
     private GiantBoreStateMachine boreStateMachine;
 
+    private Invincible invincible;
+
     public GiantBoreDashState(EntityStateMachine ctx, EntityStateFactory factory) : base(ctx, factory)
     {
     }
@@ -38,7 +40,10 @@ public class GiantBoreDashState : EntityBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Dash State");
+        invincible = stateMachine.gameObject.AddComponent<Invincible>();
+        invincible.overrideGFX = AssetManager.instance.yellowforcefield;
+        invincible.Activate(10f);
+
         boreStateMachine = stateMachine as GiantBoreStateMachine;
         stateMachine.PathFinder.Stop();
 
@@ -113,6 +118,11 @@ public class GiantBoreDashState : EntityBaseState
     {
         stateMachine.PathFinder.rb.velocity = Vector3.zero;
         stateMachine.Manager.speed = originalSpeed;
+
+        if (invincible != null)
+        {
+            UnityEngine.Object.Destroy(invincible);
+        }
     }
 
     public override void OnCollisionEnter(Collision collision)

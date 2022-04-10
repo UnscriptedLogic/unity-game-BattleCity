@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forcefield: {fileID: 611465117955108140, guid: cb4ef6d2a8d66a74f925519b831719cd,
     type: 3}
+  yellowforcefield: {fileID: 7876398328333958972, guid: 25065be83a1c5344ebb627cedb82a473,
+    type: 3}
   piercingAura: {fileID: 7734618425365664659, guid: c823909cc3e8f964c84d21acd2213df3,
     type: 3}
   timeStopAura: {fileID: 5753608517471527882, guid: 0888064d2576c1e49a7927b344371915,

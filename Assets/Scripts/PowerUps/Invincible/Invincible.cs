@@ -7,6 +7,9 @@ public class Invincible : MonoBehaviour
     private BoxCollider boxCollider;
     public float duration;
 
+    public bool overrideDuration;
+    public GameObject overrideGFX;
+
     public void Start()
     {
         Invincible[] invincibleScripts = transform.GetComponents<Invincible>();
@@ -20,8 +23,28 @@ public class Invincible : MonoBehaviour
             }
         }
 
+        if (overrideDuration)
+        {
+            Activate(duration);
+        }
+    }
+
+    public void Activate(float duration)
+    {
+        this.duration = duration;
+        StopAllCoroutines();
+        StartCoroutine(LifeTime(duration));
+
         //Create a gameobject to house the fake collider
-        fakeColliderGO = Instantiate(AssetManager.instance.forcefield, transform);
+        if (overrideGFX != null)
+        {
+            fakeColliderGO = Instantiate(overrideGFX, transform);
+        }
+        else
+        {
+            fakeColliderGO = Instantiate(AssetManager.instance.forcefield, transform);
+        }
+
         fakeColliderGO.transform.position = transform.position;
         fakeColliderGO.transform.localScale = Vector3.one;
 
@@ -36,18 +59,16 @@ public class Invincible : MonoBehaviour
         boxCollider.enabled = false;
     }
 
-    public void Activate(float duration)
-    {
-        this.duration = duration;
-        StopAllCoroutines();
-        StartCoroutine(LifeTime(duration));
-    }
-
     private IEnumerator LifeTime(float duration)
     {
         yield return new WaitForSeconds(duration);
+        Destroy(this);
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
         boxCollider.enabled = true;
         Destroy(fakeColliderGO);
-        Destroy(this);
     }
 }
