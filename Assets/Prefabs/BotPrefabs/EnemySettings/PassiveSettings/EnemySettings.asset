@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
-  movementSpeed: 6
-  rotationSpeed: 45
   health: 1
+  speed: 6
+  rotationSpeed: 45
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []
@@ -40,7 +41,7 @@ MonoBehaviour:
   bulletSettings: {fileID: 11400000, guid: 9b23158fa3bf3e24abe7e213fe1e62d9, type: 2}
   bulletPrefab: {fileID: 2906201547787963750, guid: be89ef6fe7f49b14a9208c57abfc1bcd,
     type: 3}
-  shootInterval: {x: 1, y: 2}
+  shootInterval: {x: 1e+9, y: 1e+10}
   decisionInterval: {x: 0.8, y: 1.5}
   moveDecisions:
   - movementState: 0

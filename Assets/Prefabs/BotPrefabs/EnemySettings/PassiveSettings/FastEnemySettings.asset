@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf584641d73442e4d9b6a8f181d3ab26, type: 3}
   m_Name: FastEnemySettings
   m_EditorClassIdentifier: 
-  movementSpeed: 8
-  rotationSpeed: 50
   health: 1
+  speed: 10
+  rotationSpeed: 50
+  damage: 1
   miscEffects:
   - createOn: 1
     particles: []
@@ -40,7 +41,7 @@ MonoBehaviour:
   bulletSettings: {fileID: 11400000, guid: 9b23158fa3bf3e24abe7e213fe1e62d9, type: 2}
   bulletPrefab: {fileID: 2906201547787963750, guid: be89ef6fe7f49b14a9208c57abfc1bcd,
     type: 3}
-  shootInterval: {x: 0.65, y: 1}
+  shootInterval: {x: 1e+9, y: 1e+10}
   decisionInterval: {x: 0.1, y: 0.35}
   moveDecisions:
   - movementState: 0
