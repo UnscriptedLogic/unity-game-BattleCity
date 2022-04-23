@@ -68,6 +68,7 @@ public class PointShopWaveSpawner : EntitySpawnManager
     public event Action onWaveStarting;
 
     public float CurrentWaveInterval { get => _waveInterval; }
+    public int TotalWaves { get => waveCount; }
 
     protected override void SephamoreStart(Manager manager)
     {
@@ -277,9 +278,6 @@ public class PointShopWaveSpawner : EntitySpawnManager
 
     private bool CanSelectEntity(int index)
     {
-        Debug.Log(spawnItems[index].spawnAfterWave);
-        Debug.Log(waveCount);
-
         if (spawnItems[index].spawnAfterWave <= waveCount)
         {
             if (spawnItems[index].isWaveCDDone)

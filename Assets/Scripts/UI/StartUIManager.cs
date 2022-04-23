@@ -11,5 +11,6 @@ public class StartUIManager : MonoBehaviour
     private void Start()
     {
         versionNumber.text = "Version: " + Application.version;
+
     }
 }

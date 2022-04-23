@@ -17,17 +17,27 @@ public class PlayerCard : MonoBehaviour
 
     public ConnectionManager connectionManager;
 
+    public Slider expSlider;
+    public TextMeshProUGUI expText;
+    public TextMeshProUGUI leveltext;
+    public float expLerpSpeed = 2f;
+
     private void Start()
     {
         UserManager.onUserUpdated += SetCredentials;
         SetCredentials();
     }
 
+    private void Update()
+    {
+        expSlider.value = Mathf.Lerp(expSlider.value, ExperienceManager.Experience, expLerpSpeed);
+    }
+
     private void SetCredentials()
     {
         usernameTMP.text = UserManager.user.username;
         nameTMP.text = UserManager.user.username;
-        SetScore(UserManager.high_score);
+        SetScore(UserManager.user.highest_wave);
     }
 
     public void SetUsername()
@@ -39,5 +49,10 @@ public class PlayerCard : MonoBehaviour
     {
         scoreTMP.text = scorePrefix + amount.ToString();
         hiscoreTMP.text = amount.ToString();
+
+        leveltext.text = ExperienceManager.Level.ToString();
+
+        expSlider.maxValue = ExperienceManager.ExperienceCap;
+        expText.text = $"{ExperienceManager.Experience}/{ExperienceManager.ExperienceCap}";
     }
 }

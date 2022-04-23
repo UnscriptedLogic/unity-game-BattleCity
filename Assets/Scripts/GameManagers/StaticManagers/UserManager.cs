@@ -11,6 +11,9 @@ public static class UserManager
         public int id;
         public string username;
         public string password;
+        public int experience;
+        public int level;
+        public int highest_wave;
 
         public User(bool initialized = false, int id = 0, string username = "Unscripted_User1", string password = "")
         {
@@ -18,17 +21,19 @@ public static class UserManager
             this.id = id;
             this.username = username;
             this.password = password;
+            experience = 0;
+            level = 1;
+            highest_wave = 0;
         }
     }
 
     public static User user;
-    public static int high_score = 0;
 
     public static event Action onUserUpdated;
 
-    public static void CreateUser(User _user)
+    public static void CreateUser(string name)
     {
-        user = _user;
+        user = new User(initialized: true, username: name);
         onUserUpdated?.Invoke();
         SaveManager.Save();
     }
@@ -40,10 +45,17 @@ public static class UserManager
         SaveManager.Save();
     }
 
-    public static void UpdateScore(int score)
+    public static void UpdateWaveScore(int score)
     {
-        high_score = score;
+        user.highest_wave = score;
         onUserUpdated?.Invoke();
+        SaveManager.Save();
+    }
+
+    public static void UpdateExpLevel(int exp, int lvl)
+    {
+        user.experience = exp;
+        user.level = lvl;
         SaveManager.Save();
     }
 
@@ -51,7 +63,7 @@ public static class UserManager
     {
         if (user == null)
         {
-            CreateUser(new User());
+            CreateUser("Unnamed_User");
         }
 
         return user;

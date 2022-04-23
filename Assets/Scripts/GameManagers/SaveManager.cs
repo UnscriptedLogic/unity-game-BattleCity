@@ -20,6 +20,8 @@ public class SaveManager : Semaphore
         base.SephamoreStart(manager);
         savePath = Application.persistentDataPath + "/" + saveFilename;
         GetSavedData();
+        Debug.Log(Application.persistentDataPath   );
+
     }
 
     public static void Save()
@@ -27,7 +29,9 @@ public class SaveManager : Semaphore
         SaveData saveData = new SaveData
         {
             username = UserManager.GetUser().username,
-            high_score = UserManager.high_score
+            highest_wave = UserManager.GetUser().highest_wave,
+            experience = UserManager.GetUser().experience,
+            level = UserManager.GetUser().level
         };
 
         BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -52,7 +56,9 @@ public class SaveManager : Semaphore
             SaveData newData = new SaveData
             {
                 username = UserManager.GetUser().username,
-                high_score = UserManager.high_score
+                highest_wave = UserManager.GetUser().highest_wave,
+                experience = UserManager.GetUser().experience,
+                level = UserManager.GetUser().level
             };
 
             savedData = newData;
@@ -62,12 +68,14 @@ public class SaveManager : Semaphore
 
     public static void Load()
     {
-        UserManager.CreateUser(new UserManager.User 
-        { 
-            username = savedData.username,
-        });
-        
-        UserManager.high_score = savedData.high_score;
+        UserManager.CreateUser(savedData.username);
+
+        UserManager.user.experience = savedData.experience;
+        UserManager.user.level = savedData.level;
+        UserManager.user.highest_wave = savedData.highest_wave;
+
+        ExperienceManager.SetExpLevel(savedData.experience, savedData.level);
+
         onDataLoaded?.Invoke();
     }
 
@@ -75,6 +83,8 @@ public class SaveManager : Semaphore
     public class SaveData
     {
         public string username;
-        public int high_score;
+        public int highest_wave;
+        public int experience;
+        public int level;
     }
 }

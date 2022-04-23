@@ -193,10 +193,10 @@ MonoBehaviour:
   incrementPoint: 1
   startDelay: 3
   spawnInterval: 1
-  waveInterval: 5
+  waveInterval: 3
   waveIntervalIncrement: 0
   waitInterval: 3
-  waitIntervalIncrement: 3
+  waitIntervalIncrement: 6
   checkRadius: 0.45
   spawnerState: 0
   spawnItems:
@@ -206,11 +206,11 @@ MonoBehaviour:
     waveCooldown: 0
   - item: {fileID: 1309624557003366617, guid: 4cb66190dc1924f429432b442e73bf34, type: 3}
     cost: 2
-    spawnAfterWave: 3
+    spawnAfterWave: 2
     waveCooldown: 0
   - item: {fileID: 886481422484413848, guid: da7229816bb7805478228084d9835356, type: 3}
     cost: 3
-    spawnAfterWave: 5
+    spawnAfterWave: 3
     waveCooldown: 0
   - item: {fileID: 2731442686784575376, guid: bc12a79036b7751478b8040c9d759fe6, type: 3}
     cost: 4
@@ -226,7 +226,7 @@ MonoBehaviour:
     waveCooldown: 0
   - item: {fileID: 8064754062388680952, guid: 2dd8618bdf696c54881c88867920c095, type: 3}
     cost: 10
-    spawnAfterWave: 15
+    spawnAfterWave: 10
     waveCooldown: 2
 --- !u!1 &69945831
 GameObject:
@@ -1064,6 +1064,7 @@ GameObject:
   - component: {fileID: 419572489}
   - component: {fileID: 419572490}
   - component: {fileID: 419572491}
+  - component: {fileID: 419572492}
   m_Layer: 0
   m_Name: GameManagers
   m_TagString: Untagged
@@ -1323,6 +1324,20 @@ MonoBehaviour:
   spawner: {fileID: 26294394}
   wavesToChange: 10
   mapBuildIndexRange: {x: 2, y: 6}
+--- !u!114 &419572492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419572476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d13dc9ef64e07e4db32267741f0ea16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 419572483}
+  waveSpawner: {fileID: 26294394}
 --- !u!1 &442552684
 GameObject:
   m_ObjectHideFlags: 0

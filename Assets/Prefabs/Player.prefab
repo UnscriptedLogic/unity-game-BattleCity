@@ -365,7 +365,6 @@ GameObject:
   - component: {fileID: 8135042285216460266}
   - component: {fileID: 8135042285216460265}
   - component: {fileID: 3117731677175550613}
-  - component: {fileID: 8135042283719154113}
   - component: {fileID: 8135042283719154126}
   - component: {fileID: 1804019343962599489}
   - component: {fileID: 3463377460008713194}
@@ -662,19 +661,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8135042285216460269}
   m_Enabled: 1
---- !u!114 &8135042283719154113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8135042285216460269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d13dc9ef64e07e4db32267741f0ea16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tankScore: {fileID: 1591539979}
 --- !u!114 &8135042283719154126
 MonoBehaviour:
   m_ObjectHideFlags: 0

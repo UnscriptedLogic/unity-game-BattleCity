@@ -1,29 +1,29 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameOverStoreScore : MonoBehaviour
 {
-    public TankScore tankScore;
+    public ScoreManager scoreManager;
+    public PointShopWaveSpawner waveSpawner;
 
     private void Start()
     {
         GameManager.instance.onGameOver += delegate ()
         {
-            //if (GlobalVars.player != null)
-            //{
-            //    //if (tankScore.score > GlobalVars.player.hiscore)
-            //    {
-            //        //GlobalVars.SetPlayerScore(tankScore.score);
-            //        StartCoroutine(ConnectionManager.instance.UpdateScore((res) => { }));
-            //    } 
-            //}
+            Debug.Log("Game Over");
 
-            if (tankScore.score > UserManager.high_score)
+
+            if (waveSpawner.TotalWaves > UserManager.GetUser().highest_wave)
             {
-                UserManager.UpdateScore(tankScore.score);
+                UserManager.UpdateWaveScore(waveSpawner.TotalWaves);
             }
+
+            ExperienceManager.AddExperience(scoreManager.entityScores.ElementAt(0).Value);
+            Debug.Log($"Added Experience: {scoreManager.entityScores.ElementAt(0).Value}");
+            Debug.Log($"Current Experience: {ExperienceManager.Experience}");
         };
     }
 }

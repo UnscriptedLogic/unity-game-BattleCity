@@ -21,6 +21,7 @@ public class GameManager : Manager
     private void Awake()
     {
         instance = this;
+        DisableObjects();
         InitializeSephamores();
     }
 
@@ -35,6 +36,14 @@ public class GameManager : Manager
         for (int i = 0; i < enableAfterInitialize.Length; i++)
         {
             enableAfterInitialize[i].SetActive(true);   
+        }
+    }
+
+    public void DisableObjects()
+    {
+        for (int i = 0; i < enableAfterInitialize.Length; i++)
+        {
+            enableAfterInitialize[i].SetActive(false);
         }
     }
 
